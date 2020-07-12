@@ -23,6 +23,8 @@ const NavbarWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
+    width: 975px;
+    padding: 0 20px;
   }
 
   img {
@@ -40,6 +42,17 @@ const NavbarWrapper = styled.div`
 
   li {
     margin-left: 1rem;
+  }
+
+  @media screen and (max-width: 1070px) {
+    nav {
+      width: 90%;
+    }
+  }
+  @media screen and (max-width: 670px) {
+    input {
+      display: none;
+    }
   }
 `;
 
