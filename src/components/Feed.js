@@ -7,7 +7,7 @@ const FeedWrapper = styled.section`
   color: red;
   margin-right: 28px;
 
-  @media screen and (max-width: 1040px) {
+  @media screen and (max-width: 984px) {
     display: flex;
     margin: auto;
     flex-direction: column;

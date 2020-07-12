@@ -22,7 +22,7 @@ const Global = createGlobalStyle`
 	a {
 		text-decoration: none;
 		cursor: pointer;
-		color: inherit;
+		color: #0095f6;
 	}
 	.pointer {
 		cursor: pointer;

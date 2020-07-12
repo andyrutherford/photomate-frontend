@@ -10,24 +10,25 @@ const SuggestionsWrapper = styled.div`
   left: 65%;
   width: 280px;
 
-  .suggestions-profile {
-    border: 1px dashed grey;
+  .suggestions-my-profile {
     display: flex;
     height: 62px;
   }
 
-  .suggestions-profile div > :first-child {
+  .suggestions-my-profile div {
+    margin: auto 0;
+  }
+
+  .suggestions-my-profile div > :first-child {
     font-weight: bold;
   }
 
-  .suggestions-profile div > :nth-child(2) {
+  .suggestions-my-profile div > :nth-child(2) {
     color: grey;
   }
 
-  @media screen and (max-width: 1095px) {
+  @media screen and (max-width: 984px) {
     left: 67%;
-  }
-  @media screen and (max-width: 1040px) {
     display: none;
   }
 `;
@@ -35,7 +36,7 @@ const SuggestionsWrapper = styled.div`
 const Suggestions = () => {
   return (
     <SuggestionsWrapper>
-      <div className='suggestions-profile'>
+      <div className='suggestions-my-profile'>
         <CircleIcon />
         <div>
           <p>@user</p>

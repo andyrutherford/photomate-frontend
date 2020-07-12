@@ -16,7 +16,7 @@ const NavbarWrapper = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid lightgrey;
   margin-bottom: 1rem;
 
   nav {
@@ -29,8 +29,8 @@ const NavbarWrapper = styled.div`
   }
 
   img {
-    height: 35px;
     width: 103px;
+    margin: 10px 0;
   }
 
   ul {
