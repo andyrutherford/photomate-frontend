@@ -32,7 +32,7 @@ const FeedItemHeader = () => {
     <FeedItemHeaderWrapper>
       <div>
         <SmallCircleIcon />
-        <a href='!#'>@user</a>
+        <a href='!#'>user</a>
       </div>
       <ThreeDotsIcon />
     </FeedItemHeaderWrapper>

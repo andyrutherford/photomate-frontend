@@ -5,11 +5,12 @@ import FeedItemHeader from './FeedItemHeader';
 import FeedItemImage from './FeedItemImage';
 import FeedItemActions from './FeedItemActions';
 import FeedItemInfo from './FeedItemInfo';
+import FeedItemAddComment from './FeedItemAddComment';
 
 const FeedItemWrapper = styled.article`
   border: 1px solid lightgrey;
   border-radius: 3px;
-  height: 614px;
+
   margin: auto;
   margin-bottom: 60px;
   width: 615px;
@@ -35,6 +36,7 @@ const FeedItem = () => {
       {/* FeedItemInfo */}
       <FeedItemInfo />
       {/* FeedItemAddComment */}
+      <FeedItemAddComment />
     </FeedItemWrapper>
   );
 };

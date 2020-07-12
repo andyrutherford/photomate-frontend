@@ -191,3 +191,22 @@ export const BookmarkIcon = () => (
     <path d='M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2' />
   </svg>
 );
+
+export const SearchIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    className='icon icon-tabler icon-tabler-search'
+    width='28'
+    height='28'
+    viewBox='0 0 24 24'
+    strokeWidth='1.5'
+    stroke='#2c3e50'
+    fill='none'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' />
+    <circle cx='10' cy='10' r='7' />
+    <line x1='21' y1='21' x2='15' y2='15' />
+  </svg>
+);

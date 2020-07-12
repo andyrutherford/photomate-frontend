@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import FeedItem from './FeedItem';
 
 const FeedWrapper = styled.section`
-  color: red;
   margin-right: 28px;
 
   @media screen and (max-width: 984px) {
