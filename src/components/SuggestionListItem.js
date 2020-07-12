@@ -34,8 +34,8 @@ const SuggestionListItem = () => {
         <div>
           <SmallCircleIcon />
           <div>
-            <p>@user</p>
-            <p>username</p>
+            <p>@cosmo</p>
+            <p>Cosmo Kramer</p>
           </div>
         </div>
         <div>

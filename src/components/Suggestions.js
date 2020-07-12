@@ -5,7 +5,6 @@ import { CircleIcon } from './Icons';
 import SuggestionList from './SuggestionList';
 
 const SuggestionsWrapper = styled.div`
-  border: 1px solid lightgrey;
   position: fixed;
   left: 65%;
   width: 280px;
@@ -14,6 +13,7 @@ const SuggestionsWrapper = styled.div`
   .suggestions-my-profile {
     display: flex;
     height: 62px;
+    margin-left: -9px;
   }
 
   .suggestions-my-profile div {
@@ -28,6 +28,20 @@ const SuggestionsWrapper = styled.div`
     color: grey;
   }
 
+  footer {
+    margin-top: 25px;
+    font-size: 12px;
+    color: lightgrey;
+  }
+
+  footer ul li {
+    display: inline;
+  }
+
+  footer span {
+    margin-top: 10px;
+  }
+
   @media screen and (max-width: 984px) {
     left: 67%;
     display: none;
@@ -40,11 +54,21 @@ const Suggestions = () => {
       <div className='suggestions-my-profile'>
         <CircleIcon />
         <div>
-          <p>@user</p>
-          <p>username</p>
+          <p>@seinfeld</p>
+          <p>Jerry Seinfeld</p>
         </div>
       </div>
       <SuggestionList />
+
+      <footer className='footer'>
+        <ul>
+          <li>About</li> - <li>Help</li> - <li>Press</li> - <li>API</li> -
+          <li>Jobs</li> - <li>Privacy</li> - <li>Terms </li> -{' '}
+          <li>Locations</li> - <li>Top Accounts</li> - <li>Hashtags</li> -{' '}
+          <li>Language</li>
+        </ul>
+        <span>© 2020 INSTAGRAM FROM FACEBOOK</span>
+      </footer>
     </SuggestionsWrapper>
   );
 };
