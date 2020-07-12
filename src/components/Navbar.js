@@ -12,6 +12,7 @@ import Search from '../components/Search';
 import logo from '../assets/logo.svg';
 
 const NavbarWrapper = styled.div`
+  background-color: white;
   position: fixed;
   top: 0;
   width: 100%;

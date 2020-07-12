@@ -8,6 +8,14 @@ const FeedItemWrapper = styled.article`
   margin: auto;
   margin-bottom: 60px;
   width: 615px;
+
+  @media screen and (max-width: 620px) {
+    border: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+    width: 100vw;
+  }
 `;
 
 const FeedItem = () => {

@@ -94,3 +94,21 @@ export const UserIcon = () => (
     <path d='M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2' />
   </svg>
 );
+
+export const CircleIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    className='icon icon-tabler icon-tabler-circle'
+    width='69'
+    height='69'
+    viewBox='0 0 24 24'
+    strokeWidth='0.5'
+    stroke='#2c3e50'
+    fill='none'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' />
+    <circle cx='12' cy='12' r='9' />
+  </svg>
+);
