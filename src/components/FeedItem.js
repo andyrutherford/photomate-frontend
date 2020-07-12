@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import FeedItemHeader from './FeedItemHeader';
+import FeedItemImage from './FeedItemImage';
+import FeedItemActions from './FeedItemActions';
+import FeedItemInfo from './FeedItemInfo';
+
 const FeedItemWrapper = styled.article`
   border: 1px solid lightgrey;
   border-radius: 3px;
@@ -19,7 +24,19 @@ const FeedItemWrapper = styled.article`
 `;
 
 const FeedItem = () => {
-  return <FeedItemWrapper></FeedItemWrapper>;
+  return (
+    <FeedItemWrapper>
+      {/* FeedItemHeader */}
+      <FeedItemHeader />
+      {/* FeedItemImage */}
+      <FeedItemImage />
+      {/* FeedItemActions */}
+      <FeedItemActions />
+      {/* FeedItemInfo */}
+      <FeedItemInfo />
+      {/* FeedItemAddComment */}
+    </FeedItemWrapper>
+  );
 };
 
 export default FeedItem;

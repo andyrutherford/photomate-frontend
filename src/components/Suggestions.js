@@ -9,6 +9,7 @@ const SuggestionsWrapper = styled.div`
   position: fixed;
   left: 65%;
   width: 280px;
+  font-size: 14px;
 
   .suggestions-my-profile {
     display: flex;

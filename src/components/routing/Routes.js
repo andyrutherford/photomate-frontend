@@ -8,7 +8,7 @@ import Dashboard from '../pages/Dashboard';
 
 const Container = styled.div`
   width: 935px;
-  margin: 6.5rem auto;
+  margin: 5.5rem auto;
   @media screen and (max-width: 930px) {
     width: 90%;
   }

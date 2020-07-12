@@ -130,3 +130,64 @@ export const SmallCircleIcon = () => (
     <circle cx='12' cy='12' r='9' />
   </svg>
 );
+
+export const ThreeDotsIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    className='icon icon-tabler icon-tabler-dots'
+    width='25'
+    height='25'
+    viewBox='0 0 24 24'
+    strokeWidth='1.5'
+    stroke='#2c3e50'
+    fill='none'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' />
+    <circle cx='5' cy='12' r='1' />
+    <circle cx='12' cy='12' r='1' />
+    <circle cx='19' cy='12' r='1' />
+  </svg>
+);
+
+// TODO: MessageIcon is slightly bigger than other icons
+
+export const MessageIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    className='icon icon-tabler icon-tabler-message-circle'
+    width='28'
+    height='28'
+    viewBox='0 0 24 24'
+    strokeWidth='1.5'
+    stroke='#2c3e50'
+    fill='none'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' />
+    <path d='M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1' />
+    <line x1='12' y1='12' x2='12' y2='12.01' />
+    <line x1='8' y1='12' x2='8' y2='12.01' />
+    <line x1='16' y1='12' x2='16' y2='12.01' />
+  </svg>
+);
+
+export const BookmarkIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    className='icon icon-tabler icon-tabler-bookmark'
+    width='28'
+    height='28'
+    viewBox='0 0 24 24'
+    strokeWidth='1.5'
+    stroke='#2c3e50'
+    fill='none'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' />
+    <path d='M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2' />
+  </svg>
+);
