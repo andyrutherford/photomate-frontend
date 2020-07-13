@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
+import Settings from '../pages/Settings';
 
 const Container = styled.div`
   width: 935px;
@@ -32,6 +33,7 @@ const Routes = () => {
         <Switch>
           <Route exact path='/' component={Dashboard} />
           <Route exact path='/profile' component={Profile} />
+          <Route exact path='/accounts/edit' component={Settings} />
         </Switch>
       </Container>
     </section>

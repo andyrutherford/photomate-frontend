@@ -27,8 +27,8 @@ const FeedItemInfo = () => {
     <FeedItemInfoWrapper>
       <div className='like-count'>20 likes</div>
       <div className='description'>
-        <span>user </span>
-        <span>photo description</span>
+        <span>cosmo </span>
+        <span>Here's to feeling good all the time</span>
       </div>
       <div className='comment'>
         <span>user1 </span>

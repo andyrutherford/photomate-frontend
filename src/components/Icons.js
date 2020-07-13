@@ -95,7 +95,7 @@ export const UserIcon = () => (
   </svg>
 );
 
-export const CircleIcon = ({ size = 10, strokeWidth = 0.5 }) => (
+export const CircleIcon = ({ size = 72, strokeWidth = 0.5 }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     className='icon icon-tabler icon-tabler-circle'

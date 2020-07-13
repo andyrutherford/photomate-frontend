@@ -26,7 +26,7 @@ const NavbarWrapper = styled.div`
 
   img {
     width: 103px;
-    margin: 10px 0;
+    margin: 10px 0 0;
   }
 
   ul {
@@ -65,7 +65,9 @@ const Navbar = () => {
   return (
     <NavbarWrapper>
       <nav>
-        <img src={logo} alt='Instagram' />
+        <Link to='/'>
+          <img src={logo} alt='Instagram' />
+        </Link>
         <Search />
         <ul>
           <li>

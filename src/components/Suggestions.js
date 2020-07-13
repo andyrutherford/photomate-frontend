@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import avatar from '../assets/avatar.jpg';
 
 import { CircleIcon } from './Icons';
 import SuggestionList from './SuggestionList';
@@ -9,15 +11,23 @@ const SuggestionsWrapper = styled.div`
   left: 65%;
   width: 280px;
   font-size: 14px;
+  margin-left: 30px;
 
   .suggestions-my-profile {
     display: flex;
     height: 62px;
-    margin-left: -9px;
   }
 
   .suggestions-my-profile div {
     margin: auto 0;
+  }
+
+  .avatar {
+    height: 56px;
+    width: 56px;
+    border-radius: 100px;
+    object-fit: cover;
+    margin-right: 10px;
   }
 
   .suggestions-my-profile div > :first-child {
@@ -26,6 +36,10 @@ const SuggestionsWrapper = styled.div`
 
   .suggestions-my-profile div > :nth-child(2) {
     color: grey;
+  }
+
+  .suggestions-my-profile div a {
+    color: black;
   }
 
   footer {
@@ -52,10 +66,12 @@ const Suggestions = () => {
   return (
     <SuggestionsWrapper>
       <div className='suggestions-my-profile'>
-        <CircleIcon />
+        <Link to='/user'>
+          <img className='avatar' src={avatar} alt='avatar' />
+        </Link>
         <div>
-          <p>@seinfeld</p>
-          <p>Jerry Seinfeld</p>
+          <Link to='/user'>cosmo</Link>
+          <p>Cosmo Kramer</p>
         </div>
       </div>
       <SuggestionList />

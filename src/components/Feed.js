@@ -20,7 +20,8 @@ const FeedWrapper = styled.section`
 const Feed = () => {
   return (
     <FeedWrapper>
-      <Link to='/login'>Login</Link> <Link to='/signup'>Signup</Link>
+      <Link to='/login'>Login</Link> <Link to='/signup'>Signup</Link>{' '}
+      <Link to='/accounts/edit'>Settings</Link>
       <FeedItem />
       <FeedItem />
       <FeedItem />

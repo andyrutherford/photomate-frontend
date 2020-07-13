@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { SmallCircleIcon, ThreeDotsIcon } from '../components/Icons';
+import avatar from '../assets/avatar.jpg';
+
+import { ThreeDotsIcon } from '../components/Icons';
 
 const FeedItemHeaderWrapper = styled.div`
   display: flex;
@@ -25,14 +27,21 @@ const FeedItemHeaderWrapper = styled.div`
     font-weight: bold;
     color: black;
   }
+
+  .avatar {
+    height: 42px;
+    width: 42px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
 `;
 
 const FeedItemHeader = () => {
   return (
     <FeedItemHeaderWrapper>
       <div>
-        <SmallCircleIcon />
-        <a href='!#'>user</a>
+        <img className='avatar' src={avatar} alt={avatar} />
+        <a href='!#'>cosmo</a>
       </div>
       <ThreeDotsIcon />
     </FeedItemHeaderWrapper>
