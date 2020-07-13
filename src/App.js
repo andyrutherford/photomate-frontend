@@ -4,6 +4,7 @@ import './App.css';
 
 import { default as GlobalStyle } from './styles/Global';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Routes from './components/routing/Routes';
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
       <GlobalStyle />
       <Switch>
         <Route path='/login' exact component={Login} />
+        <Route path='/signup' exact component={Signup} />
         <Route component={Routes} />
       </Switch>
     </Router>
