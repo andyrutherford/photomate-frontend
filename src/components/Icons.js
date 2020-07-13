@@ -58,15 +58,15 @@ export const ExploreIcon = () => (
   </svg>
 );
 
-export const ActivityIcon = () => (
+export const ActivityIcon = ({ light, size = 28 }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     className='icon icon-tabler icon-tabler-heart'
-    width='28'
-    height='28'
+    width={size}
+    height={size}
     viewBox='0 0 24 24'
     strokeWidth='1.5'
-    stroke='#2c3e50'
+    stroke={light ? '#ffffff' : '#2c3e50'}
     fill='none'
     strokeLinecap='round'
     strokeLinejoin='round'
@@ -153,15 +153,15 @@ export const ThreeDotsIcon = () => (
 
 // TODO: MessageIcon is slightly bigger than other icons
 
-export const MessageIcon = () => (
+export const MessageIcon = ({ light, size = 28 }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     className='icon icon-tabler icon-tabler-message-circle'
-    width='28'
-    height='28'
+    width={size}
+    height={size}
     viewBox='0 0 24 24'
     strokeWidth='1.5'
-    stroke='#2c3e50'
+    stroke={light ? '#ffffff' : '#2c3e50'}
     fill='none'
     strokeLinecap='round'
     strokeLinejoin='round'
@@ -174,12 +174,12 @@ export const MessageIcon = () => (
   </svg>
 );
 
-export const BookmarkIcon = () => (
+export const BookmarkIcon = ({ size = 28 }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     className='icon icon-tabler icon-tabler-bookmark'
-    width='28'
-    height='28'
+    width={size}
+    height={size}
     viewBox='0 0 24 24'
     strokeWidth='1.5'
     stroke='#2c3e50'
@@ -227,5 +227,26 @@ export const GearIcon = () => (
     <path stroke='none' d='M0 0h24v24H0z' />
     <path d='M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' />
     <circle cx='12' cy='12' r='3' />
+  </svg>
+);
+
+export const GridIcon = ({ size = 32 }) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    className='icon icon-tabler icon-tabler-grid'
+    width={size}
+    height={size}
+    viewBox='0 0 24 24'
+    strokeWidth='1.5'
+    stroke='#2c3e50'
+    fill='none'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' />
+    <rect x='4' y='4' width='6' height='6' rx='1' />
+    <rect x='14' y='4' width='6' height='6' rx='1' />
+    <rect x='4' y='14' width='6' height='6' rx='1' />
+    <rect x='14' y='14' width='6' height='6' rx='1' />
   </svg>
 );

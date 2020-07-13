@@ -2,15 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import {
-  HomeIcon,
-  InboxIcon,
-  ExploreIcon,
-  ActivityIcon,
-  UserIcon,
-} from './Icons';
+import { HomeIcon, InboxIcon, ExploreIcon, ActivityIcon } from './Icons';
 import Search from '../components/Search';
 import logo from '../assets/logo.svg';
+import avatar from '../assets/avatar.jpg';
 
 const NavbarWrapper = styled.div`
   background-color: white;
@@ -46,6 +41,14 @@ const NavbarWrapper = styled.div`
     margin-left: 1rem;
   }
 
+  .avatar {
+    height: 28px;
+    width: 28px;
+    border-radius: 100px;
+    object-fit: cover;
+    margin: 0;
+  }
+
   @media screen and (max-width: 1070px) {
     nav {
       width: 90%;
@@ -79,7 +82,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link to='/profile'>
-              <UserIcon />
+              <img className='avatar' src={avatar} alt={avatar} />
             </Link>
           </li>
         </ul>

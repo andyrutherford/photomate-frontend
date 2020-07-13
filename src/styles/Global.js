@@ -28,7 +28,7 @@ const Global = createGlobalStyle`
 	.pointer {
 		cursor: pointer;
 	}
-	button, svg {
+	button {
 	  cursor: pointer;
 	}
 	.bold {

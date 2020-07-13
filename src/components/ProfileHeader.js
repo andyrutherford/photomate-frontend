@@ -2,15 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { GearIcon, CircleIcon } from '../components/Icons';
+import { GearIcon } from '../components/Icons';
+
+import avatar from '../assets/avatar.jpg';
 
 const ProfileHeaderWrapper = styled.div`
   display: flex;
 
   .profile-image {
+    margin-right: 60px;
+  }
+
+  .profile-image img {
+    border-radius: 100px;
     height: 200px;
     width: 200px;
-    margin-right: 60px;
   }
 
   .profile-info {
@@ -58,7 +64,7 @@ const ProfileHeader = () => {
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
-        <CircleIcon size={195} strokeWidth={0.1} />
+        <img src={avatar} />
       </div>
       <div className='profile-info'>
         <div className='profile-info-primary'>
