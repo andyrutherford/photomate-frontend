@@ -11,6 +11,7 @@ const Global = createGlobalStyle`
 		box-sizing: inherit;
 	}
 	body {
+		background-color: #fafafa;
 		font-family: 'Fira Sans', sans-serif;
 		font-size: 1rem;
 		line-height: 1.7;

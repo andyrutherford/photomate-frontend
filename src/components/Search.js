@@ -4,11 +4,6 @@ import styled from 'styled-components';
 import searchSVG from '../assets/search.svg';
 
 const SearchWrapper = styled.div`
-  font-size: 14px;
-  height: 28px;
-  text-align: center;
-  width: 215px;
-
   label {
     position: relative;
   }

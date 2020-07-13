@@ -8,6 +8,7 @@ import FeedItemInfo from './FeedItemInfo';
 import FeedItemAddComment from './FeedItemAddComment';
 
 const FeedItemWrapper = styled.article`
+  background-color: white;
   border: 1px solid lightgrey;
   border-radius: 3px;
 

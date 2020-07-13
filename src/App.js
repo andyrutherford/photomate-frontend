@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import { default as GlobalStyle } from './styles/Global';
+import Login from './components/Login';
 import Routes from './components/routing/Routes';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
     <Router>
       <GlobalStyle />
       <Switch>
+        <Route path='/login' exact component={Login} />
         <Route component={Routes} />
       </Switch>
     </Router>

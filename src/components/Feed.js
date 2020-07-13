@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 import FeedItem from './FeedItem';
@@ -18,6 +20,7 @@ const FeedWrapper = styled.section`
 const Feed = () => {
   return (
     <FeedWrapper>
+      <Link to='/login'>Login</Link>
       <FeedItem />
       <FeedItem />
       <FeedItem />
