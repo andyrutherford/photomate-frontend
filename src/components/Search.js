@@ -22,6 +22,7 @@ const SearchWrapper = styled.div`
     border-radius: 3px;
     border: 1px solid lightgrey;
     padding: 10px 30px;
+    background-color: #fafafa;
   }
 `;
 

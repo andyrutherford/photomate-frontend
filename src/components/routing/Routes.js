@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // Components
 import Navbar from '../Navbar';
 import Dashboard from '../pages/Dashboard';
+import Profile from '../pages/Profile';
 
 const Container = styled.div`
   width: 935px;
@@ -30,6 +31,7 @@ const Routes = () => {
       <Container>
         <Switch>
           <Route exact path='/' component={Dashboard} />
+          <Route exact path='/profile' component={Profile} />
         </Switch>
       </Container>
     </section>

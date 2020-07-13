@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import {
   HomeIcon,
@@ -77,7 +78,9 @@ const Navbar = () => {
             <ActivityIcon />
           </li>
           <li>
-            <UserIcon />
+            <Link to='/profile'>
+              <UserIcon />
+            </Link>
           </li>
         </ul>
       </nav>
