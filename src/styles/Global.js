@@ -25,6 +25,11 @@ const Global = createGlobalStyle`
 		cursor: pointer;
 		color: #0095f6;
 	}
+	button:disabled,
+	button[disabled]{
+		opacity: 0.3;
+		cursor: not-allowed;
+  }
 	.pointer {
 		cursor: pointer;
 	}

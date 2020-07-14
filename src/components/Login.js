@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import iphone from '../assets/iphone.png';
 import logo from '../assets/logo.svg';
@@ -67,7 +68,7 @@ input {
   padding: 5px;
 }
 
-.login-btn {
+button {
   border: 1px solid transparent;
   border-radius: 4px;
   width: 268px;
@@ -113,12 +114,6 @@ input {
     text-align: center;
   }
 
-  button:disabled,
-  button[disabled]{
-  background-color: #cccccc;
-  color: #666666;
-}
-
   .signup {
     font-weight: 500;
   }
@@ -149,12 +144,29 @@ const Login = () => {
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (formValid) {
-      return alert('Login successful');
+      try {
+        const res = await axios.post('/api/v1/auth/login', {
+          userID: formData.username,
+          password: formData.password,
+        });
+        alert(`${res.data.username} has been successfully logged in.`);
+      } catch (error) {
+        console.log(error.response);
+        alert(error.response.data.message);
+      }
     }
-    return alert('Login validation failed.');
+  };
+
+  const testAcct = (e) => {
+    e.preventDefault();
+    setFormData({
+      username: 'zucc',
+      password: '123456',
+    });
+    return onSubmit(e);
   };
 
   return (
@@ -165,6 +177,12 @@ const Login = () => {
       <div className='login-right'>
         <div>
           <img className='logo' src={logo} />
+          <div style={{ display: 'block', textAlign: 'center' }}>
+            Test account:{' '}
+            <button onClick={testAcct} style={{ width: '50px' }}>
+              fill
+            </button>
+          </div>
           <form>
             <input
               onChange={onChange}

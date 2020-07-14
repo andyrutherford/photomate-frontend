@@ -65,7 +65,7 @@ const SignupWrapper = styled.div`
     padding: 5px;
     }
 
-    .signup-btn {
+    button {
     border: 1px solid transparent;
     border-radius: 4px;
     width: 268px;
@@ -89,12 +89,6 @@ const SignupWrapper = styled.div`
     font-weight: 300;
     text-align: center;
   }
-
-  button:disabled,
-  button[disabled]{
-  background-color: #cccccc;
-  color: #666666;
-}
 
   .signup {
     font-weight: 500;
