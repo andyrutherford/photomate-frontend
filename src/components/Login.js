@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import iphone from '../assets/iphone.png';
 import logo from '../assets/logo.svg';
-import { findByLabelText } from '@testing-library/react';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -114,6 +113,12 @@ input {
     text-align: center;
   }
 
+  button:disabled,
+  button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}
+
   .signup {
     font-weight: 500;
   }
@@ -126,6 +131,32 @@ input {
 `;
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
+  const [formValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    setFormValid(!!formData.username && formData.password.length > 5);
+  }, [formData]);
+
+  const onChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.username.length || formData.password.length < 6) {
+      return alert('The password must be greater than six characters');
+    }
+    alert('Login successful');
+  };
+
   return (
     <LoginWrapper>
       <div className='login-left'>
@@ -136,12 +167,26 @@ const Login = () => {
           <img className='logo' src={logo} />
           <form>
             <input
+              onChange={onChange}
+              name='username'
               type='text'
               placeholder='Phone number, username, or email'
-              val='username'
+              value={formData.username}
             />
-            <input type='password' placeholder='Password' val='password' />
-            <button className='login-btn'>Log In</button>
+            <input
+              onChange={onChange}
+              name='password'
+              type='password'
+              placeholder='Password'
+              value={formData.password}
+            />
+            <button
+              className='login-btn'
+              disabled={!formValid}
+              onClick={onSubmit}
+            >
+              Log In
+            </button>
           </form>
           <div className='separator'>
             <div className='separator-line'></div>
