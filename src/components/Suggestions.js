@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/avatar.jpg';
 
-import { CircleIcon } from './Icons';
 import SuggestionList from './SuggestionList';
 
 const SuggestionsWrapper = styled.div`

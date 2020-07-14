@@ -137,6 +137,7 @@ const Login = () => {
   });
   const [formValid, setFormValid] = useState(false);
 
+  // Form validation
   useEffect(() => {
     setFormValid(!!formData.username && formData.password.length > 5);
   }, [formData]);
@@ -150,11 +151,10 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    if (!formData.username.length || formData.password.length < 6) {
-      return alert('The password must be greater than six characters');
+    if (formValid) {
+      return alert('Login successful');
     }
-    alert('Login successful');
+    return alert('Login validation failed.');
   };
 
   return (

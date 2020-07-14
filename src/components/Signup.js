@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import iphone from '../assets/iphone.png';
 import logo from '../assets/logo.svg';
-import { findByLabelText } from '@testing-library/react';
 
 const SignupWrapper = styled.div`
   display: flex;
@@ -92,6 +90,12 @@ const SignupWrapper = styled.div`
     text-align: center;
   }
 
+  button:disabled,
+  button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}
+
   .signup {
     font-weight: 500;
   }
@@ -104,6 +108,39 @@ const SignupWrapper = styled.div`
 `;
 
 const Signup = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    name: '',
+    username: '',
+    password: '',
+  });
+  const [formValid, setFormValid] = useState(false);
+
+  // Form validation
+  useEffect(() => {
+    setFormValid(
+      !!formData.email &&
+        !!formData.name &&
+        !!formData.username &&
+        formData.password.length > 5
+    );
+  }, [formData]);
+
+  const onChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (formValid) {
+      return alert('Signup successful');
+    }
+    return alert('Signup validation failed.');
+  };
   return (
     <SignupWrapper>
       <div className='signup'>
@@ -111,11 +148,41 @@ const Signup = () => {
           <img className='logo' src={logo} />
           <h2>Sign up to see photos and videos from your friends.</h2>
           <form>
-            <input type='text' placeholder='Email' val='email' />
-            <input type='text' placeholder='Full Name' val='name' />
-            <input type='text' placeholder='Username' val='username' />
-            <input type='password' placeholder='Password' val='password' />
-            <button className='signup-btn'>Sign up</button>
+            <input
+              type='text'
+              name='email'
+              onChange={onChange}
+              placeholder='Email'
+              value={formData.email}
+            />
+            <input
+              type='text'
+              name='name'
+              onChange={onChange}
+              placeholder='Full Name'
+              value={formData.name}
+            />
+            <input
+              type='text'
+              name='username'
+              onChange={onChange}
+              placeholder='Username'
+              value={formData.username}
+            />
+            <input
+              type='password'
+              name='password'
+              onChange={onChange}
+              placeholder='Password'
+              value={formData.password}
+            />
+            <button
+              className='signup-btn'
+              disabled={!formValid}
+              onClick={onSubmit}
+            >
+              Sign up
+            </button>
           </form>
         </div>
         <div>
