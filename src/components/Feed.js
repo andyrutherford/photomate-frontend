@@ -21,6 +21,7 @@ const Feed = () => {
   return (
     <FeedWrapper>
       <Link to='/login'>Login</Link> <Link to='/signup'>Signup</Link>{' '}
+      <Link to='/profile'>Profile</Link>{' '}
       <Link to='/accounts/edit'>Settings</Link>
       <FeedItem />
       <FeedItem />
