@@ -61,7 +61,7 @@ const PhotoGridItemWrapper = styled.figure`
 const PhotoGridItem = () => {
   return (
     <PhotoGridItemWrapper>
-      <img src={photo} />
+      <img src={photo} alt='grid item' />
       <div className='img-overlay'>
         <span className='img-overlay-content'>
           <div>

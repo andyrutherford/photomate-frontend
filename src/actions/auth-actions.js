@@ -1,16 +1,19 @@
 import api from '../utils/api';
 
-import { LOAD_USER, LOGIN_SUCCESS, LOGIN_FAIL } from './types';
+import { LOAD_USER, LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR } from './types';
 
 export const loadUser = () => async (dispatch) => {
-  console.log('load user');
   try {
     const res = await api.get('/auth');
     dispatch({
       type: LOAD_USER,
+      payload: res.data,
     });
   } catch (error) {
-    console.log(error.message);
+    dispatch({
+      type: AUTH_ERROR,
+    });
+    console.log(error.response.data.message);
   }
 };
 
@@ -31,6 +34,7 @@ export const loginUser = (userData) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAIL,
     });
-    alert('Login failed');
+    console.log(error.response.data.message);
+    alert(error.response.data.message);
   }
 };

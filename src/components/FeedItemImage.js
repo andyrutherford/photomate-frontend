@@ -18,7 +18,7 @@ const FeedItemImageWrapper = styled.div`
 const FeedItemImage = () => {
   return (
     <FeedItemImageWrapper>
-      <img src={photo} />
+      <img src={photo} alt='feed item' />
     </FeedItemImageWrapper>
   );
 };

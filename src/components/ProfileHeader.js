@@ -64,7 +64,7 @@ const ProfileHeader = () => {
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
-        <img src={avatar} />
+        <img src={avatar} alt='avatar' />
       </div>
       <div className='profile-info'>
         <div className='profile-info-primary'>

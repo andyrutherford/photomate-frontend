@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/auth-actions';
 
-import api from '../utils/api';
-
 import iphone from '../assets/iphone.png';
 import logo from '../assets/logo.svg';
 
@@ -152,16 +150,6 @@ const Login = ({ loginUser }) => {
     e.preventDefault();
     if (formValid) {
       loginUser({ userID: formData.username, password: formData.password });
-      // try {
-      //   const res = await axios.post('/api/v1/auth/login', {
-      //     userID: formData.username,
-      //     password: formData.password,
-      //   });
-      //   alert(`${res.data.username} has been successfully logged in.`);
-      // } catch (error) {
-      //   console.log(error.response);
-      //   alert(error.response.data.message);
-      // }
     }
   };
 
@@ -177,11 +165,11 @@ const Login = ({ loginUser }) => {
   return (
     <LoginWrapper>
       <div className='login-left'>
-        <img src={iphone} alt='' />
+        <img src={iphone} alt='iphone' />
       </div>
       <div className='login-right'>
         <div>
-          <img className='logo' src={logo} />
+          <img className='logo' src={logo} alt='logo' />
           <div style={{ display: 'block', textAlign: 'center' }}>
             Test account:{' '}
             <button onClick={testAcct} style={{ width: '50px' }}>

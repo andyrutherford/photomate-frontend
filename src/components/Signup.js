@@ -139,7 +139,7 @@ const Signup = () => {
     <SignupWrapper>
       <div className='signup'>
         <div>
-          <img className='logo' src={logo} />
+          <img className='logo' src={logo} alt='logo' />
           <h2>Sign up to see photos and videos from your friends.</h2>
           <form>
             <input
