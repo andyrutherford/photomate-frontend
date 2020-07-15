@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { getProfile } from '../../actions/user-actions';
@@ -6,16 +7,19 @@ import { getProfile } from '../../actions/user-actions';
 import ProfileHeader from '../ProfileHeader';
 import PhotoGrid from '../PhotoGrid';
 
-const Profile = ({ getProfile }) => {
-  useEffect(() => {
-    getProfile();
-  }, []);
+const Profile = ({ user }) => {
+  const { username } = useParams();
+
   return (
     <div>
-      <ProfileHeader />
+      {user && <ProfileHeader user={user} />}
       <PhotoGrid />
     </div>
   );
 };
 
-export default connect(null, { getProfile })(Profile);
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Profile);

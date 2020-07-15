@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/avatar.jpg';
@@ -61,16 +62,16 @@ const SuggestionsWrapper = styled.div`
   }
 `;
 
-const Suggestions = () => {
+const Suggestions = ({ user }) => {
   return (
     <SuggestionsWrapper>
       <div className='suggestions-my-profile'>
-        <Link to='/user'>
-          <img className='avatar' src={avatar} alt='avatar' />
+        <Link to={`/${user.username}`}>
+          <img className='avatar' src={avatar} alt={user.username} />
         </Link>
         <div>
-          <Link to='/user'>cosmo</Link>
-          <p>Cosmo Kramer</p>
+          <Link to={`/${user.username}`}>{user.username}</Link>
+          <p>{user.name}</p>
         </div>
       </div>
       <SuggestionList />

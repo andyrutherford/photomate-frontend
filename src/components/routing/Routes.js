@@ -32,7 +32,7 @@ const Routes = () => {
       <Container>
         <Switch>
           <Route exact path='/' component={Dashboard} />
-          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/:username' component={Profile} />
           <Route exact path='/accounts/edit' component={Settings} />
         </Switch>
       </Container>

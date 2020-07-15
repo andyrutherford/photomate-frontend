@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
-import avatar from '../../assets/avatar.jpg';
+import { connect } from 'react-redux';
+import { getProfile } from '../../actions/user-actions';
+
+import { SettingsForm } from '../SettingsForm';
 
 const SettingsWrapper = styled.div`
   border: 0.5px solid lightgray;
@@ -39,29 +43,14 @@ const SettingsWrapper = styled.div`
     padding: 36px 45px;
     width: 100%;
   }
-
-  .settings-form-header {
-    width: 280px;
-    margin-left: 30px;
-  }
-
-  .settings-form-header > div {
-    margin-left: 30px;
-  }
-
-  .form-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-
-  .form-label {
-    margin-left: auto;
-  }
 `;
 
-const Settings = () => {
-  return (
+const Settings = ({ getProfile, user, isAuthenticated }) => {
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  return isAuthenticated ? (
     <SettingsWrapper>
       <div className='settings-menu'>
         <ul>
@@ -70,48 +59,29 @@ const Settings = () => {
         </ul>
       </div>
       <div className='settings-contents'>
-        <form className='settings-form'>
-          <div className='form-group'>
-            <img className='avatar' src={avatar} alt='avatar' />
-            <div className='settings-form-header'>
-              <h1>cosmo</h1>
-              <a href='#!'>Change Profile Photo</a>
-            </div>
-          </div>
-          <div className='form-group'>
-            <label className='form-label'>Name</label>
-            <span>
-              <input type='text' placeholder='Name' />
-            </span>
-          </div>
-          <div className='form-group'>
-            <label className='form-label'>Username</label>
-            <input type='text' placeholder='username' />
-          </div>
-          <div className='form-group'>
-            <label className='form-label'>Website</label>
-            <input type='text' placeholder='website' />
-          </div>
-          <div className='form-group'>
-            <label className='form-label'>Bio</label>
-            <input type='text' placeholder='bio' />
-          </div>
-          <div className='form-group'>
-            <label className='form-label'>Email</label>
-            <input type='email' placeholder='email' />
-          </div>
-          <div className='form-group'>
-            <label className='form-label'>Phone Number</label>
-            <input type='text' placeholder='phone number' />
-          </div>
-          <div className='form-group'>
-            <label className='form-label'>Gender</label>
-            <input type='text' placeholder='gender' />
-          </div>
-        </form>
+        {user ? (
+          <SettingsForm
+            username={user.username}
+            name={user.name}
+            website={user.profile.website}
+            bio={user.profile.bio}
+            email={user.email}
+            phoneNumber={user.profile.phoneNumber}
+            gender={user.profile.gender}
+          />
+        ) : (
+          'Loading'
+        )}
       </div>
     </SettingsWrapper>
+  ) : (
+    <Redirect to='/login' />
   );
 };
 
-export default Settings;
+const mapStateToProps = (state) => ({
+  user: state.user,
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { getProfile })(Settings);

@@ -60,7 +60,7 @@ const ProfileHeaderWrapper = styled.div`
   }
 `;
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ user }) => {
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
@@ -68,7 +68,7 @@ const ProfileHeader = () => {
       </div>
       <div className='profile-info'>
         <div className='profile-info-primary'>
-          <h1>cosmoKramer</h1>
+          <h1>{user.username}</h1>
           <button className='edit-profile-btn'>Edit Profile</button>
           <Link to='/profile/edit'>
             <GearIcon />
@@ -85,7 +85,7 @@ const ProfileHeader = () => {
             <span>592 following</span>
           </li>
         </ul>
-        <div className='profile-info-name'>Cosmo Kramer</div>
+        <div className='profile-info-name'>{user.name}</div>
       </div>
     </ProfileHeaderWrapper>
   );
