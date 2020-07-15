@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/auth-actions';
+
+import api from '../utils/api';
 
 import iphone from '../assets/iphone.png';
 import logo from '../assets/logo.svg';
@@ -125,7 +129,7 @@ button {
   }
 `;
 
-const Login = () => {
+const Login = ({ loginUser }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -147,16 +151,17 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (formValid) {
-      try {
-        const res = await axios.post('/api/v1/auth/login', {
-          userID: formData.username,
-          password: formData.password,
-        });
-        alert(`${res.data.username} has been successfully logged in.`);
-      } catch (error) {
-        console.log(error.response);
-        alert(error.response.data.message);
-      }
+      loginUser({ userID: formData.username, password: formData.password });
+      // try {
+      //   const res = await axios.post('/api/v1/auth/login', {
+      //     userID: formData.username,
+      //     password: formData.password,
+      //   });
+      //   alert(`${res.data.username} has been successfully logged in.`);
+      // } catch (error) {
+      //   console.log(error.response);
+      //   alert(error.response.data.message);
+      // }
     }
   };
 
@@ -188,7 +193,7 @@ const Login = () => {
               onChange={onChange}
               name='username'
               type='text'
-              placeholder='Phone number, username, or email'
+              placeholder='Username or email'
               value={formData.username}
             />
             <input
@@ -228,4 +233,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect(null, { loginUser })(Login);
