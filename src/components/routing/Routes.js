@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 
 // Components
+import PrivateRoute from './PrivateRoute';
 import Navbar from '../Navbar';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
@@ -33,7 +34,7 @@ const Routes = () => {
         <Switch>
           <Route exact path='/' component={Dashboard} />
           <Route exact path='/:username' component={Profile} />
-          <Route exact path='/accounts/edit' component={Settings} />
+          <PrivateRoute exact path='/accounts/edit' component={Settings} />
         </Switch>
       </Container>
     </section>
