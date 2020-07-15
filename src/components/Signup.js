@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { signupUser } from '../actions/auth-actions';
 
 import logo from '../assets/logo.svg';
 
@@ -101,7 +104,7 @@ const SignupWrapper = styled.div`
   }
 `;
 
-const Signup = () => {
+const Signup = ({ isAuthenticated, signupUser }) => {
   const [formData, setFormData] = useState({
     email: '',
     name: '',
@@ -131,16 +134,36 @@ const Signup = () => {
     e.preventDefault();
 
     if (formValid) {
-      return alert('Signup successful');
+      return signupUser(formData);
     }
-    return alert('Signup validation failed.');
   };
+
+  const testAcct = (e) => {
+    e.preventDefault();
+    return setFormData({
+      name: Math.floor(Math.random() * 1000000) + 1,
+      username: Math.floor(Math.random() * 1000000) + 1,
+      email: Math.floor(Math.random() * 1000000) + 1 + '@gmail.com',
+      password: '123456',
+    });
+  };
+
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
+
   return (
     <SignupWrapper>
       <div className='signup'>
         <div>
           <img className='logo' src={logo} alt='logo' />
           <h2>Sign up to see photos and videos from your friends.</h2>
+          <div style={{ display: 'block', textAlign: 'center' }}>
+            Create test account:{' '}
+            <button onClick={testAcct} style={{ width: '50px' }}>
+              fill
+            </button>
+          </div>
           <form>
             <input
               type='text'
@@ -192,4 +215,8 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { signupUser })(Signup);

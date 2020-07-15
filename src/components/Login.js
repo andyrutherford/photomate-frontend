@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/auth-actions';
@@ -127,16 +127,16 @@ button {
   }
 `;
 
-const Login = ({ loginUser }) => {
+const Login = ({ isAuthenticated, loginUser }) => {
   const [formData, setFormData] = useState({
-    username: '',
+    userID: '',
     password: '',
   });
   const [formValid, setFormValid] = useState(false);
 
   // Form validation
   useEffect(() => {
-    setFormValid(!!formData.username && formData.password.length > 5);
+    setFormValid(!!formData.userID && formData.password.length > 5);
   }, [formData]);
 
   const onChange = (e) => {
@@ -149,18 +149,21 @@ const Login = ({ loginUser }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (formValid) {
-      loginUser({ userID: formData.username, password: formData.password });
+      return loginUser(formData);
     }
   };
 
   const testAcct = (e) => {
     e.preventDefault();
-    setFormData({
-      username: 'zucc',
+    return setFormData({
+      userID: 'zucc',
       password: '123456',
     });
-    return onSubmit(e);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <LoginWrapper>
@@ -179,10 +182,10 @@ const Login = ({ loginUser }) => {
           <form>
             <input
               onChange={onChange}
-              name='username'
+              name='userID'
               type='text'
               placeholder='Username or email'
-              value={formData.username}
+              value={formData.userID}
             />
             <input
               onChange={onChange}
@@ -221,4 +224,8 @@ const Login = ({ loginUser }) => {
   );
 };
 
-export default connect(null, { loginUser })(Login);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);
