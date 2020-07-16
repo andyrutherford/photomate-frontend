@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/auth-actions';
 
+import Button from '../styles/Button';
 import iphone from '../assets/iphone.png';
 import logo from '../assets/logo.svg';
 
@@ -71,16 +72,9 @@ input {
 }
 
 button {
-  border: 1px solid transparent;
-  border-radius: 4px;
   width: 268px;
   margin: auto auto 20px;
-  background-color: #0095f6;
-  color: white;
-  line-height: 24px;
-  font-size: 14px;
-  font-weight: bold;
-}
+  }
 
 .separator {
     display: flex;
@@ -194,13 +188,13 @@ const Login = ({ isAuthenticated, loginUser }) => {
               placeholder='Password'
               value={formData.password}
             />
-            <button
+            <Button
               className='login-btn'
               disabled={!formValid}
               onClick={onSubmit}
             >
               Log In
-            </button>
+            </Button>
           </form>
           <div className='separator'>
             <div className='separator-line'></div>

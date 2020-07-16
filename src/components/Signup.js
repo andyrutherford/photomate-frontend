@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signupUser } from '../actions/auth-actions';
 
+import Button from '../styles/Button';
 import logo from '../assets/logo.svg';
 
 const SignupWrapper = styled.div`
@@ -69,15 +70,8 @@ const SignupWrapper = styled.div`
     }
 
     button {
-    border: 1px solid transparent;
-    border-radius: 4px;
     width: 268px;
     margin: auto auto 20px;
-    background-color: #0095f6;
-    color: white;
-    line-height: 24px;
-    font-size: 14px;
-    font-weight: bold;
     }
 
   .forgot-password {
@@ -193,13 +187,13 @@ const Signup = ({ isAuthenticated, signupUser }) => {
               placeholder='Password'
               value={formData.password}
             />
-            <button
+            <Button
               className='signup-btn'
               disabled={!formValid}
               onClick={onSubmit}
             >
               Sign up
-            </button>
+            </Button>
           </form>
         </div>
         <div>

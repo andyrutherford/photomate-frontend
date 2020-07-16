@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Button from '../styles/Button';
 import avatar from '../assets/avatar.jpg';
 
 const SettingsFormWrapper = styled.div`
@@ -20,6 +21,10 @@ const SettingsFormWrapper = styled.div`
   }
 
   .form-label {
+    margin-left: auto;
+  }
+
+  .form-group button {
     margin-left: auto;
   }
 `;
@@ -71,6 +76,9 @@ export const SettingsForm = ({
       <div className='form-group'>
         <label className='form-label'>Gender</label>
         <input type='text' placeholder='gender' value={gender} />
+      </div>
+      <div className='form-group'>
+        <Button>Submit</Button>
       </div>
     </SettingsFormWrapper>
   );
