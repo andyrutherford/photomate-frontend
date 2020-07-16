@@ -17,13 +17,12 @@ const FeedWrapper = styled.section`
   }
 `;
 
-const Feed = () => {
+const Feed = ({ logoutUser }) => {
   return (
     <FeedWrapper>
       <Link to='/login'>Login</Link> <Link to='/signup'>Signup</Link>{' '}
       <Link to='/profile'>Profile</Link>{' '}
-      <Link to='/accounts/edit'>Settings</Link>
-      <FeedItem />
+      <Link to='/accounts/edit'>Settings</Link> <FeedItem />
       <FeedItem />
       <FeedItem />
       <FeedItem />

@@ -14,7 +14,7 @@ const DashboardWrapper = styled.div`
 const Dashboard = ({ getProfile, user }) => {
   useEffect(() => {
     getProfile();
-  }, []);
+  }, [getProfile]);
 
   return (
     <DashboardWrapper>

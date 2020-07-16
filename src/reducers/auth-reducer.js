@@ -4,12 +4,14 @@ import {
   LOAD_USER,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
+  LOGOUT,
+  AUTH_ERROR,
 } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: false,
-  loading: false,
+  loading: true,
   user: null,
 };
 
@@ -19,6 +21,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: action.payload,
+        isAuthenticated: true,
+        loading: false,
       };
     case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
@@ -28,9 +32,23 @@ export default function (state = initialState, action) {
         token: action.payload.token,
         loading: false,
       };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        token: null,
+        loading: false,
+      };
+    case AUTH_ERROR:
     case SIGNUP_FAIL:
     case LOGIN_FAIL:
+      return {
+        ...state,
+        loading: false,
+      };
     default:
-      return state;
+      return {
+        ...state,
+      };
   }
 }

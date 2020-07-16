@@ -48,7 +48,7 @@ const SettingsWrapper = styled.div`
 const Settings = ({ getProfile, user, isAuthenticated }) => {
   useEffect(() => {
     getProfile();
-  }, []);
+  }, [getProfile]);
 
   return isAuthenticated ? (
     <SettingsWrapper>
@@ -63,11 +63,11 @@ const Settings = ({ getProfile, user, isAuthenticated }) => {
           <SettingsForm
             username={user.username}
             name={user.name}
-            website={user.profile.website}
-            bio={user.profile.bio}
-            email={user.email}
-            phoneNumber={user.profile.phoneNumber}
-            gender={user.profile.gender}
+            // website={user.profile.website}
+            // bio={user.profile.bio}
+            // email={user.email}
+            // phoneNumber={user.profile.phoneNumber}
+            // gender={user.profile.gender}
           />
         ) : (
           'Loading'

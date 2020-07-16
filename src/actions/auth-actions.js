@@ -7,6 +7,7 @@ import {
   AUTH_ERROR,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
+  LOGOUT,
 } from './types';
 
 export const loadUser = () => async (dispatch) => {
@@ -66,4 +67,11 @@ export const signupUser = (userData) => async (dispatch) => {
     console.log(error.response.data.message);
     alert(error.response.data.message);
   }
+};
+
+export const logoutUser = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
+  console.log('You have been logged out.');
 };

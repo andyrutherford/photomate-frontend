@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
+import { logoutUser } from '../actions/auth-actions';
 
 import { HomeIcon, InboxIcon, ExploreIcon, ActivityIcon } from './Icons';
 import Search from '../components/Search';
@@ -61,7 +64,7 @@ const NavbarWrapper = styled.div`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ logoutUser }) => {
   return (
     <NavbarWrapper>
       <nav>
@@ -87,10 +90,13 @@ const Navbar = () => {
               <img className='avatar' src={avatar} alt={avatar} />
             </Link>
           </li>
+          <li>
+            <button onClick={logoutUser}>Logout</button>
+          </li>
         </ul>
       </nav>
     </NavbarWrapper>
   );
 };
 
-export default Navbar;
+export default connect(null, { logoutUser })(Navbar);

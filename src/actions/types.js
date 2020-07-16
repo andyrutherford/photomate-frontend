@@ -5,6 +5,7 @@ export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 export const LOAD_USER = 'LOAD_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGOUT = 'LOGOUT';
 
 // User
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
