@@ -69,7 +69,9 @@ const ProfileHeader = ({ user }) => {
       <div className='profile-info'>
         <div className='profile-info-primary'>
           <h1>{user.username}</h1>
-          <button className='edit-profile-btn'>Edit Profile</button>
+          <Link className='edit-profile-btn' to='/accounts/edit'>
+            Edit Profile
+          </Link>
           <Link to='/profile/edit'>
             <GearIcon />
           </Link>

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { getProfile } from '../../actions/user-actions';
+import { getProfile, updateProfile } from '../../actions/user-actions';
 
-import { SettingsForm } from '../SettingsForm';
+import SettingsForm from '../SettingsForm';
 
 const SettingsWrapper = styled.div`
   border: 0.5px solid lightgray;
@@ -17,6 +17,7 @@ const SettingsWrapper = styled.div`
     list-style: none;
   }
 
+  select,
   input {
     border: 1px solid lightgrey;
     border-radius: 3px;
@@ -45,7 +46,7 @@ const SettingsWrapper = styled.div`
   }
 `;
 
-const Settings = ({ getProfile, user, isAuthenticated }) => {
+const Settings = ({ getProfile, updateProfile, user, isAuthenticated }) => {
   useEffect(() => {
     getProfile();
   }, [getProfile]);
@@ -60,15 +61,7 @@ const Settings = ({ getProfile, user, isAuthenticated }) => {
       </div>
       <div className='settings-contents'>
         {user ? (
-          <SettingsForm
-            username={user.username}
-            name={user.name}
-            // website={user.profile.website}
-            // bio={user.profile.bio}
-            // email={user.email}
-            // phoneNumber={user.profile.phoneNumber}
-            // gender={user.profile.gender}
-          />
+          <SettingsForm user={user} updateProfile={updateProfile} />
         ) : (
           'Loading'
         )}
@@ -84,4 +77,6 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { getProfile })(Settings);
+export default connect(mapStateToProps, { getProfile, updateProfile })(
+  Settings
+);

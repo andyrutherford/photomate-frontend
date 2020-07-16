@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Button from '../styles/Button';
 import avatar from '../assets/avatar.jpg';
 
-const SettingsFormWrapper = styled.div`
+const SettingsFormWrapper = styled.form`
   .settings-form-header {
     width: 280px;
     margin-left: 30px;
@@ -30,52 +30,137 @@ const SettingsFormWrapper = styled.div`
 `;
 
 export const SettingsForm = ({
-  username,
-  name,
-  website,
-  bio,
-  email,
-  phoneNumber,
-  gender,
+  updateProfile,
+  user: {
+    username,
+    name,
+    email,
+    profile: { bio, gender, phoneNumber, website },
+  },
 }) => {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    name: '',
+    bio: '',
+    gender: '',
+    phoneNumber: '',
+    website: '',
+  });
+
+  // Populate form with user data from props
+  useEffect(() => {
+    setFormData({
+      ...setFormData,
+      username,
+      email,
+      name,
+      bio,
+      gender,
+      phoneNumber,
+      website,
+    });
+  }, [username, email, name, bio, gender, phoneNumber, website]);
+
+  const onChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    updateProfile(formData);
+  };
+
+  // updateProfile route in backend only accepts profile fields
   return (
-    <SettingsFormWrapper>
+    <SettingsFormWrapper onSubmit={onSubmit}>
       <div className='form-group'>
         <img className='avatar' src={avatar} alt='avatar' />
         <div className='settings-form-header'>
-          <h1>{username}</h1>
+          <h1>{formData.username}</h1>
           <a href='#!'>Change Profile Photo</a>
         </div>
       </div>
       <div className='form-group'>
         <label className='form-label'>Name</label>
         <span>
-          <input type='text' placeholder='Name' value={name} />
+          <input
+            disabled
+            type='text'
+            placeholder='Name'
+            name='name'
+            value={formData.name}
+            onChange={onChange}
+          />
         </span>
       </div>
       <div className='form-group'>
         <label className='form-label'>Username</label>
-        <input type='text' placeholder='username' value={username} />
+        <input
+          disabled
+          type='text'
+          placeholder='username'
+          name='username'
+          value={formData.username}
+          onChange={onChange}
+        />
       </div>
       <div className='form-group'>
         <label className='form-label'>Website</label>
-        <input type='text' placeholder='website' value={website} />
+        <input
+          type='text'
+          placeholder='website'
+          name='website'
+          value={formData.website}
+          onChange={onChange}
+        />
       </div>
       <div className='form-group'>
         <label className='form-label'>Bio</label>
-        <input type='text' placeholder='bio' value={bio} />
+        <input
+          type='text'
+          placeholder='bio'
+          name='bio'
+          value={formData.bio}
+          onChange={onChange}
+        />
       </div>
       <div className='form-group'>
         <label className='form-label'>Email</label>
-        <input type='email' placeholder='email' value={email} />
+        <input
+          type='email'
+          placeholder='email'
+          name='email'
+          disabled
+          value={formData.email}
+          onChange={onChange}
+        />
       </div>
       <div className='form-group'>
         <label className='form-label'>Phone Number</label>
-        <input type='text' placeholder='' value={phoneNumber} />
+        <input
+          type='number'
+          placeholder=''
+          name='phoneNumber'
+          value={formData.phoneNumber}
+          onChange={onChange}
+        />
       </div>
       <div className='form-group'>
         <label className='form-label'>Gender</label>
-        <input type='text' placeholder='gender' value={gender} />
+        <select
+          name='gender'
+          id='gender'
+          onChange={onChange}
+          value={formData.gender}
+        >
+          <option value='male'>Male</option>
+          <option value='female'>Female</option>
+          <option value='other'>Other</option>
+        </select>
       </div>
       <div className='form-group'>
         <Button>Submit</Button>
@@ -83,3 +168,5 @@ export const SettingsForm = ({
     </SettingsFormWrapper>
   );
 };
+
+export default SettingsForm;
