@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,6 @@ import { logoutUser } from '../actions/auth-actions';
 import { HomeIcon, InboxIcon, ExploreIcon, ActivityIcon } from './Icons';
 import Search from '../components/Search';
 import logo from '../assets/logo.svg';
-import avatar from '../assets/avatar.jpg';
 
 const NavbarWrapper = styled.div`
   background-color: white;
@@ -64,7 +63,10 @@ const NavbarWrapper = styled.div`
   }
 `;
 
-const Navbar = ({ logoutUser }) => {
+const Navbar = ({ user }) => {
+  useEffect(() => {
+    console.log('navbar useeffect');
+  }, []);
   return (
     <NavbarWrapper>
       <nav>
@@ -72,31 +74,37 @@ const Navbar = ({ logoutUser }) => {
           <img src={logo} alt='Instagram' />
         </Link>
         <Search />
-        <ul>
-          <li>
-            <HomeIcon />
-          </li>
-          <li>
-            <InboxIcon />
-          </li>
-          <li>
-            <ExploreIcon />
-          </li>
-          <li>
-            <ActivityIcon />
-          </li>
-          <li>
-            <Link to='/profile'>
-              <img className='avatar' src={avatar} alt={avatar} />
-            </Link>
-          </li>
-          <li>
-            <button onClick={logoutUser}>Logout</button>
-          </li>
-        </ul>
+        {user && (
+          <ul>
+            <li>
+              <HomeIcon />
+            </li>
+            <li>
+              <InboxIcon />
+            </li>
+            <li>
+              <ExploreIcon />
+            </li>
+            <li>
+              <ActivityIcon />
+            </li>
+            <li>
+              <Link to={`/${user.username}`}>
+                <img className='avatar' src={user.avatar} alt={'avatar'} />
+              </Link>
+            </li>
+            <li>
+              <button onClick={logoutUser}>Logout</button>
+            </li>
+          </ul>
+        )}
       </nav>
     </NavbarWrapper>
   );
 };
 
-export default connect(null, { logoutUser })(Navbar);
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { logoutUser })(Navbar);

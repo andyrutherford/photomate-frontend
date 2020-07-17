@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { GearIcon } from '../components/Icons';
-
-import avatar from '../assets/avatar.jpg';
 
 const ProfileHeaderWrapper = styled.div`
   display: flex;
@@ -60,7 +59,11 @@ const ProfileHeaderWrapper = styled.div`
   }
 `;
 
-const ProfileHeader = ({ user }) => {
+const ProfileHeader = ({ name, username, avatar }) => {
+  // TODO
+  // if /username === user in state.user -> populate fields GET_PROFILE action
+  // if not -> run GET_PROFILE_BY_USERNAME action
+
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
@@ -68,7 +71,7 @@ const ProfileHeader = ({ user }) => {
       </div>
       <div className='profile-info'>
         <div className='profile-info-primary'>
-          <h1>{user.username}</h1>
+          <h1>{username}</h1>
           <Link className='edit-profile-btn' to='/accounts/edit'>
             Edit Profile
           </Link>
@@ -87,10 +90,16 @@ const ProfileHeader = ({ user }) => {
             <span>592 following</span>
           </li>
         </ul>
-        <div className='profile-info-name'>{user.name}</div>
+        <div className='profile-info-name'>{name}</div>
       </div>
     </ProfileHeaderWrapper>
   );
 };
 
-export default ProfileHeader;
+const mapStateToProps = (state) => ({
+  name: state.user.name,
+  username: state.user.username,
+  avatar: state.user.avatar,
+});
+
+export default connect(mapStateToProps)(ProfileHeader);

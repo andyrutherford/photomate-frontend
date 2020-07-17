@@ -19,7 +19,7 @@ const Dashboard = ({ getProfile, user }) => {
   return (
     <DashboardWrapper>
       <Feed />
-      {user && <Suggestions user={user} />}
+      <Suggestions />
     </DashboardWrapper>
   );
 };

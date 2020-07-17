@@ -11,6 +11,7 @@ import {
 } from './types';
 
 export const loadUser = () => async (dispatch) => {
+  console.log('load user action');
   try {
     const res = await api.get('/auth');
     dispatch({

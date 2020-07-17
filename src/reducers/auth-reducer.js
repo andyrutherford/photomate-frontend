@@ -13,6 +13,7 @@ const initialState = {
   isAuthenticated: false,
   loading: true,
   user: null,
+  avatar: undefined,
 };
 
 export default function (state = initialState, action) {

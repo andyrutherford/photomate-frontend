@@ -5,6 +5,8 @@ import {
   GET_PROFILE_FAIL,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_FAIL,
+  GET_USER_PROFILE_BY_ID_SUCCESS,
+  GET_USER_PROFILE_BY_ID_FAIL,
 } from './types';
 
 export const getProfile = () => async (dispatch) => {
@@ -20,6 +22,17 @@ export const getProfile = () => async (dispatch) => {
     });
     console.log(error.response.data.message);
   }
+};
+
+export const getUserById = (userId) => async (dispatch) => {
+  console.log('get user by id ');
+  try {
+    const res = await api.get(`/user/${userId}`);
+    dispatch({
+      type: GET_USER_PROFILE_BY_ID_SUCCESS,
+      payload: res.data.user,
+    });
+  } catch (error) {}
 };
 
 export const updateProfile = (profileData) => async (dispatch) => {

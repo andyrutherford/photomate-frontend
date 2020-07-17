@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import avatar from '../assets/avatar.jpg';
 
 import SuggestionList from './SuggestionList';
 
@@ -62,16 +62,16 @@ const SuggestionsWrapper = styled.div`
   }
 `;
 
-const Suggestions = ({ user }) => {
+const Suggestions = ({ avatar, username, name }) => {
   return (
     <SuggestionsWrapper>
       <div className='suggestions-my-profile'>
-        <Link to={`/${user.username}`}>
-          <img className='avatar' src={avatar} alt={user.username} />
+        <Link to={`/${username}`}>
+          <img className='avatar' src={avatar} alt={username} />
         </Link>
         <div>
-          <Link to={`/${user.username}`}>{user.username}</Link>
-          <p>{user.name}</p>
+          <Link to={`/${username}`}>{username}</Link>
+          <p>{name}</p>
         </div>
       </div>
       <SuggestionList />
@@ -89,4 +89,10 @@ const Suggestions = ({ user }) => {
   );
 };
 
-export default Suggestions;
+const mapStateToProps = (state) => ({
+  avatar: state.user.avatar,
+  username: state.user.username,
+  name: state.user.name,
+});
+
+export default connect(mapStateToProps)(Suggestions);
