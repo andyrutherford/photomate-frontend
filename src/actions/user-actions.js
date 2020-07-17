@@ -7,6 +7,7 @@ import {
   UPDATE_PROFILE_FAIL,
   GET_USER_PROFILE_BY_ID_SUCCESS,
   GET_USER_PROFILE_BY_ID_FAIL,
+  CLEAR_CURRENT_USER,
 } from './types';
 
 export const getProfile = () => async (dispatch) => {
@@ -32,7 +33,18 @@ export const getUserById = (userId) => async (dispatch) => {
       type: GET_USER_PROFILE_BY_ID_SUCCESS,
       payload: res.data.user,
     });
-  } catch (error) {}
+  } catch (error) {
+    dispatch({
+      type: GET_USER_PROFILE_BY_ID_FAIL,
+    });
+    console.log(error.response.data.message);
+  }
+};
+
+export const clearCurrentUser = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_CURRENT_USER,
+  });
 };
 
 export const updateProfile = (profileData) => async (dispatch) => {

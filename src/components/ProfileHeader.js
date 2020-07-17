@@ -59,7 +59,7 @@ const ProfileHeaderWrapper = styled.div`
   }
 `;
 
-const ProfileHeader = ({ name, username, avatar }) => {
+const ProfileHeader = ({ authUser, currentUser }) => {
   // TODO
   // if /username === user in state.user -> populate fields GET_PROFILE action
   // if not -> run GET_PROFILE_BY_USERNAME action
@@ -67,17 +67,21 @@ const ProfileHeader = ({ name, username, avatar }) => {
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
-        <img src={avatar} alt='avatar' />
+        <img src={currentUser.avatar} alt='avatar' />
       </div>
       <div className='profile-info'>
         <div className='profile-info-primary'>
-          <h1>{username}</h1>
-          <Link className='edit-profile-btn' to='/accounts/edit'>
-            Edit Profile
-          </Link>
-          <Link to='/profile/edit'>
-            <GearIcon />
-          </Link>
+          <h1>{currentUser.username}</h1>
+          {authUser && authUser.username === currentUser.username && (
+            <>
+              <Link className='edit-profile-btn' to='/accounts/edit'>
+                Edit Profile
+              </Link>
+              <Link to='/profile/edit'>
+                <GearIcon />
+              </Link>
+            </>
+          )}
         </div>
         <ul className='profile-info-secondary'>
           <li>
@@ -90,16 +94,15 @@ const ProfileHeader = ({ name, username, avatar }) => {
             <span>592 following</span>
           </li>
         </ul>
-        <div className='profile-info-name'>{name}</div>
+        <div className='profile-info-name'>{currentUser.name}</div>
       </div>
     </ProfileHeaderWrapper>
   );
 };
 
 const mapStateToProps = (state) => ({
-  name: state.user.name,
-  username: state.user.username,
-  avatar: state.user.avatar,
+  currentUser: state.user.currentUser,
+  authUser: state.auth.user,
 });
 
 export default connect(mapStateToProps)(ProfileHeader);

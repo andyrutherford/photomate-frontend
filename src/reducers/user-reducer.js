@@ -5,11 +5,13 @@ import {
   UPDATE_PROFILE_FAIL,
   GET_USER_PROFILE_BY_ID_SUCCESS,
   GET_USER_PROFILE_BY_ID_FAIL,
+  CLEAR_CURRENT_USER,
 } from '../actions/types';
 
 const initialState = {
   profile: {},
-  currentUser: {},
+  currentUser: null,
+  loading: true,
 };
 
 export default function (state = initialState, action) {
@@ -29,11 +31,27 @@ export default function (state = initialState, action) {
       return {
         ...state,
         currentUser: action.payload,
+        loading: false,
       };
     }
     case UPDATE_PROFILE_FAIL:
-    case GET_PROFILE_FAIL:
+      return {
+        ...state,
+        currentUser: null,
+      };
+    case CLEAR_CURRENT_USER: {
+      return {
+        ...state,
+        currentUser: null,
+        loading: true,
+      };
+    }
     case GET_USER_PROFILE_BY_ID_FAIL:
+      return {
+        ...state,
+        loading: false,
+      };
+    case GET_PROFILE_FAIL:
     default:
       return state;
   }

@@ -63,7 +63,7 @@ const NavbarWrapper = styled.div`
   }
 `;
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, logoutUser }) => {
   useEffect(() => {
     console.log('navbar useeffect');
   }, []);

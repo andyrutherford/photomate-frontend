@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { getUserById } from '../../actions/user-actions';
+import { getUserById, clearCurrentUser } from '../../actions/user-actions';
 
+import Spinner from '../layout/Spinner';
 import ProfileHeader from '../ProfileHeader';
 import PhotoGrid from '../PhotoGrid';
 
-const Profile = ({ getUserById, user }) => {
+const Profile = ({ loading, getUserById, clearCurrentUser, currentUser }) => {
   const { username } = useParams();
   console.log(username);
 
@@ -15,16 +16,32 @@ const Profile = ({ getUserById, user }) => {
     getUserById(username);
   }, []);
 
+  // cleanup
+  useEffect(() => {
+    return () => clearCurrentUser();
+  }, []);
+
+  if (loading) return <Spinner />;
+
   return (
     <div>
-      {user && <ProfileHeader user={user} />}
-      <PhotoGrid />
+      {currentUser ? (
+        <>
+          <ProfileHeader />
+          <PhotoGrid />
+        </>
+      ) : (
+        'User not found'
+      )}
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
+  currentUser: state.user.currentUser,
+  loading: state.user.loading,
 });
 
-export default connect(mapStateToProps, { getUserById })(Profile);
+export default connect(mapStateToProps, { getUserById, clearCurrentUser })(
+  Profile
+);
