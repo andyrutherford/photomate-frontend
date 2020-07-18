@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -64,9 +64,6 @@ const NavbarWrapper = styled.div`
 `;
 
 const Navbar = ({ user, logoutUser }) => {
-  useEffect(() => {
-    console.log('navbar useeffect');
-  }, []);
   return (
     <NavbarWrapper>
       <nav>
@@ -104,7 +101,7 @@ const Navbar = ({ user, logoutUser }) => {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
+  user: state.user,
 });
 
 export default connect(mapStateToProps, { logoutUser })(Navbar);

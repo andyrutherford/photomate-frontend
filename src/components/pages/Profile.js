@@ -10,16 +10,15 @@ import PhotoGrid from '../PhotoGrid';
 
 const Profile = ({ loading, getUserById, clearCurrentUser, currentUser }) => {
   const { username } = useParams();
-  console.log(username);
 
   useEffect(() => {
     getUserById(username);
-  }, []);
+  }, [getUserById, username]);
 
   // cleanup
   useEffect(() => {
     return () => clearCurrentUser();
-  }, []);
+  }, [clearCurrentUser]);
 
   if (loading) return <Spinner />;
 

@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import Button from '../styles/Button';
-import avatar from '../assets/avatar.jpg';
+import placeholderAvatar from '../assets/avatar.jpg';
+import spinner from './layout/spinner.gif';
+
+import { changeAvatar } from '../actions/user-actions';
 
 const SettingsFormWrapper = styled.form`
   .settings-form-header {
@@ -12,6 +16,17 @@ const SettingsFormWrapper = styled.form`
 
   .settings-form-header > div {
     margin-left: 30px;
+  }
+
+  input[id='change-avatar'],
+  input[id='change-avatar-link'] {
+    display: none;
+  }
+
+  span#change-avatar-click {
+    cursor: pointer;
+    color: #0095f6;
+    font-weight: bold;
   }
 
   .form-group {
@@ -31,12 +46,16 @@ const SettingsFormWrapper = styled.form`
 
 export const SettingsForm = ({
   updateProfile,
+  changeAvatar,
   user: {
     username,
+    avatar = placeholderAvatar,
     name,
     email,
     profile: { bio, gender, phoneNumber, website },
   },
+  token,
+  loading,
 }) => {
   const [formData, setFormData] = useState({
     username: '',
@@ -62,6 +81,13 @@ export const SettingsForm = ({
     });
   }, [username, email, name, bio, gender, phoneNumber, website]);
 
+  const onChangeAvatar = async (e) => {
+    if (e.target.files[0]) {
+      console.log(e.target.files[0]);
+      await changeAvatar(e.target.files[0], token);
+    }
+  };
+
   const onChange = (e) => {
     setFormData({
       ...formData,
@@ -78,10 +104,18 @@ export const SettingsForm = ({
   return (
     <SettingsFormWrapper onSubmit={onSubmit}>
       <div className='form-group'>
-        <img className='avatar' src={avatar} alt='avatar' />
+        <img className='avatar' src={loading ? spinner : avatar} alt='avatar' />
         <div className='settings-form-header'>
           <h1>{formData.username}</h1>
-          <a href='#!'>Change Profile Photo</a>
+          <label htmlFor='change-avatar-link'>
+            <span id='change-avatar-click'>Change Profile Photo</span>
+          </label>
+          <input
+            id='change-avatar-link'
+            accept='image/*'
+            type='file'
+            onChange={onChangeAvatar}
+          />
         </div>
       </div>
       <div className='form-group'>
@@ -169,4 +203,9 @@ export const SettingsForm = ({
   );
 };
 
-export default SettingsForm;
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+  loading: state.user.loading,
+});
+
+export default connect(mapStateToProps, { changeAvatar })(SettingsForm);

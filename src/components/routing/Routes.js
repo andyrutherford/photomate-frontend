@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 // Components
 import PrivateRoute from './PrivateRoute';

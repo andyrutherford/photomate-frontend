@@ -6,6 +6,9 @@ import {
   GET_USER_PROFILE_BY_ID_SUCCESS,
   GET_USER_PROFILE_BY_ID_FAIL,
   CLEAR_CURRENT_USER,
+  UPDATE_AVATAR_START,
+  UPDATE_AVATAR_SUCCESS,
+  UPDATE_AVATAR_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -20,6 +23,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ...action.payload,
+        loading: false,
       };
     case UPDATE_PROFILE_SUCCESS: {
       return {
@@ -49,6 +53,17 @@ export default function (state = initialState, action) {
     case GET_USER_PROFILE_BY_ID_FAIL:
       return {
         ...state,
+        loading: false,
+      };
+    case UPDATE_AVATAR_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UPDATE_AVATAR_SUCCESS:
+      return {
+        ...state,
+        avatar: action.payload,
         loading: false,
       };
     case GET_PROFILE_FAIL:

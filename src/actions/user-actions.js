@@ -1,4 +1,5 @@
 import api from '../utils/api';
+import axios from 'axios';
 
 import {
   GET_PROFILE_SUCCESS,
@@ -8,6 +9,9 @@ import {
   GET_USER_PROFILE_BY_ID_SUCCESS,
   GET_USER_PROFILE_BY_ID_FAIL,
   CLEAR_CURRENT_USER,
+  UPDATE_AVATAR_START,
+  UPDATE_AVATAR_SUCCESS,
+  UPDATE_AVATAR_FAIL,
 } from './types';
 
 export const getProfile = () => async (dispatch) => {
@@ -26,7 +30,6 @@ export const getProfile = () => async (dispatch) => {
 };
 
 export const getUserById = (userId) => async (dispatch) => {
-  console.log('get user by id ');
   try {
     const res = await api.get(`/user/${userId}`);
     dispatch({
@@ -60,5 +63,32 @@ export const updateProfile = (profileData) => async (dispatch) => {
       type: UPDATE_PROFILE_FAIL,
     });
     console.log(error.response.data.message);
+  }
+};
+
+export const changeAvatar = (avatar, token) => async (dispatch) => {
+  dispatch({
+    type: UPDATE_AVATAR_START,
+  });
+  const formData = new FormData();
+  formData.append('image', avatar);
+
+  try {
+    const res = await axios.put('/api/v1/user/avatar', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        authorization: 'Bearer ' + token,
+      },
+    });
+
+    dispatch({
+      type: UPDATE_AVATAR_SUCCESS,
+      payload: res.data.avatar,
+    });
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: UPDATE_AVATAR_FAIL,
+    });
   }
 };
