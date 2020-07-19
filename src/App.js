@@ -18,8 +18,6 @@ const App = () => {
     store.dispatch(loadUser());
   });
 
-  console.log(process.env.REACT_APP_CLOUDINARY_API);
-
   return (
     <Provider store={store}>
       <Router>

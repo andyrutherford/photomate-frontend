@@ -66,6 +66,11 @@ export default function (state = initialState, action) {
         avatar: action.payload,
         loading: false,
       };
+    case UPDATE_AVATAR_FAIL:
+      return {
+        ...state,
+        loading: false,
+      };
     case GET_PROFILE_FAIL:
     default:
       return state;

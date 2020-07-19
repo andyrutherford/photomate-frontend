@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { logoutUser } from '../actions/auth-actions';
 
 import { HomeIcon, InboxIcon, ExploreIcon, ActivityIcon } from './Icons';
+import NewPostButton from '../components/NewPostButton';
 import Search from '../components/Search';
 import logo from '../assets/logo.svg';
 
@@ -89,6 +90,9 @@ const Navbar = ({ user, logoutUser }) => {
               <Link to={`/${user.username}`}>
                 <img className='avatar' src={user.avatar} alt={'avatar'} />
               </Link>
+            </li>
+            <li>
+              <NewPostButton />
             </li>
             <li>
               <button onClick={logoutUser}>Logout</button>
