@@ -1,24 +1,27 @@
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOAD_USER,
+  LOAD_USER_SUCCESS,
+  LOAD_USER_FAIL,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   LOGOUT,
-  AUTH_ERROR,
 } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: false,
   loading: true,
-  user: null,
+  user: {
+    username: '',
+    name: '',
+  },
   avatar: undefined,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case LOAD_USER:
+    case LOAD_USER_SUCCESS:
       return {
         ...state,
         user: action.payload,
@@ -40,7 +43,7 @@ export default function (state = initialState, action) {
         token: null,
         loading: false,
       };
-    case AUTH_ERROR:
+    case LOAD_USER_FAIL:
     case SIGNUP_FAIL:
     case LOGIN_FAIL:
       return {

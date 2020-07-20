@@ -8,8 +8,22 @@ import Spinner from '../layout/Spinner';
 import ProfileHeader from '../ProfileHeader';
 import PhotoGrid from '../PhotoGrid';
 
-const Profile = ({ loading, getUserById, clearCurrentUser, currentUser }) => {
+const Profile = ({
+  loading,
+  getUserById,
+  clearCurrentUser,
+  currentUser,
+  authUser,
+}) => {
   const { username } = useParams();
+
+  useEffect(() => {
+    if (currentUser && authUser.username === currentUser.username) {
+      console.log('auth user = current user');
+    } else {
+      console.log('auth user != current user');
+    }
+  }, [authUser, currentUser]);
 
   useEffect(() => {
     getUserById(username);
@@ -37,6 +51,7 @@ const Profile = ({ loading, getUserById, clearCurrentUser, currentUser }) => {
 };
 
 const mapStateToProps = (state) => ({
+  authUser: state.auth.user,
   currentUser: state.user.currentUser,
   loading: state.user.loading,
 });

@@ -64,7 +64,7 @@ const NavbarWrapper = styled.div`
   }
 `;
 
-const Navbar = ({ user, logoutUser }) => {
+const Navbar = ({ username, avatar, logoutUser }) => {
   return (
     <NavbarWrapper>
       <nav>
@@ -72,40 +72,40 @@ const Navbar = ({ user, logoutUser }) => {
           <img src={logo} alt='Instagram' />
         </Link>
         <Search />
-        {user && (
-          <ul>
-            <li>
-              <HomeIcon />
-            </li>
-            <li>
-              <InboxIcon />
-            </li>
-            <li>
-              <ExploreIcon />
-            </li>
-            <li>
-              <ActivityIcon />
-            </li>
-            <li>
-              <Link to={`/${user.username}`}>
-                <img className='avatar' src={user.avatar} alt={'avatar'} />
-              </Link>
-            </li>
-            <li>
-              <NewPostButton />
-            </li>
-            <li>
-              <button onClick={logoutUser}>Logout</button>
-            </li>
-          </ul>
-        )}
+
+        <ul>
+          <li>
+            <HomeIcon />
+          </li>
+          <li>
+            <InboxIcon />
+          </li>
+          <li>
+            <ExploreIcon />
+          </li>
+          <li>
+            <ActivityIcon />
+          </li>
+          <li>
+            <Link to={`/${username}`}>
+              <img className='avatar' src={avatar} alt={'avatar'} />
+            </Link>
+          </li>
+          <li>
+            <NewPostButton />
+          </li>
+          <li>
+            <button onClick={logoutUser}>Logout</button>
+          </li>
+        </ul>
       </nav>
     </NavbarWrapper>
   );
 };
 
 const mapStateToProps = (state) => ({
-  user: state.user,
+  username: state.auth.user.username,
+  avatar: state.auth.user.avatar,
 });
 
 export default connect(mapStateToProps, { logoutUser })(Navbar);

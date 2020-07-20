@@ -1,10 +1,10 @@
 import api from '../utils/api';
 
 import {
-  LOAD_USER,
+  LOAD_USER_SUCCESS,
+  LOAD_USER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  AUTH_ERROR,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   LOGOUT,
@@ -14,12 +14,12 @@ export const loadUser = () => async (dispatch) => {
   try {
     const res = await api.get('/auth');
     dispatch({
-      type: LOAD_USER,
+      type: LOAD_USER_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: AUTH_ERROR,
+      type: LOAD_USER_FAIL,
     });
     console.log(error.response.data.message);
   }
