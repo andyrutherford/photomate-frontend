@@ -6,6 +6,8 @@ import {
   CREATE_POST_SUCCESS,
   CREATE_POST_FAIL,
   CLEAR_CURRENT_POSTS,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -33,6 +35,11 @@ export default function (state = initialState, action) {
         posts: [...state.posts, action.payload],
         loading: false,
       };
+    case DELETE_POST_SUCCESS:
+      return {
+        ...state,
+        posts: state.post.posts.filter((post) => post._id !== action.payload),
+      };
     case CLEAR_CURRENT_POSTS:
       return {
         ...state,
@@ -42,6 +49,7 @@ export default function (state = initialState, action) {
     case GET_POSTS_FAIL:
     case UPLOAD_PHOTO_FAIL:
     case CREATE_POST_FAIL:
+    case DELETE_POST_FAIL:
     default:
       return state;
   }

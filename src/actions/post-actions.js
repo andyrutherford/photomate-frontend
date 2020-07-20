@@ -12,6 +12,9 @@ import {
   CREATE_POST_START,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAIL,
+  DELETE_POST_START,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAIL,
 } from './types';
 import { getUserById } from './user-actions';
 
@@ -20,7 +23,7 @@ export const getPostsByUsername = (username) => async (dispatch) => {
     type: GET_POSTS_START,
   });
   try {
-    const res = await api.get(`/post/${username}`);
+    const res = await api.get(`/post/user/${username}`);
     dispatch({
       type: GET_POSTS_SUCCESS,
       payload: res.data.posts,
@@ -76,6 +79,18 @@ export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
     return dispatch({ type: CREATE_POST_SUCCESS, payload: res.data.post });
   } catch (error) {
     dispatch({ type: CREATE_POST_FAIL });
+    console.log(error.message);
+  }
+};
+
+export const deletePostById = (postId, userId) => async (dispatch) => {
+  dispatch({ type: DELETE_POST_START });
+  try {
+    await api.delete(`/post/${postId}`);
+    dispatch(getUserById(userId));
+    return dispatch({ type: DELETE_POST_SUCCESS, payload: postId });
+  } catch (error) {
+    dispatch({ type: DELETE_POST_FAIL });
     console.log(error.message);
   }
 };
