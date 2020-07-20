@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -23,6 +24,7 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
   const [postImage, setPostImage] = useState();
   const [showModal, setShowModal] = useState(false);
   const [caption, setCaption] = useState('');
+  const history = useHistory();
 
   const handleNewPost = async (e) => {
     if (e.target.files[0]) {
@@ -49,6 +51,7 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
       setShowModal(false);
       setPostImage();
       setCaption();
+      return history.push('/');
     } catch (error) {
       console.log(error.message);
     }
