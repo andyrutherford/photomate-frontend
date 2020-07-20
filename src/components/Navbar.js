@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { logoutUser } from '../actions/auth-actions';
 
+import Avatar from '../styles/Avatar';
 import { HomeIcon, InboxIcon, ExploreIcon, ActivityIcon } from './Icons';
 import NewPostButton from '../components/NewPostButton';
 import Search from '../components/Search';
@@ -27,7 +28,7 @@ const NavbarWrapper = styled.div`
     padding: 0 20px;
   }
 
-  img {
+  .logo {
     width: 103px;
     margin: 10px 0 0;
   }
@@ -42,14 +43,6 @@ const NavbarWrapper = styled.div`
 
   li {
     margin-left: 1rem;
-  }
-
-  .avatar {
-    height: 28px;
-    width: 28px;
-    border-radius: 100px;
-    object-fit: cover;
-    margin: 0;
   }
 
   @media screen and (max-width: 1070px) {
@@ -69,7 +62,7 @@ const Navbar = ({ username, avatar, logoutUser }) => {
     <NavbarWrapper>
       <nav>
         <Link to='/'>
-          <img src={logo} alt='Instagram' />
+          <img className='logo' src={logo} alt='Instagram' />
         </Link>
         <Search />
 
@@ -88,7 +81,7 @@ const Navbar = ({ username, avatar, logoutUser }) => {
           </li>
           <li>
             <Link to={`/${username}`}>
-              <img className='avatar' src={avatar} alt={'avatar'} />
+              <Avatar className='avatar' src={avatar} alt={'avatar'} />
             </Link>
           </li>
           <li>

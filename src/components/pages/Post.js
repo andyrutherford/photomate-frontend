@@ -13,7 +13,13 @@ import PostAddComment from '../post/PostAddComment';
 import { getPostById } from '../../actions/post-actions';
 
 const PostWrapper = styled.div`
-  background-color: red;
+  display: flex;
+
+  .post-right {
+    border: 1px solid lightgrey;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+  }
 `;
 
 const Post = ({ getPostById, loading, post }) => {
@@ -28,10 +34,14 @@ const Post = ({ getPostById, loading, post }) => {
   return (
     <PostWrapper>
       <PostImage image={post.image} caption={post.caption} />
-      <PostHeader />
-      <PostInfo />
-      <PostActions />
-      <PostAddComment />
+      <div className='post-right'>
+        {post.user && (
+          <PostHeader username={post.user.username} avatar={post.user.avatar} />
+        )}
+        <PostInfo />
+        <PostActions />
+        <PostAddComment />
+      </div>
     </PostWrapper>
   );
 };

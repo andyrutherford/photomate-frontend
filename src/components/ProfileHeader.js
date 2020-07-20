@@ -3,18 +3,13 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { GearIcon } from '../components/Icons';
+import Avatar from '../styles/Avatar';
 
 const ProfileHeaderWrapper = styled.div`
   display: flex;
 
   .profile-image {
     margin-right: 60px;
-  }
-
-  .profile-image img {
-    border-radius: 100px;
-    height: 200px;
-    width: 200px;
   }
 
   .profile-info {
@@ -72,7 +67,7 @@ const ProfileHeader = ({
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
-        <img src={avatar} alt='avatar' />
+        <Avatar xl src={avatar} alt='avatar' />
       </div>
       <div className='profile-info'>
         <div className='profile-info-primary'>

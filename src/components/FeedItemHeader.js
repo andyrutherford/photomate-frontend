@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import avatar from '../assets/avatar.jpg';
 
+import Avatar from '../styles/Avatar';
 import { ThreeDotsIcon } from '../components/Icons';
 
 const FeedItemHeaderWrapper = styled.div`
@@ -27,20 +28,13 @@ const FeedItemHeaderWrapper = styled.div`
     font-weight: bold;
     color: black;
   }
-
-  .avatar {
-    height: 42px;
-    width: 42px;
-    border-radius: 100px;
-    object-fit: cover;
-  }
 `;
 
 const FeedItemHeader = () => {
   return (
     <FeedItemHeaderWrapper>
       <div>
-        <img className='avatar' src={avatar} alt={avatar} />
+        <Avatar md className='avatar' src={avatar} alt={avatar} />
         <a href='!#'>cosmo</a>
       </div>
       <ThreeDotsIcon />
