@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import photo from '../assets/photo.jpg';
 import {
   ActivityIcon as HeartIcon,
   MessageIcon as CommentIcon,
@@ -58,23 +57,23 @@ const PhotoGridItemWrapper = styled.figure`
   }
 `;
 
-const PhotoGridItem = () => {
+const PhotoGridItem = ({ post }) => {
   return (
     <PhotoGridItemWrapper>
-      <img src={photo} alt='grid item' />
+      <img src={post.image} alt={post.caption} />
       <div className='img-overlay'>
         <span className='img-overlay-content'>
           <div>
             <div>
               <HeartIcon light size={40} />
             </div>
-            <h3> 5</h3>
+            <h3> {post.likeCount}</h3>
           </div>
           <div>
             <div>
               <CommentIcon light size={40} />
             </div>
-            <h3> 5</h3>
+            <h3> {post.commentCount}</h3>
           </div>
         </span>
       </div>

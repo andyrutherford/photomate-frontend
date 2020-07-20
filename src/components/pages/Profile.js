@@ -3,45 +3,61 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { getUserById, clearCurrentUser } from '../../actions/user-actions';
+import {
+  getPostsByUsername,
+  clearCurrentPosts,
+} from '../../actions/post-actions';
 
 import Spinner from '../layout/Spinner';
 import ProfileHeader from '../ProfileHeader';
 import PhotoGrid from '../PhotoGrid';
 
 const Profile = ({
-  loading,
+  userLoading,
+  postLoading,
   getUserById,
+  getPostsByUsername,
+  clearCurrentPosts,
   clearCurrentUser,
   currentUser,
   authUser,
+  posts,
 }) => {
   const { username } = useParams();
 
   useEffect(() => {
-    if (currentUser && authUser.username === currentUser.username) {
-      console.log('auth user = current user');
-    } else {
-      console.log('auth user != current user');
-    }
-  }, [authUser, currentUser]);
-
-  useEffect(() => {
     getUserById(username);
-  }, [getUserById, username]);
+    getPostsByUsername(username);
+  }, [getUserById, getPostsByUsername, username]);
 
   // cleanup
   useEffect(() => {
     return () => clearCurrentUser();
   }, [clearCurrentUser]);
+  useEffect(() => {
+    return () => clearCurrentPosts();
+  }, [clearCurrentPosts]);
 
-  if (loading) return <Spinner />;
+  if (userLoading || postLoading) return <Spinner />;
 
   return (
     <div>
       {currentUser ? (
         <>
-          <ProfileHeader />
-          <PhotoGrid />
+          <ProfileHeader
+            avatar={currentUser.avatar}
+            name={currentUser.name}
+            username={currentUser.username}
+            posts={currentUser.posts.length}
+            following={currentUser.following}
+            followers={currentUser.followers}
+            authUserIsCurrentUser={currentUser.username === authUser}
+          />
+          {posts.length >= 1 ? (
+            <PhotoGrid posts={posts} />
+          ) : (
+            <h1>No posts found.</h1>
+          )}
         </>
       ) : (
         'User not found'
@@ -51,11 +67,16 @@ const Profile = ({
 };
 
 const mapStateToProps = (state) => ({
-  authUser: state.auth.user,
+  authUser: state.auth.user.username,
   currentUser: state.user.currentUser,
-  loading: state.user.loading,
+  userLoading: state.user.loading,
+  postLoading: state.post.loading,
+  posts: state.post.posts,
 });
 
-export default connect(mapStateToProps, { getUserById, clearCurrentUser })(
-  Profile
-);
+export default connect(mapStateToProps, {
+  getUserById,
+  getPostsByUsername,
+  clearCurrentUser,
+  clearCurrentPosts,
+})(Profile);

@@ -12,8 +12,14 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  profile: {},
-  currentUser: null,
+  currentUser: {
+    profile: {},
+    avatar: '',
+    _id: '',
+    email: '',
+    name: '',
+    username: '',
+  },
   loading: true,
 };
 

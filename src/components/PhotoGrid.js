@@ -37,7 +37,7 @@ const PhotoGridWrapper = styled.div`
   }
 `;
 
-const PhotoGrid = () => {
+const PhotoGrid = ({ posts }) => {
   return (
     <PhotoGridWrapper>
       <hr />
@@ -56,18 +56,11 @@ const PhotoGrid = () => {
         </div>
       </div>
       <div className='photo-grid'>
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
-        <PhotoGridItem />
+        {posts.map((post) => (
+          <PhotoGridItem key={post._id} post={post} />
+        ))}
+        {/* <PhotoGridItem />
+        <PhotoGridItem /> */}
       </div>
     </PhotoGridWrapper>
   );

@@ -2,13 +2,42 @@ import api from '../utils/api';
 import axios from 'axios';
 
 import {
+  GET_POSTS_START,
+  GET_POSTS_SUCCESS,
+  GET_POSTS_FAIL,
   UPLOAD_PHOTO_START,
   UPLOAD_PHOTO_SUCCESS,
   UPLOAD_PHOTO_FAIL,
+  CLEAR_CURRENT_POSTS,
   CREATE_POST_START,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAIL,
 } from './types';
+import { getUserById } from './user-actions';
+
+export const getPostsByUsername = (username) => async (dispatch) => {
+  dispatch({
+    type: GET_POSTS_START,
+  });
+  try {
+    const res = await api.get(`/post/${username}`);
+    dispatch({
+      type: GET_POSTS_SUCCESS,
+      payload: res.data.posts,
+    });
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: GET_POSTS_FAIL,
+    });
+  }
+};
+
+export const clearCurrentPosts = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_CURRENT_POSTS,
+  });
+};
 
 export const uploadImage = (file, token) => async (dispatch) => {
   dispatch({
@@ -39,11 +68,11 @@ export const uploadImage = (file, token) => async (dispatch) => {
   }
 };
 
-export const createPost = (imageUrl, caption) => async (dispatch) => {
-  console.log('create post action');
+export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
   dispatch({ type: CREATE_POST_START });
   try {
     const res = await api.post('/post/new', { imageUrl, caption });
+    dispatch(getUserById(userId));
     return dispatch({ type: CREATE_POST_SUCCESS, payload: res.data.post });
   } catch (error) {
     dispatch({ type: CREATE_POST_FAIL });

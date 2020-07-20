@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -59,20 +58,26 @@ const ProfileHeaderWrapper = styled.div`
   }
 `;
 
-const ProfileHeader = ({ authUser, currentUser }) => {
-  // TODO
-  // if /username === user in state.user -> populate fields GET_PROFILE action
-  // if not -> run GET_PROFILE_BY_USERNAME action
-
+const ProfileHeader = ({
+  authUser,
+  currentUser,
+  avatar,
+  name,
+  username,
+  posts,
+  following,
+  followers,
+  authUserIsCurrentUser,
+}) => {
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
-        <img src={currentUser.avatar} alt='avatar' />
+        <img src={avatar} alt='avatar' />
       </div>
       <div className='profile-info'>
         <div className='profile-info-primary'>
-          <h1>{currentUser.username}</h1>
-          {authUser && authUser.username === currentUser.username && (
+          <h1>{username}</h1>
+          {authUserIsCurrentUser && (
             <>
               <Link className='edit-profile-btn' to='/accounts/edit'>
                 Edit Profile
@@ -85,24 +90,19 @@ const ProfileHeader = ({ authUser, currentUser }) => {
         </div>
         <ul className='profile-info-secondary'>
           <li>
-            <span>148 posts</span>
+            <span>{posts} posts</span>
           </li>
           <li>
-            <span>361 followers</span>
+            <span>{followers} followers</span>
           </li>
           <li>
-            <span>592 following</span>
+            <span>{following} following</span>
           </li>
         </ul>
-        <div className='profile-info-name'>{currentUser.name}</div>
+        <div className='profile-info-name'>{name}</div>
       </div>
     </ProfileHeaderWrapper>
   );
 };
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
-  authUser: state.auth.user,
-});
-
-export default connect(mapStateToProps)(ProfileHeader);
+export default ProfileHeader;

@@ -19,7 +19,7 @@ const NewPostButtonWrapper = styled.div`
   }
 `;
 
-export const NewPostButton = ({ uploadImage, createPost, token }) => {
+export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
   const [postImage, setPostImage] = useState();
   const [showModal, setShowModal] = useState(false);
   const [caption, setCaption] = useState('');
@@ -45,7 +45,7 @@ export const NewPostButton = ({ uploadImage, createPost, token }) => {
 
   const submitHandler = async () => {
     try {
-      await createPost(postImage, caption);
+      await createPost(postImage, caption, userId);
       setShowModal(false);
       setPostImage();
       setCaption();
@@ -107,6 +107,7 @@ export const NewPostButton = ({ uploadImage, createPost, token }) => {
 };
 
 const mapStateToProps = (state) => ({
+  userId: state.auth.user.username,
   token: state.auth.token,
 });
 
