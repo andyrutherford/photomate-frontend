@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -61,22 +62,25 @@ const PhotoGridItem = ({ post }) => {
   return (
     <PhotoGridItemWrapper>
       <img src={post.image} alt={post.caption} />
-      <div className='img-overlay'>
-        <span className='img-overlay-content'>
-          <div>
+
+      <Link to={`/p/${post._id}`}>
+        <div className='img-overlay'>
+          <span className='img-overlay-content'>
             <div>
-              <HeartIcon light size={40} />
+              <div>
+                <HeartIcon light size={40} />
+              </div>
+              <h3> {post.likeCount}</h3>
             </div>
-            <h3> {post.likeCount}</h3>
-          </div>
-          <div>
             <div>
-              <CommentIcon light size={40} />
+              <div>
+                <CommentIcon light size={40} />
+              </div>
+              <h3> {post.commentCount}</h3>
             </div>
-            <h3> {post.commentCount}</h3>
-          </div>
-        </span>
-      </div>
+          </span>
+        </div>
+      </Link>
     </PhotoGridItemWrapper>
   );
 };

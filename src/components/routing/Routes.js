@@ -8,6 +8,7 @@ import Navbar from '../Navbar';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import Settings from '../pages/Settings';
+import Post from '../pages/Post';
 
 const Container = styled.div`
   width: 935px;
@@ -35,6 +36,7 @@ const Routes = () => {
           <PrivateRoute exact path='/' component={Dashboard} />
           <PrivateRoute exact path='/:username' component={Profile} />
           <PrivateRoute exact path='/accounts/edit' component={Settings} />
+          <PrivateRoute exact path='/p/:postId' component={Post} />
         </Switch>
       </Container>
     </section>

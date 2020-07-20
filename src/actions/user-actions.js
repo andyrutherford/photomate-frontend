@@ -14,6 +14,8 @@ import {
   UPDATE_AVATAR_FAIL,
 } from './types';
 
+import { loadUser } from './auth-actions';
+
 export const getProfile = () => async (dispatch) => {
   try {
     const res = await api.get('/user');
@@ -81,6 +83,7 @@ export const changeAvatar = (avatar, token) => async (dispatch) => {
       },
     });
 
+    dispatch(loadUser());
     dispatch({
       type: UPDATE_AVATAR_SUCCESS,
       payload: res.data.avatar,

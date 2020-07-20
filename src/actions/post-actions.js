@@ -9,12 +9,16 @@ import {
   UPLOAD_PHOTO_SUCCESS,
   UPLOAD_PHOTO_FAIL,
   CLEAR_CURRENT_POSTS,
+  CLEAR_CURRENT_POST,
   CREATE_POST_START,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAIL,
   DELETE_POST_START,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAIL,
+  GET_POST_BY_ID_START,
+  GET_POST_BY_ID_SUCCESS,
+  GET_POST_BY_ID_FAIL,
 } from './types';
 import { getUserById } from './user-actions';
 
@@ -36,9 +40,33 @@ export const getPostsByUsername = (username) => async (dispatch) => {
   }
 };
 
+export const getPostById = (postId) => async (dispatch) => {
+  dispatch({
+    type: GET_POST_BY_ID_START,
+  });
+  try {
+    const res = await api.get(`/post/${postId}`);
+    dispatch({
+      type: GET_POST_BY_ID_SUCCESS,
+      payload: res.data.post,
+    });
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: GET_POST_BY_ID_FAIL,
+    });
+  }
+};
+
 export const clearCurrentPosts = () => (dispatch) => {
   dispatch({
     type: CLEAR_CURRENT_POSTS,
+  });
+};
+
+export const clearCurrentPost = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_CURRENT_POST,
   });
 };
 

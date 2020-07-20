@@ -8,11 +8,15 @@ import {
   CLEAR_CURRENT_POSTS,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAIL,
+  GET_POST_BY_ID_SUCCESS,
+  GET_POST_BY_ID_FAIL,
+  CLEAR_CURRENT_POST,
 } from '../actions/types';
 
 const initialState = {
   loading: true,
   posts: [],
+  currentPost: {},
 };
 
 export default function (state = initialState, action) {
@@ -21,6 +25,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts: [...action.payload],
+        loading: false,
+      };
+    case GET_POST_BY_ID_SUCCESS:
+      return {
+        ...state,
+        currentPost: action.payload,
         loading: false,
       };
     case UPLOAD_PHOTO_SUCCESS:
@@ -40,6 +50,12 @@ export default function (state = initialState, action) {
         ...state,
         posts: state.post.posts.filter((post) => post._id !== action.payload),
       };
+    case CLEAR_CURRENT_POST:
+      return {
+        ...state,
+        currentPost: {},
+        loading: true,
+      };
     case CLEAR_CURRENT_POSTS:
       return {
         ...state,
@@ -47,6 +63,7 @@ export default function (state = initialState, action) {
         loading: true,
       };
     case GET_POSTS_FAIL:
+    case GET_POST_BY_ID_FAIL:
     case UPLOAD_PHOTO_FAIL:
     case CREATE_POST_FAIL:
     case DELETE_POST_FAIL:
