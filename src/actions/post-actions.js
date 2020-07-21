@@ -48,7 +48,7 @@ export const getPostById = (postId) => async (dispatch) => {
     const res = await api.get(`/post/${postId}`);
     dispatch({
       type: GET_POST_BY_ID_SUCCESS,
-      payload: { ...res.data.post, user: res.data.user },
+      payload: res.data.post,
     });
   } catch (error) {
     console.log(error.message);

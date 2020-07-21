@@ -29,7 +29,10 @@ const Global = createGlobalStyle`
 	button[disabled]{
 		opacity: 0.3;
 		cursor: not-allowed;
-  }
+	  }
+	ul {
+		  list-style-type: none
+	}
 	.pointer {
 		cursor: pointer;
 	}

@@ -5,6 +5,7 @@ import Avatar from '../../styles/Avatar';
 
 const PostInfoWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   height: 300px;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -12,10 +13,16 @@ const PostInfoWrapper = styled.div`
 
   .post-info__caption {
     display: flex;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-info__comment {
+    display: flex;
+    padding: 0.5rem 0;
   }
 `;
 
-const PostInfo = ({ avatar, username, caption }) => {
+const PostInfo = ({ avatar, username, caption, comments }) => {
   return (
     <PostInfoWrapper>
       <div className='post-info__caption'>
@@ -24,6 +31,17 @@ const PostInfo = ({ avatar, username, caption }) => {
           <span className='bold'>{username}</span> {caption}
         </p>
       </div>
+      <ul className='post-info__comments'>
+        {comments.map((comment) => (
+          <li className='post-info__comment' key={comment._id}>
+            <Avatar src={comment.user.avatar} alt={comment.user.username} />
+            <p>
+              <span className='bold'>{comment.user.username}</span>{' '}
+              {comment.text}
+            </p>
+          </li>
+        ))}
+      </ul>
     </PostInfoWrapper>
   );
 };

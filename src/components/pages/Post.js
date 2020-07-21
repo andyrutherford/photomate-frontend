@@ -40,15 +40,22 @@ const Post = ({ getPostById, loading, post }) => {
       <PostImage image={post.image} caption={post.caption} />
       <div className='post-right'>
         {post.user && (
-          <PostHeader username={post.user.username} avatar={post.user.avatar} />
+          <>
+            <PostHeader
+              username={post.user.username}
+              avatar={post.user.avatar}
+            />
+
+            <PostInfo
+              username={post.user.username}
+              avatar={post.user.avatar}
+              caption={post.caption}
+              comments={post.comments}
+            />
+            <PostActions />
+            <PostAddComment />
+          </>
         )}
-        <PostInfo
-          username={post.user.username}
-          avatar={post.user.avatar}
-          caption={post.caption}
-        />
-        <PostActions />
-        <PostAddComment />
       </div>
     </PostWrapper>
   );
