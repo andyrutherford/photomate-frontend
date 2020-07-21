@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { logoutUser } from '../actions/auth-actions';
 
 import Avatar from '../styles/Avatar';
-import { HomeIcon, InboxIcon, ExploreIcon, ActivityIcon } from './Icons';
+import { HomeIcon, InboxIcon, ExploreIcon, HeartIcon } from './Icons';
 import NewPostButton from '../components/NewPostButton';
 import Search from '../components/Search';
 import logo from '../assets/logo.svg';
@@ -77,7 +77,7 @@ const Navbar = ({ username, avatar, logoutUser }) => {
             <ExploreIcon />
           </li>
           <li>
-            <ActivityIcon />
+            <HeartIcon />
           </li>
           <li>
             <Link to={`/${username}`}>

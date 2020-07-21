@@ -13,6 +13,8 @@ import {
   CLEAR_CURRENT_POST,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAIL,
+  LIKE_POST_SUCCESS,
+  LIKE_POST_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -72,11 +74,22 @@ export default function (state = initialState, action) {
           comments: [...state.currentPost.comments, action.payload],
         },
       };
+    case LIKE_POST_SUCCESS:
+      return {
+        ...state,
+        currentPost: {
+          ...state.currentPost,
+          likes: action.payload.likes,
+          likeCount: action.payload.likeCount,
+        },
+      };
+    case ADD_COMMENT_FAIL:
     case GET_POSTS_FAIL:
     case GET_POST_BY_ID_FAIL:
     case UPLOAD_PHOTO_FAIL:
     case CREATE_POST_FAIL:
     case DELETE_POST_FAIL:
+    case LIKE_POST_FAIL:
     default:
       return state;
   }

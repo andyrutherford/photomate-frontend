@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {
-  ActivityIcon as LikeIcon,
+  HeartIcon,
   InboxIcon as ShareIcon,
   MessageIcon,
   BookmarkIcon as SaveIcon,
@@ -24,7 +24,7 @@ const FeedItemActions = () => {
   return (
     <FeedItemActionsWrapper>
       <div className='actions-left'>
-        <LikeIcon />
+        <HeartIcon />
         <MessageIcon />
         <ShareIcon />
       </div>

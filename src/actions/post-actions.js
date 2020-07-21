@@ -21,6 +21,8 @@ import {
   GET_POST_BY_ID_FAIL,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAIL,
+  LIKE_POST_SUCCESS,
+  LIKE_POST_FAIL,
 } from './types';
 import { getUserById } from './user-actions';
 
@@ -136,6 +138,23 @@ export const addComment = (postId, text) => async (dispatch) => {
     console.log(error.message);
     dispatch({
       type: ADD_COMMENT_FAIL,
+    });
+  }
+};
+
+export const likePost = (postId) => async (dispatch) => {
+  try {
+    const res = await api.get(`/post/${postId}/like`);
+    dispatch({
+      type: LIKE_POST_SUCCESS,
+      payload: {
+        likes: res.data.post.likes,
+        likeCount: res.data.post.likeCount,
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: LIKE_POST_FAIL,
     });
   }
 };

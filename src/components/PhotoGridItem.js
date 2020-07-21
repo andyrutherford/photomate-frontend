@@ -2,10 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  ActivityIcon as HeartIcon,
-  MessageIcon as CommentIcon,
-} from '../components/Icons';
+import { HeartIcon, MessageIcon as CommentIcon } from '../components/Icons';
 
 const PhotoGridItemWrapper = styled.figure`
   width: 300px;

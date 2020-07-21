@@ -10,7 +10,7 @@ import PostInfo from '../post/PostInfo';
 import PostActions from '../post/PostActions';
 import PostAddComment from '../post/PostAddComment';
 
-import { getPostById, addComment } from '../../actions/post-actions';
+import { getPostById, addComment, likePost } from '../../actions/post-actions';
 
 const PostWrapper = styled.div`
   display: flex;
@@ -26,7 +26,14 @@ const PostWrapper = styled.div`
   }
 `;
 
-const Post = ({ getPostById, addComment, loading, post }) => {
+const Post = ({
+  postLiked,
+  getPostById,
+  likePost,
+  addComment,
+  loading,
+  post,
+}) => {
   const { postId } = useParams();
 
   useEffect(() => {
@@ -53,8 +60,11 @@ const Post = ({ getPostById, addComment, loading, post }) => {
               comments={post.comments}
             />
             <PostActions
+              postId={postId}
+              postLiked={postLiked}
               likeCount={post.likeCount}
               createdAt={post.createdAt}
+              likePost={likePost}
             />
             <PostAddComment addComment={addComment} postId={postId} />
           </>
@@ -67,6 +77,11 @@ const Post = ({ getPostById, addComment, loading, post }) => {
 const mapStateToProps = (state) => ({
   loading: state.post.loading,
   post: state.post.currentPost,
+  postLiked:
+    state.post.currentPost.likes &&
+    state.post.currentPost.likes.includes(state.auth.user.id),
 });
 
-export default connect(mapStateToProps, { getPostById, addComment })(Post);
+export default connect(mapStateToProps, { getPostById, addComment, likePost })(
+  Post
+);

@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {
-  ActivityIcon as LikeIcon,
+  HeartIcon,
   InboxIcon as ShareIcon,
   MessageIcon,
   BookmarkIcon as SaveIcon,
+  FilledHeartIcon,
 } from '../Icons';
 
 const PostActionsWrapper = styled.div`
@@ -25,12 +26,20 @@ const PostActionsWrapper = styled.div`
   }
 `;
 
-const PostActions = ({ likeCount, createdAt }) => {
+const PostActions = ({ likePost, likeCount, createdAt, postId, postLiked }) => {
+  const likePostHandler = () => {
+    likePost(postId);
+  };
   return (
     <PostActionsWrapper>
       <div className='post-actions__buttons'>
         <div className='post-actions__left'>
-          <LikeIcon />
+          {postLiked ? (
+            <FilledHeartIcon onClick={likePostHandler} />
+          ) : (
+            <HeartIcon onClick={likePostHandler} />
+          )}
+
           <MessageIcon />
           <ShareIcon />
         </div>
