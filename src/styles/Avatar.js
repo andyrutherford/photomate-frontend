@@ -5,6 +5,7 @@ const Avatar = styled.img`
   height: 28px;
   object-fit: cover;
   border-radius: 100px;
+  margin-right: 1rem;
   ${(props) =>
     props.md &&
     css`

@@ -14,12 +14,6 @@ const FeedItemInfoWrapper = styled.div`
   .comment > :first-child {
     font-weight: bold;
   }
-
-  .post-date {
-    color: grey;
-    font-size: 12px;
-    margin: 5px 0;
-  }
 `;
 
 const FeedItemInfo = () => {
@@ -42,7 +36,7 @@ const FeedItemInfo = () => {
         <span>user3 </span>
         <span>photo comment 3</span>
       </div>
-      <div className='post-date'>
+      <div className='date'>
         <span>{'2 days ago'.toUpperCase()}</span>
       </div>
     </FeedItemInfoWrapper>

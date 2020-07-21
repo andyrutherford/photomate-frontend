@@ -151,8 +151,6 @@ export const ThreeDotsIcon = () => (
   </svg>
 );
 
-// TODO: MessageIcon is slightly bigger than other icons
-
 export const MessageIcon = ({ light, size = 28 }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'

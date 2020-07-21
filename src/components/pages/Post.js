@@ -16,9 +16,13 @@ const PostWrapper = styled.div`
   display: flex;
 
   .post-right {
+    background-color: white;
     border: 1px solid lightgrey;
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
   }
 `;
 
@@ -38,7 +42,11 @@ const Post = ({ getPostById, loading, post }) => {
         {post.user && (
           <PostHeader username={post.user.username} avatar={post.user.avatar} />
         )}
-        <PostInfo />
+        <PostInfo
+          username={post.user.username}
+          avatar={post.user.avatar}
+          caption={post.caption}
+        />
         <PostActions />
         <PostAddComment />
       </div>
