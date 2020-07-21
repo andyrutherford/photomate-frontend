@@ -11,6 +11,8 @@ import {
   GET_POST_BY_ID_SUCCESS,
   GET_POST_BY_ID_FAIL,
   CLEAR_CURRENT_POST,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -61,6 +63,14 @@ export default function (state = initialState, action) {
         ...state,
         posts: [],
         loading: true,
+      };
+    case ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        currentPost: {
+          ...state.currentPost,
+          comments: [...state.currentPost.comments, action.payload],
+        },
       };
     case GET_POSTS_FAIL:
     case GET_POST_BY_ID_FAIL:

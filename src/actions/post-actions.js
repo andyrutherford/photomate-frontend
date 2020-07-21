@@ -19,6 +19,8 @@ import {
   GET_POST_BY_ID_START,
   GET_POST_BY_ID_SUCCESS,
   GET_POST_BY_ID_FAIL,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAIL,
 } from './types';
 import { getUserById } from './user-actions';
 
@@ -120,5 +122,20 @@ export const deletePostById = (postId, userId) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: DELETE_POST_FAIL });
     console.log(error.message);
+  }
+};
+
+export const addComment = (postId, text) => async (dispatch) => {
+  try {
+    const res = await api.post(`/post/${postId}/comment`, { text });
+    dispatch({
+      type: ADD_COMMENT_SUCCESS,
+      payload: res.data.comment,
+    });
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: ADD_COMMENT_FAIL,
+    });
   }
 };

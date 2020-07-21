@@ -10,7 +10,7 @@ import PostInfo from '../post/PostInfo';
 import PostActions from '../post/PostActions';
 import PostAddComment from '../post/PostAddComment';
 
-import { getPostById } from '../../actions/post-actions';
+import { getPostById, addComment } from '../../actions/post-actions';
 
 const PostWrapper = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ const PostWrapper = styled.div`
   }
 `;
 
-const Post = ({ getPostById, loading, post }) => {
+const Post = ({ getPostById, addComment, loading, post }) => {
   const { postId } = useParams();
 
   useEffect(() => {
@@ -52,8 +52,11 @@ const Post = ({ getPostById, loading, post }) => {
               caption={post.caption}
               comments={post.comments}
             />
-            <PostActions />
-            <PostAddComment />
+            <PostActions
+              likeCount={post.likeCount}
+              createdAt={post.createdAt}
+            />
+            <PostAddComment addComment={addComment} postId={postId} />
           </>
         )}
       </div>
@@ -66,4 +69,4 @@ const mapStateToProps = (state) => ({
   post: state.post.currentPost,
 });
 
-export default connect(mapStateToProps, { getPostById })(Post);
+export default connect(mapStateToProps, { getPostById, addComment })(Post);

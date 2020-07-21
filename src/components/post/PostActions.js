@@ -25,7 +25,7 @@ const PostActionsWrapper = styled.div`
   }
 `;
 
-const PostActions = () => {
+const PostActions = ({ likeCount, createdAt }) => {
   return (
     <PostActionsWrapper>
       <div className='post-actions__buttons'>
@@ -39,10 +39,10 @@ const PostActions = () => {
         </div>
       </div>
       <div className='post-actions__summary'>
-        <span>8 people have liked this post</span>
+        <span>{likeCount} people have liked this post</span>
       </div>
       <div className='date'>
-        <span>{'2 days ago'.toUpperCase()}</span>
+        <span>{createdAt}</span>
       </div>
     </PostActionsWrapper>
   );
