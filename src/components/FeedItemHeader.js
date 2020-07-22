@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -41,6 +42,7 @@ const FeedItemHeader = ({
   postId,
 }) => {
   const [showModal, setShowModal] = useState(false);
+  const history = useHistory();
 
   const deletePostHandler = () => {
     deletePost(postId);
@@ -77,6 +79,21 @@ const FeedItemHeader = ({
                 onClick={() => deletePostHandler()}
               >
                 Delete Post
+              </button>
+            </li>
+            <li>
+              <button
+                style={{
+                  width: '100%',
+                  border: 'none',
+                  borderTop: '1px solid lightgrey',
+                  backgroundColor: 'transparent',
+                  minHeight: '48px',
+                  fontSize: '14px',
+                }}
+                onClick={() => history.push(`/p/${postId}`)}
+              >
+                View Post
               </button>
             </li>
             <li>

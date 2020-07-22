@@ -77,10 +77,6 @@ export default function (state = initialState, action) {
     case ADD_COMMENT_SUCCESS:
       return {
         ...state,
-        currentPost: {
-          ...state.currentPost,
-          comments: [...state.currentPost.comments, action.payload],
-        },
       };
     case LIKE_POST_SUCCESS:
       return {

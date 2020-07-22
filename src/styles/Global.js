@@ -41,8 +41,10 @@ const Global = createGlobalStyle`
 	}
 	.subtext {
 		color: grey;
-		font-size: 12px;
 	  }
+	.small {
+	font-size: 12px;
+	}
 	.bold {
 		font-weight: bold;
 	}

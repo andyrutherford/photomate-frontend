@@ -18,10 +18,6 @@ const FeedItemWrapper = styled.article`
   width: 615px;
 
   @media screen and (max-width: 620px) {
-    border: none;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-radius: 0px;
     width: 100vw;
   }
 `;
@@ -46,8 +42,9 @@ const FeedItem = ({ feedItem, authUser }) => {
         likeCount={feedItem.likeCount}
         comments={feedItem.comments}
         createdAt={feedItem.createdAt}
+        postId={feedItem._id}
       />
-      <FeedItemAddComment />
+      <FeedItemAddComment postId={feedItem._id} />
     </FeedItemWrapper>
   );
 };

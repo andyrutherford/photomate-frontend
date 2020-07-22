@@ -11,7 +11,6 @@ import {
 
 const PostActionsWrapper = styled.div`
   border-top: 0.5px solid lightgrey;
-  border-bottom: 0.5px solid lightgrey;
   margin-top: 4px;
   padding: 8px 16px;
 
@@ -59,7 +58,7 @@ const PostActions = ({ likePost, likeCount, createdAt, postId, postLiked }) => {
         <span>{formatLikes()}</span>
       </div>
       <div className='date'>
-        <span>{createdAt}</span>
+        <span className='subtext small'>{createdAt}</span>
       </div>
     </PostActionsWrapper>
   );

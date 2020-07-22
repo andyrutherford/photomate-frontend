@@ -138,6 +138,8 @@ export const addComment = (postId, text) => async (dispatch) => {
       type: ADD_COMMENT_SUCCESS,
       payload: res.data.comment,
     });
+    dispatch(getPostById(postId));
+    return dispatch(getFeed());
   } catch (error) {
     console.log(error.message);
     dispatch({
