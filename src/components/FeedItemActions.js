@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+
+import { likePost } from '../actions/post-actions';
 
 import {
   HeartIcon,
+  FilledHeartIcon,
   InboxIcon as ShareIcon,
   MessageIcon,
   BookmarkIcon as SaveIcon,
@@ -20,11 +24,19 @@ const FeedItemActionsWrapper = styled.div`
   }
 `;
 
-const FeedItemActions = () => {
+const FeedItemActions = ({ isLiked, postId, likePost }) => {
+  const likePostHandler = () => {
+    likePost(postId);
+  };
+
   return (
     <FeedItemActionsWrapper>
       <div className='actions-left'>
-        <HeartIcon />
+        {isLiked ? (
+          <FilledHeartIcon onClick={likePostHandler} />
+        ) : (
+          <HeartIcon onClick={likePostHandler} />
+        )}
         <MessageIcon />
         <ShareIcon />
       </div>
@@ -35,4 +47,4 @@ const FeedItemActions = () => {
   );
 };
 
-export default FeedItemActions;
+export default connect(null, { likePost })(FeedItemActions);

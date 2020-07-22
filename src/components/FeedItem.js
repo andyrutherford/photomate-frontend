@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import FeedItemHeader from './FeedItemHeader';
@@ -25,21 +26,33 @@ const FeedItemWrapper = styled.article`
   }
 `;
 
-const FeedItem = () => {
+const FeedItem = ({ feedItem, authUser }) => {
   return (
     <FeedItemWrapper>
-      {/* FeedItemHeader */}
-      <FeedItemHeader />
-      {/* FeedItemImage */}
-      <FeedItemImage />
-      {/* FeedItemActions */}
-      <FeedItemActions />
-      {/* FeedItemInfo */}
-      <FeedItemInfo />
-      {/* FeedItemAddComment */}
+      <FeedItemHeader
+        username={feedItem.user.username}
+        avatar={feedItem.user.avatar}
+        postOwner={authUser.username === feedItem.user.username}
+      />
+      <FeedItemImage image={feedItem.image} caption={feedItem.caption} />
+      <FeedItemActions
+        postId={feedItem._id}
+        isLiked={feedItem.likes.includes(authUser.id)}
+      />
+      <FeedItemInfo
+        username={feedItem.user.username}
+        caption={feedItem.caption}
+        likeCount={feedItem.likeCount}
+        comments={feedItem.comments}
+        createdAt={feedItem.createdAt}
+      />
       <FeedItemAddComment />
     </FeedItemWrapper>
   );
 };
 
-export default FeedItem;
+const mapStateToProps = (state) => ({
+  authUser: state.auth.user,
+});
+
+export default connect(mapStateToProps)(FeedItem);

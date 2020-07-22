@@ -39,12 +39,15 @@ const Global = createGlobalStyle`
 	button {
 	  cursor: pointer;
 	}
-	.date {
+	.subtext {
 		color: grey;
 		font-size: 12px;
 	  }
 	.bold {
 		font-weight: bold;
+	}
+	.black {
+		color: black;
 	}
 	*:focus {
 	  outline: none;

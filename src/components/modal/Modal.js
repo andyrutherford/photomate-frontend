@@ -16,12 +16,25 @@ const ModalOverlay = (props) => {
               border: 'none',
               backgroundColor: 'transparent',
               padding: '0.5rem 0.7rem',
+              color: 'red',
+              fontSize: '16px',
             }}
           >
-            X
+            Close
           </button>
-          <h2>{props.header}</h2>
-          <button onClick={props.onSubmit}>Share</button>
+          <label style={{ fontSize: '16px' }}>{props.header}</label>
+          <button
+            onClick={props.onSubmit}
+            style={{
+              border: 'none',
+              backgroundColor: 'transparent',
+              padding: '0.5rem 0.7rem',
+              color: '#0095f6',
+              fontSize: '16px',
+            }}
+          >
+            Share
+          </button>
         </header>
       )}
       <div className={`modal__content`}>{props.children}</div>

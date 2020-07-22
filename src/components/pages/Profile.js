@@ -22,6 +22,7 @@ const Profile = ({
   currentUser,
   authUser,
   posts,
+  profileOwner,
 }) => {
   const { username } = useParams();
 
@@ -30,13 +31,13 @@ const Profile = ({
     getPostsByUsername(username);
   }, [getUserById, getPostsByUsername, username]);
 
-  // cleanup
-  useEffect(() => {
-    return () => clearCurrentUser();
-  }, [clearCurrentUser]);
-  useEffect(() => {
-    return () => clearCurrentPosts();
-  }, [clearCurrentPosts]);
+  // // cleanup
+  // useEffect(() => {
+  //   return () => clearCurrentUser();
+  // }, [clearCurrentUser]);
+  // useEffect(() => {
+  //   return () => clearCurrentPosts();
+  // }, [clearCurrentPosts]);
 
   if (userLoading || postLoading) return <Spinner />;
 
@@ -51,7 +52,7 @@ const Profile = ({
             posts={currentUser.posts.length}
             following={currentUser.following}
             followers={currentUser.followers}
-            authUserIsCurrentUser={currentUser.username === authUser}
+            profileOwner={profileOwner}
           />
           {posts.length >= 1 ? (
             <PhotoGrid posts={posts} />
@@ -72,6 +73,7 @@ const mapStateToProps = (state) => ({
   userLoading: state.user.loading,
   postLoading: state.post.loading,
   posts: state.post.posts,
+  profileOwner: state.user.currentUser.username === state.auth.user.username,
 });
 
 export default connect(mapStateToProps, {

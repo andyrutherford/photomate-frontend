@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -17,18 +18,20 @@ const FeedWrapper = styled.section`
   }
 `;
 
-const Feed = ({ logoutUser }) => {
+const Feed = ({ feed }) => {
   return (
     <FeedWrapper>
       <Link to='/login'>Login</Link> <Link to='/signup'>Signup</Link>{' '}
       <Link to='/zucc'>Profile</Link> <Link to='/accounts/edit'>Settings</Link>{' '}
-      <FeedItem />
-      <FeedItem />
-      <FeedItem />
-      <FeedItem />
-      <FeedItem />
+      {feed.map((item, index) => (
+        <FeedItem key={item._id} feedItem={feed[index]} />
+      ))}
     </FeedWrapper>
   );
 };
 
-export default Feed;
+const mapStateToProps = (state) => ({
+  feed: state.post.feed,
+});
+
+export default connect(mapStateToProps)(Feed);

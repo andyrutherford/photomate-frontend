@@ -2,7 +2,6 @@ import api from '../utils/api';
 import axios from 'axios';
 
 import {
-  GET_POSTS_START,
   GET_POSTS_SUCCESS,
   GET_POSTS_FAIL,
   UPLOAD_PHOTO_START,
@@ -10,26 +9,35 @@ import {
   UPLOAD_PHOTO_FAIL,
   CLEAR_CURRENT_POSTS,
   CLEAR_CURRENT_POST,
-  CREATE_POST_START,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAIL,
-  DELETE_POST_START,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAIL,
-  GET_POST_BY_ID_START,
   GET_POST_BY_ID_SUCCESS,
   GET_POST_BY_ID_FAIL,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAIL,
   LIKE_POST_SUCCESS,
   LIKE_POST_FAIL,
+  GET_FEED_SUCCESS,
+  GET_FEED_FAIL,
 } from './types';
 import { getUserById } from './user-actions';
 
+export const getFeed = () => async (dispatch) => {
+  try {
+    const res = await api.get('/post/feed');
+    dispatch({
+      type: GET_FEED_SUCCESS,
+      payload: res.data.feed,
+    });
+  } catch (error) {
+    console.log(error.message);
+    dispatch({ type: GET_FEED_FAIL });
+  }
+};
+
 export const getPostsByUsername = (username) => async (dispatch) => {
-  dispatch({
-    type: GET_POSTS_START,
-  });
   try {
     const res = await api.get(`/post/user/${username}`);
     dispatch({
@@ -45,9 +53,6 @@ export const getPostsByUsername = (username) => async (dispatch) => {
 };
 
 export const getPostById = (postId) => async (dispatch) => {
-  dispatch({
-    type: GET_POST_BY_ID_START,
-  });
   try {
     const res = await api.get(`/post/${postId}`);
     dispatch({
@@ -104,7 +109,6 @@ export const uploadImage = (file, token) => async (dispatch) => {
 };
 
 export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
-  dispatch({ type: CREATE_POST_START });
   try {
     const res = await api.post('/post/new', { imageUrl, caption });
     dispatch(getUserById(userId));
@@ -116,8 +120,6 @@ export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
 };
 
 export const deletePost = (postId) => async (dispatch) => {
-  dispatch({ type: DELETE_POST_START });
-  console.log(postId);
   try {
     await api.delete(`/post/${postId}`);
     return dispatch({ type: DELETE_POST_SUCCESS, payload: postId });
@@ -152,6 +154,7 @@ export const likePost = (postId) => async (dispatch) => {
         likeCount: res.data.post.likeCount,
       },
     });
+    return dispatch(getFeed());
   } catch (error) {
     dispatch({
       type: LIKE_POST_FAIL,

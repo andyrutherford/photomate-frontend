@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import photo from '../assets/photo.jpg';
-
 const FeedItemImageWrapper = styled.div`
   height: 350px;
   width: 100%;
-  background-color: lightgrey;
+  border: none;
 
   img {
     height: 100%;
@@ -15,10 +13,10 @@ const FeedItemImageWrapper = styled.div`
   }
 `;
 
-const FeedItemImage = () => {
+const FeedItemImage = ({ image, caption }) => {
   return (
     <FeedItemImageWrapper>
-      <img src={photo} alt='feed item' />
+      <img src={image} alt={caption} />
     </FeedItemImageWrapper>
   );
 };

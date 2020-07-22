@@ -8,7 +8,6 @@ const PhotoGridItemWrapper = styled.figure`
   width: 300px;
   height: 300px;
   background-color: white;
-  border: 0.5px solid darkgrey;
 
   position: relative;
   cursor: pointer;

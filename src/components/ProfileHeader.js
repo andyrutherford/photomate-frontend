@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { GearIcon } from '../components/Icons';
 import Avatar from '../styles/Avatar';
+import Button from '../styles/Button';
 
 const ProfileHeaderWrapper = styled.div`
   display: flex;
@@ -54,15 +55,13 @@ const ProfileHeaderWrapper = styled.div`
 `;
 
 const ProfileHeader = ({
-  authUser,
-  currentUser,
   avatar,
   name,
   username,
   posts,
   following,
   followers,
-  authUserIsCurrentUser,
+  profileOwner,
 }) => {
   return (
     <ProfileHeaderWrapper>
@@ -72,7 +71,7 @@ const ProfileHeader = ({
       <div className='profile-info'>
         <div className='profile-info-primary'>
           <h1>{username}</h1>
-          {authUserIsCurrentUser && (
+          {profileOwner ? (
             <>
               <Link className='edit-profile-btn' to='/accounts/edit'>
                 Edit Profile
@@ -80,6 +79,10 @@ const ProfileHeader = ({
               <Link to='/profile/edit'>
                 <GearIcon />
               </Link>
+            </>
+          ) : (
+            <>
+              <Button>Follow</Button>
             </>
           )}
         </div>

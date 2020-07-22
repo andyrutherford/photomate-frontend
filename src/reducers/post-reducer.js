@@ -15,16 +15,24 @@ import {
   ADD_COMMENT_FAIL,
   LIKE_POST_SUCCESS,
   LIKE_POST_FAIL,
+  GET_FEED_SUCCESS,
+  GET_FEED_FAIL,
 } from '../actions/types';
 
 const initialState = {
   loading: true,
+  feed: [],
   posts: [],
   currentPost: {},
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case GET_FEED_SUCCESS:
+      return {
+        ...state,
+        feed: action.payload,
+      };
     case GET_POSTS_SUCCESS:
       return {
         ...state,
@@ -85,6 +93,7 @@ export default function (state = initialState, action) {
       };
     case ADD_COMMENT_FAIL:
     case GET_POSTS_FAIL:
+    case GET_FEED_FAIL:
     case GET_POST_BY_ID_FAIL:
     case UPLOAD_PHOTO_FAIL:
     case CREATE_POST_FAIL:

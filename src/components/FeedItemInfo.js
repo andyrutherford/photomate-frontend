@@ -1,12 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const FeedItemInfoWrapper = styled.div`
   padding: 0 16px;
-
-  .like-count {
-    font-weight: bold;
-  }
 
   .description > :first-child {
     font-weight: bold;
@@ -16,28 +13,40 @@ const FeedItemInfoWrapper = styled.div`
   }
 `;
 
-const FeedItemInfo = () => {
+const FeedItemInfo = ({
+  likeCount,
+  comments,
+  createdAt,
+  username,
+  caption,
+}) => {
+  const formatLikes = () => {
+    if (likeCount === 0) {
+      return 'Be the first to like this';
+    } else if (likeCount === 1) return '1 like';
+    else return likeCount + ' likes';
+  };
+
   return (
     <FeedItemInfoWrapper>
-      <div className='like-count'>20 likes</div>
+      <span className='bold'>{formatLikes()}</span>
       <div className='description'>
-        <span>cosmo </span>
-        <span>Here's to feeling good all the time</span>
+        <Link className='black' to={`/${username}`}>
+          {username}
+        </Link>
+        <span> {caption}</span>
       </div>
-      <div className='comment'>
-        <span>user1 </span>
-        <span>photo comment 1</span>
-      </div>
-      <div className='comment'>
-        <span>user2 </span>
-        <span>photo comment 2</span>
-      </div>
-      <div className='comment'>
-        <span>user3 </span>
-        <span>photo comment 3</span>
-      </div>
-      <div className='date'>
-        <span>{'2 days ago'.toUpperCase()}</span>
+      {comments.map((comment) => (
+        <div className='comment'>
+          <Link className='black' to={`/${comment.user.username}`}>
+            {comment.user.username}{' '}
+          </Link>
+          <span>{comment.text}</span>
+        </div>
+      ))}
+
+      <div className='subtext'>
+        <span>{createdAt}</span>
       </div>
     </FeedItemInfoWrapper>
   );
