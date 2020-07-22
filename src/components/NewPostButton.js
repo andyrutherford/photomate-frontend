@@ -59,11 +59,7 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
 
   return (
     <NewPostButtonWrapper>
-      <label
-        style={{ cursor: 'pointer' }}
-        className='icon'
-        htmlFor='file-upload'
-      >
+      <label className='icon pointer' htmlFor='file-upload'>
         <AddIcon />
       </label>
       <input

@@ -10,7 +10,12 @@ import PostInfo from '../post/PostInfo';
 import PostActions from '../post/PostActions';
 import PostAddComment from '../post/PostAddComment';
 
-import { getPostById, addComment, likePost } from '../../actions/post-actions';
+import {
+  getPostById,
+  deletePost,
+  addComment,
+  likePost,
+} from '../../actions/post-actions';
 
 const PostWrapper = styled.div`
   display: flex;
@@ -29,10 +34,12 @@ const PostWrapper = styled.div`
 const Post = ({
   postLiked,
   getPostById,
+  deletePost,
   likePost,
   addComment,
   loading,
   post,
+  postOwner,
 }) => {
   const { postId } = useParams();
 
@@ -51,6 +58,9 @@ const Post = ({
             <PostHeader
               username={post.user.username}
               avatar={post.user.avatar}
+              deletePost={deletePost}
+              postId={postId}
+              postOwner={postOwner}
             />
 
             <PostInfo
@@ -80,8 +90,14 @@ const mapStateToProps = (state) => ({
   postLiked:
     state.post.currentPost.likes &&
     state.post.currentPost.likes.includes(state.auth.user.id),
+  postOwner:
+    state.post.currentPost.user &&
+    state.post.currentPost.user._id === state.auth.user.id,
 });
 
-export default connect(mapStateToProps, { getPostById, addComment, likePost })(
-  Post
-);
+export default connect(mapStateToProps, {
+  getPostById,
+  addComment,
+  likePost,
+  deletePost,
+})(Post);

@@ -146,10 +146,11 @@ export const SmallCircleIcon = () => (
   </svg>
 );
 
-export const ThreeDotsIcon = () => (
+export const ThreeDotsIcon = (props) => (
   <svg
+    {...props}
     xmlns='http://www.w3.org/2000/svg'
-    className='icon icon-tabler icon-tabler-dots'
+    className='icon icon-tabler icon-tabler-dots pointer'
     width='25'
     height='25'
     viewBox='0 0 24 24'

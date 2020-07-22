@@ -52,7 +52,7 @@ export default function (state = initialState, action) {
     case DELETE_POST_SUCCESS:
       return {
         ...state,
-        posts: state.post.posts.filter((post) => post._id !== action.payload),
+        posts: state.posts.filter((post) => post._id !== action.payload),
       };
     case CLEAR_CURRENT_POST:
       return {

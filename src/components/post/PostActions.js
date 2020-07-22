@@ -30,6 +30,14 @@ const PostActions = ({ likePost, likeCount, createdAt, postId, postLiked }) => {
   const likePostHandler = () => {
     likePost(postId);
   };
+
+  const formatLikes = () => {
+    if (likeCount === 0) {
+      return 'Be the first to like this';
+    } else if (likeCount === 1) return '1 like';
+    else return likeCount + ' likes';
+  };
+
   return (
     <PostActionsWrapper>
       <div className='post-actions__buttons'>
@@ -48,7 +56,7 @@ const PostActions = ({ likePost, likeCount, createdAt, postId, postLiked }) => {
         </div>
       </div>
       <div className='post-actions__summary'>
-        <span>{likeCount} people have liked this post</span>
+        <span>{formatLikes()}</span>
       </div>
       <div className='date'>
         <span>{createdAt}</span>

@@ -115,11 +115,11 @@ export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
   }
 };
 
-export const deletePostById = (postId, userId) => async (dispatch) => {
+export const deletePost = (postId) => async (dispatch) => {
   dispatch({ type: DELETE_POST_START });
+  console.log(postId);
   try {
     await api.delete(`/post/${postId}`);
-    dispatch(getUserById(userId));
     return dispatch({ type: DELETE_POST_SUCCESS, payload: postId });
   } catch (error) {
     dispatch({ type: DELETE_POST_FAIL });
