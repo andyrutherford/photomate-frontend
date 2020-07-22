@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -9,6 +10,20 @@ import Button from '../styles/Button';
 const ProfileHeaderWrapper = styled.div`
   display: flex;
 
+  h1 {
+    font-size: 2rem;
+    font-weight: 100;
+  }
+
+  a {
+    display: inherit;
+    margin: 0 0 0 10px;
+  }
+
+  svg {
+    margin: auto;
+  }
+
   .profile-image {
     margin-right: 60px;
   }
@@ -16,8 +31,8 @@ const ProfileHeaderWrapper = styled.div`
   .profile-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding: 30px 0;
+    justify-content: space-between;
+    padding: 15px 0;
   }
 
   .profile-info-primary {
@@ -25,8 +40,8 @@ const ProfileHeaderWrapper = styled.div`
     flex-direction: row;
   }
 
-  .profile-info-primary > :nth-child(2) {
-    margin: 0 20px;
+  .profile-info-primary button {
+    margin: auto 0 auto 20px;
   }
 
   .edit-profile-btn {
@@ -63,6 +78,7 @@ const ProfileHeader = ({
   followers,
   profileOwner,
 }) => {
+  const history = useHistory();
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
@@ -73,16 +89,16 @@ const ProfileHeader = ({
           <h1>{username}</h1>
           {profileOwner ? (
             <>
-              <Link className='edit-profile-btn' to='/accounts/edit'>
+              <Button secondary onClick={() => history.push('/accounts/edit')}>
                 Edit Profile
-              </Link>
+              </Button>
               <Link to='/profile/edit'>
                 <GearIcon />
               </Link>
             </>
           ) : (
             <>
-              <Button>Follow</Button>
+              <Button primary>Follow</Button>
             </>
           )}
         </div>

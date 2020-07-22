@@ -21,9 +21,9 @@ const Avatar = styled.img`
   ${(props) =>
     props.xl &&
     css`
-      width: 200px;
-      height: 200px;
-      border-radius: 200px;
+      width: 150px;
+      height: 150px;
+      border-radius: 150px;
     `}
 `;
 

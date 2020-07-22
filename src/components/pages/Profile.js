@@ -31,13 +31,13 @@ const Profile = ({
     getPostsByUsername(username);
   }, [getUserById, getPostsByUsername, username]);
 
-  // cleanup
-  useEffect(() => {
-    return () => clearCurrentUser();
-  }, [clearCurrentUser]);
-  useEffect(() => {
-    return () => clearCurrentPosts();
-  }, [clearCurrentPosts]);
+  // // cleanup
+  // useEffect(() => {
+  //   return () => clearCurrentUser();
+  // }, [clearCurrentUser]);
+  // useEffect(() => {
+  //   return () => clearCurrentPosts();
+  // }, [clearCurrentPosts]);
 
   if (userLoading || postLoading) return <Spinner />;
 

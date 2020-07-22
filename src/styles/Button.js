@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Button = styled.button`
   background-color: #0095f6;
@@ -12,6 +12,14 @@ const Button = styled.button`
   font-size: 14px;
   font-weight: bold;
   height: 30px;
+  line-height: 20px;
+  ${(props) =>
+    props.secondary &&
+    css`
+      color: black;
+      background-color: transparent;
+      border: 1px solid lightgrey;
+    `}
 `;
 
 export default Button;
