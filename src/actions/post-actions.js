@@ -29,7 +29,7 @@ export const getFeed = () => async (dispatch) => {
     const res = await api.get('/post/feed');
     dispatch({
       type: GET_FEED_SUCCESS,
-      payload: res.data.feed,
+      payload: res.data.feed.reverse(),
     });
   } catch (error) {
     console.log(error.message);
@@ -112,7 +112,8 @@ export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
   try {
     const res = await api.post('/post/new', { imageUrl, caption });
     dispatch(getUserById(userId));
-    return dispatch({ type: CREATE_POST_SUCCESS, payload: res.data.post });
+    dispatch({ type: CREATE_POST_SUCCESS, payload: res.data.post });
+    dispatch(getFeed());
   } catch (error) {
     dispatch({ type: CREATE_POST_FAIL });
     console.log(error.message);
@@ -122,7 +123,8 @@ export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
 export const deletePost = (postId) => async (dispatch) => {
   try {
     await api.delete(`/post/${postId}`);
-    return dispatch({ type: DELETE_POST_SUCCESS, payload: postId });
+    dispatch({ type: DELETE_POST_SUCCESS, payload: postId });
+    return dispatch(getFeed());
   } catch (error) {
     dispatch({ type: DELETE_POST_FAIL });
     console.log(error.message);

@@ -36,8 +36,8 @@ const FeedItemInfo = ({
         </Link>
         <span> {caption}</span>
       </div>
-      {comments.map((comment) => (
-        <div className='comment'>
+      {comments.map((comment, index) => (
+        <div className='comment' key={index}>
           <Link className='black' to={`/${comment.user.username}`}>
             {comment.user.username}{' '}
           </Link>

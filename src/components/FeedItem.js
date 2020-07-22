@@ -33,6 +33,7 @@ const FeedItem = ({ feedItem, authUser }) => {
         username={feedItem.user.username}
         avatar={feedItem.user.avatar}
         postOwner={authUser.username === feedItem.user.username}
+        postId={feedItem._id}
       />
       <FeedItemImage image={feedItem.image} caption={feedItem.caption} />
       <FeedItemActions

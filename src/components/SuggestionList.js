@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import SuggestionListItem from './SuggestionListItem';
+
+import { getSuggestedUsers } from '../actions/user-actions';
 
 const SuggestionListWrapper = styled.div`
   .suggestion-list-header {
@@ -15,7 +18,10 @@ const SuggestionListWrapper = styled.div`
   }
 `;
 
-const SuggestionList = () => {
+const SuggestionList = ({ getSuggestedUsers, suggested }) => {
+  useEffect(() => {
+    getSuggestedUsers();
+  }, [getSuggestedUsers]);
   return (
     <SuggestionListWrapper>
       <div className='suggestion-list-header'>
@@ -23,13 +29,17 @@ const SuggestionList = () => {
         <div>See All</div>
       </div>
       <div className='suggestion-list-body'>
-        <SuggestionListItem />
-        <SuggestionListItem />
-        <SuggestionListItem />
-        <SuggestionListItem />
+        {suggested.length > 0 &&
+          suggested.map((profile, index) => (
+            <SuggestionListItem key={index} profile={profile} />
+          ))}
       </div>
     </SuggestionListWrapper>
   );
 };
 
-export default SuggestionList;
+const mapStateToProps = (state) => ({
+  suggested: state.user.suggestedUsers,
+});
+
+export default connect(mapStateToProps, { getSuggestedUsers })(SuggestionList);

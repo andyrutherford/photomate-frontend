@@ -9,9 +9,12 @@ import {
   UPDATE_AVATAR_START,
   UPDATE_AVATAR_SUCCESS,
   UPDATE_AVATAR_FAIL,
+  GET_SUGGESTED_USERS_SUCCESS,
+  GET_SUGGESTED_USERS_FAIL,
 } from '../actions/types';
 
 const initialState = {
+  suggestedUsers: [],
   currentUser: {
     profile: {},
     avatar: '',
@@ -31,6 +34,12 @@ export default function (state = initialState, action) {
         ...action.payload,
         loading: false,
       };
+    case GET_SUGGESTED_USERS_SUCCESS: {
+      return {
+        ...state,
+        suggestedUsers: action.payload,
+      };
+    }
     case UPDATE_PROFILE_SUCCESS: {
       return {
         ...state,
@@ -77,6 +86,7 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
       };
+    case GET_SUGGESTED_USERS_FAIL:
     case GET_PROFILE_FAIL:
     default:
       return state;

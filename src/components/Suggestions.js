@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import Avatar from '../styles/Avatar';
+
 import SuggestionList from './SuggestionList';
 
 const SuggestionsWrapper = styled.div`
@@ -67,7 +69,7 @@ const Suggestions = ({ avatar, username, name }) => {
     <SuggestionsWrapper>
       <div className='suggestions-my-profile'>
         <Link to={`/${username}`}>
-          <img className='avatar' src={avatar} alt={username} />
+          <Avatar lg src={avatar} alt={username} />
         </Link>
         <div>
           <Link to={`/${username}`}>{username}</Link>

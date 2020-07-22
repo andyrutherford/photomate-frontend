@@ -12,6 +12,8 @@ import {
   UPDATE_AVATAR_START,
   UPDATE_AVATAR_SUCCESS,
   UPDATE_AVATAR_FAIL,
+  GET_SUGGESTED_USERS_SUCCESS,
+  GET_SUGGESTED_USERS_FAIL,
 } from './types';
 
 import { loadUser } from './auth-actions';
@@ -92,6 +94,21 @@ export const changeAvatar = (avatar, token) => async (dispatch) => {
     console.log(error.message);
     dispatch({
       type: UPDATE_AVATAR_FAIL,
+    });
+  }
+};
+
+export const getSuggestedUsers = () => async (dispatch) => {
+  try {
+    const res = await api.get('/user/suggested');
+    dispatch({
+      type: GET_SUGGESTED_USERS_SUCCESS,
+      payload: res.data.suggestedUsers,
+    });
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: GET_SUGGESTED_USERS_FAIL,
     });
   }
 };

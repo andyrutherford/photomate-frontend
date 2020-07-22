@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { SmallCircleIcon } from './Icons';
+import Avatar from '../styles/Avatar';
 
 const SuggestionListItemWrapper = styled.div`
   .suggestions-profile {
@@ -27,15 +28,17 @@ const SuggestionListItemWrapper = styled.div`
   }
 `;
 
-const SuggestionListItem = () => {
+const SuggestionListItem = ({ profile }) => {
   return (
     <SuggestionListItemWrapper>
       <div className='suggestions-profile'>
         <div>
-          <SmallCircleIcon />
+          <Avatar src={profile.avatar} alt={profile.username} />
           <div>
-            <p>@cosmo</p>
-            <p>Cosmo Kramer</p>
+            <Link className='black' to={`/${profile.username}`}>
+              {profile.username}
+            </Link>
+            <p>{profile.name}</p>
           </div>
         </div>
         <div>

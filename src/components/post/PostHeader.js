@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
@@ -14,6 +15,10 @@ const PostHeaderWrapper = styled.header`
   height: 72px;
   padding: 16px;
 
+  a {
+    margin: auto 0;
+  }
+
   .post-header__left {
     display: flex;
     margin: auto 0;
@@ -21,10 +26,6 @@ const PostHeaderWrapper = styled.header`
 
   svg {
     margin: auto 0;
-  }
-
-  .modal-button {
-    width: 100%;
   }
 `;
 
@@ -42,7 +43,9 @@ const PostHeader = ({ username, avatar, deletePost, postId, postOwner }) => {
     <PostHeaderWrapper>
       <div className='post-header__left'>
         <Avatar src={avatar} alt='avatar' />
-        <span className='bold'>{username}</span>
+        <Link className='bold black' to={`/${username}`}>
+          {username}
+        </Link>
       </div>
       {postOwner && <ThreeDotsIcon onClick={() => setShowModal(true)} />}
       {showModal && (
