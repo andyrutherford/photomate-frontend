@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 const Avatar = styled.img`
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
   border-radius: 100px;
   margin-right: 1rem;

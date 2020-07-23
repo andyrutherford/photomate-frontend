@@ -51,7 +51,9 @@ const Profile = ({
             username={currentUser.username}
             posts={currentUser.posts.length}
             following={currentUser.following}
+            followingCount={currentUser.followingCount}
             followers={currentUser.followers}
+            followerCount={currentUser.followerCount}
             profileOwner={profileOwner}
           />
           {posts.length >= 1 ? (

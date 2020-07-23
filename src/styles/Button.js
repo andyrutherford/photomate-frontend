@@ -20,6 +20,15 @@ const Button = styled.button`
       background-color: transparent;
       border: 1px solid lightgrey;
     `}
+  ${(props) =>
+    props.link &&
+    css`
+      color: black;
+      background-color: transparent;
+      border: none;
+      margin: 0;
+      padding: 0;
+    `}
 `;
 
 export default Button;

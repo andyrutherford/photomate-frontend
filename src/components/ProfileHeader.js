@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import Modal from '../components/modal/Modal';
+import FollowerFollowingListItem from './FollowerFollowingListItem';
 import { GearIcon } from '../components/Icons';
 import Avatar from '../styles/Avatar';
 import Button from '../styles/Button';
@@ -18,6 +20,10 @@ const ProfileHeaderWrapper = styled.div`
   a {
     display: inherit;
     margin: 0 0 0 10px;
+  }
+
+  li {
+    margin: auto 20px auto 0;
   }
 
   svg {
@@ -75,10 +81,40 @@ const ProfileHeader = ({
   username,
   posts,
   following,
+  followingCount,
   followers,
+  followerCount,
   profileOwner,
 }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState('');
   const history = useHistory();
+
+  const showFollowingFollowerHandler = () => {
+    if (modalContent === 'Following') {
+      return following.map((user) => (
+        <FollowerFollowingListItem
+          following
+          profile={user}
+          onCancel={() => setShowModal(false)}
+        />
+      ));
+    } else if (modalContent === 'Followers') {
+      return followers.map((user) => (
+        <FollowerFollowingListItem
+          followers
+          profile={user}
+          onCancel={() => setShowModal(false)}
+        />
+      ));
+    }
+  };
+
+  const modalHandler = (content) => {
+    setModalContent(content);
+    setShowModal(true);
+  };
+
   return (
     <ProfileHeaderWrapper>
       <div className='profile-image'>
@@ -107,14 +143,39 @@ const ProfileHeader = ({
             <span>{posts} posts</span>
           </li>
           <li>
-            <span>{followers} followers</span>
+            {followerCount === 0 ? (
+              <span>{followerCount} followers</span>
+            ) : (
+              <Button link onClick={() => modalHandler('Followers')}>
+                {followerCount} followers
+              </Button>
+            )}
           </li>
           <li>
-            <span>{following} following</span>
+            {followingCount === 0 ? (
+              <span>{followingCount} following</span>
+            ) : (
+              <Button link onClick={() => modalHandler('Following')}>
+                {followingCount} following
+              </Button>
+            )}
           </li>
         </ul>
         <div className='profile-info-name'>{name}</div>
       </div>
+      {showModal && (
+        <Modal
+          followerFollowing
+          header={modalContent}
+          noFooter
+          show={true}
+          className='modal-mini'
+          style={{ borderRadius: '12px' }}
+          onCancel={() => setShowModal(false)}
+        >
+          {showFollowingFollowerHandler()}
+        </Modal>
+      )}
     </ProfileHeaderWrapper>
   );
 };

@@ -8,7 +8,7 @@ import './Modal.css';
 const ModalOverlay = (props) => {
   const content = (
     <div className={`modal ${props.className}`} style={props.style}>
-      {!props.noHeader && (
+      {!props.noHeader && !props.followerFollowing && (
         <header className={`modal__header`}>
           <button
             onClick={props.onCancel}
@@ -35,6 +35,16 @@ const ModalOverlay = (props) => {
           >
             Share
           </button>
+        </header>
+      )}
+      {props.followerFollowing && (
+        <header
+          className={`modal__header`}
+          style={{ borderTopLeftRadius: '12px', borderTopRightRadius: '12px' }}
+        >
+          <label style={{ fontSize: '14px', margin: 'auto' }}>
+            {props.header}
+          </label>
         </header>
       )}
       <div className={`modal__content`}>{props.children}</div>
