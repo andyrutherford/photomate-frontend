@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { getUserById, clearCurrentUser } from '../../actions/user-actions';
+import {
+  getUserById,
+  clearCurrentUser,
+  followUser,
+} from '../../actions/user-actions';
 import {
   getPostsByUsername,
   clearCurrentPosts,
@@ -23,6 +27,8 @@ const Profile = ({
   authUser,
   posts,
   profileOwner,
+  followUser,
+  isFollowing,
 }) => {
   const { username } = useParams();
 
@@ -50,11 +56,13 @@ const Profile = ({
             name={currentUser.name}
             username={currentUser.username}
             posts={currentUser.posts.length}
+            followUser={() => followUser(currentUser.username)}
             following={currentUser.following}
             followingCount={currentUser.followingCount}
             followers={currentUser.followers}
             followerCount={currentUser.followerCount}
             profileOwner={profileOwner}
+            isFollowing={isFollowing}
           />
           {posts.length >= 1 ? (
             <PhotoGrid posts={posts} />
@@ -72,6 +80,7 @@ const Profile = ({
 const mapStateToProps = (state) => ({
   authUser: state.auth.user.username,
   currentUser: state.user.currentUser,
+  isFollowing: state.user.currentUser.isFollowing,
   userLoading: state.user.loading,
   postLoading: state.post.loading,
   posts: state.post.posts,
@@ -83,4 +92,5 @@ export default connect(mapStateToProps, {
   getPostsByUsername,
   clearCurrentUser,
   clearCurrentPosts,
+  followUser,
 })(Profile);

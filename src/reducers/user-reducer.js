@@ -49,7 +49,10 @@ export default function (state = initialState, action) {
     case GET_USER_PROFILE_BY_ID_SUCCESS: {
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser: {
+          ...action.payload.user,
+          isFollowing: action.payload.isFollowing,
+        },
         loading: false,
       };
     }

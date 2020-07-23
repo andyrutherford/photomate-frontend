@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Modal from '../components/modal/Modal';
 import FollowerFollowingListItem from './FollowerFollowingListItem';
-import { GearIcon } from '../components/Icons';
+import { GearIcon, UserCheckIcon } from '../components/Icons';
 import Avatar from '../styles/Avatar';
 import Button from '../styles/Button';
 
@@ -85,6 +85,8 @@ const ProfileHeader = ({
   followers,
   followerCount,
   profileOwner,
+  followUser,
+  isFollowing,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
@@ -134,7 +136,12 @@ const ProfileHeader = ({
             </>
           ) : (
             <>
-              <Button primary>Follow</Button>
+              <Button
+                {...(isFollowing ? { secondary: true } : { primary: true })}
+                onClick={followUser}
+              >
+                {isFollowing ? 'Unfollow' : 'Follow'}
+              </Button>
             </>
           )}
         </div>

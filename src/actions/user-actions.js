@@ -14,6 +14,9 @@ import {
   UPDATE_AVATAR_FAIL,
   GET_SUGGESTED_USERS_SUCCESS,
   GET_SUGGESTED_USERS_FAIL,
+  FOLLOW_USER_SUCCESS,
+  UNFOLLOW_USER_SUCCESS,
+  FOLLOW_UNFOLLOW_USER_FAIL,
 } from './types';
 
 import { loadUser } from './auth-actions';
@@ -38,7 +41,7 @@ export const getUserById = (userId) => async (dispatch) => {
     const res = await api.get(`/user/${userId}`);
     dispatch({
       type: GET_USER_PROFILE_BY_ID_SUCCESS,
-      payload: res.data.user,
+      payload: { isFollowing: res.data.youAreFollowing, user: res.data.user },
     });
   } catch (error) {
     dispatch({
@@ -109,6 +112,27 @@ export const getSuggestedUsers = () => async (dispatch) => {
     console.log(error.message);
     dispatch({
       type: GET_SUGGESTED_USERS_FAIL,
+    });
+  }
+};
+
+export const followUser = (username) => async (dispatch) => {
+  try {
+    const res = await api.get(`/user/follow/${username}`);
+    if (res.data.type === 'follow') {
+      dispatch({
+        type: FOLLOW_USER_SUCCESS,
+      });
+    } else if (res.data.type === 'unfollow') {
+      dispatch({
+        type: UNFOLLOW_USER_SUCCESS,
+      });
+    }
+    return dispatch(getUserById(username));
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: FOLLOW_UNFOLLOW_USER_FAIL,
     });
   }
 };
