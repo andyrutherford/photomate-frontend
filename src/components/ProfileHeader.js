@@ -140,7 +140,14 @@ const ProfileHeader = ({
                 {...(isFollowing ? { secondary: true } : { primary: true })}
                 onClick={followUser}
               >
-                {isFollowing ? 'Unfollow' : 'Follow'}
+                {isFollowing ? (
+                  <>
+                    <UserCheckIcon size={20} />
+                    <span style={{ verticalAlign: 'super' }}> Following</span>
+                  </>
+                ) : (
+                  'Follow'
+                )}
               </Button>
             </>
           )}

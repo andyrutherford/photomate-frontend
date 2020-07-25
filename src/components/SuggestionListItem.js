@@ -42,7 +42,7 @@ const SuggestionListItem = ({ profile }) => {
           </div>
         </div>
         <div>
-          <a href='#!'>Follow</a>
+          <Link to={`/${profile.username}`}>View</Link>
         </div>
       </div>
     </SuggestionListItemWrapper>

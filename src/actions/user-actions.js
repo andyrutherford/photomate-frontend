@@ -43,11 +43,13 @@ export const getUserById = (userId) => async (dispatch) => {
       type: GET_USER_PROFILE_BY_ID_SUCCESS,
       payload: { isFollowing: res.data.youAreFollowing, user: res.data.user },
     });
+    return res.data;
   } catch (error) {
     dispatch({
       type: GET_USER_PROFILE_BY_ID_FAIL,
     });
     console.log(error.response.data.message);
+    return error.response.data.message;
   }
 };
 

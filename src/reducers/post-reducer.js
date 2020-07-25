@@ -89,6 +89,10 @@ export default function (state = initialState, action) {
       };
     case ADD_COMMENT_FAIL:
     case GET_POSTS_FAIL:
+      return {
+        ...state,
+        loading: false,
+      };
     case GET_FEED_FAIL:
     case GET_POST_BY_ID_FAIL:
     case UPLOAD_PHOTO_FAIL:

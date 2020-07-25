@@ -63,7 +63,7 @@ const FollowerFollowingListItem = ({ profile, onCancel }) => {
         </div>
         <div>
           <Link to={`/${profile.username}`} onClick={onCancel}>
-            Profile
+            View
           </Link>
         </div>
       </div>

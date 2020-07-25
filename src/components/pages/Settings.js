@@ -60,7 +60,7 @@ const Settings = ({ getProfile, updateProfile, user, isAuthenticated }) => {
         </ul>
       </div>
       <div className='settings-contents'>
-        {user ? (
+        {user && user.profile ? (
           <SettingsForm user={user} updateProfile={updateProfile} />
         ) : (
           'Loading'

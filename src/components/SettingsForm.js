@@ -71,20 +71,23 @@ export const SettingsForm = ({
   useEffect(() => {
     setFormData({
       ...setFormData,
-      username,
-      email,
-      name,
-      bio,
-      gender,
-      phoneNumber,
-      website,
+      username: username || '',
+      email: email || '',
+      name: name || '',
+      bio: bio || '',
+      gender: gender || '',
+      phoneNumber: phoneNumber || '',
+      website: website || '',
     });
   }, [username, email, name, bio, gender, phoneNumber, website]);
 
   const onChangeAvatar = async (e) => {
     if (e.target.files[0]) {
-      console.log(e.target.files[0]);
-      await changeAvatar(e.target.files[0], token);
+      try {
+        await changeAvatar(e.target.files[0], token);
+      } catch (error) {
+        alert('An error occurred.  Please try again.');
+      }
     }
   };
 

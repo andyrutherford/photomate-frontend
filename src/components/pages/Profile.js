@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -30,11 +30,16 @@ const Profile = ({
   followUser,
   isFollowing,
 }) => {
+  const [notFound, setNotFound] = useState(false);
   const { username } = useParams();
 
   useEffect(() => {
-    getUserById(username);
-    getPostsByUsername(username);
+    getUserById(username).then((res) => {
+      if (res === 'User not found.') {
+        return setNotFound(true);
+      }
+      getPostsByUsername(username);
+    });
   }, [getUserById, getPostsByUsername, username]);
 
   // // cleanup
@@ -45,11 +50,12 @@ const Profile = ({
   //   return () => clearCurrentPosts();
   // }, [clearCurrentPosts]);
 
+  if (notFound) return <h1>User not found.</h1>;
   if (userLoading || postLoading) return <Spinner />;
 
   return (
     <div>
-      {currentUser && currentUser.posts ? (
+      {currentUser && currentUser.posts && (
         <>
           <ProfileHeader
             avatar={currentUser.avatar}
@@ -70,8 +76,6 @@ const Profile = ({
             <h1>No posts found.</h1>
           )}
         </>
-      ) : (
-        'User not found'
       )}
     </div>
   );

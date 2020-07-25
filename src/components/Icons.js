@@ -303,10 +303,30 @@ export const CloseIcon = ({ modal, size = 30 }) => (
   </svg>
 );
 
-export const UserCheckIcon = () => (
+export const UserCheckIcon = ({ size = 28 }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     className='icon icon-tabler icon-tabler-user-check'
+    width={size}
+    height={size}
+    viewBox='0 0 24 24'
+    strokeWidth='1.5'
+    stroke='currentColor'
+    fill='none'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+  >
+    <path stroke='none' d='M0 0h24v24H0z' />
+    <circle cx='9' cy='7' r='4' />
+    <path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2' />
+    <path d='M16 11l2 2l4 -4' />
+  </svg>
+);
+
+export const UserCancelIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    className='icon icon-tabler icon-tabler-user-x'
     width='44'
     height='44'
     viewBox='0 0 24 24'
@@ -319,6 +339,6 @@ export const UserCheckIcon = () => (
     <path stroke='none' d='M0 0h24v24H0z' />
     <circle cx='9' cy='7' r='4' />
     <path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2' />
-    <path d='M16 11l2 2l4 -4' />
+    <path d='M17 9l4 4m0 -4l-4 4' />
   </svg>
 );

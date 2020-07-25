@@ -16,7 +16,12 @@ import {
 const initialState = {
   suggestedUsers: [],
   currentUser: {
-    profile: {},
+    profile: {
+      bio: '',
+      gender: '',
+      phoneNumber: '',
+      website: '',
+    },
     avatar: '',
     _id: '',
     email: '',

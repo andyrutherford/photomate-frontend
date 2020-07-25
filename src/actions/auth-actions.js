@@ -21,6 +21,7 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: LOAD_USER_FAIL,
     });
+    console.log(error);
     console.log(error.response.data.message);
   }
 };
