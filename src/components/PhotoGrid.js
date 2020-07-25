@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { GridIcon, BookmarkIcon } from './Icons';
 
 import PhotoGridItem from './PhotoGridItem';
+
+import { getSavedPosts, getPostsByUsername } from '../actions/post-actions';
 
 const PhotoGridWrapper = styled.div`
   hr {
@@ -37,33 +40,58 @@ const PhotoGridWrapper = styled.div`
   }
 `;
 
-const PhotoGrid = ({ posts }) => {
+const PhotoGrid = ({ getSavedPosts, getPostsByUsername, user }) => {
+  const [userPosts, setUserPosts] = useState();
+  const [savedPosts, setSavedPosts] = useState();
+
+  const getSavedPostsHandler = () => {
+    setUserPosts();
+    getSavedPosts().then((res) => setSavedPosts(res));
+  };
+
+  const getUserPostsHandler = () => {
+    setSavedPosts();
+    getPostsByUsername(user).then((res) => setUserPosts(res));
+  };
+
+  // useEffect(() => {
+  //   getUserPostsHandler();
+  // }, [getUserPostsHandler]);
   return (
     <PhotoGridWrapper>
       <hr />
       <div className='profile-tabs'>
         <div className='profile-tab'>
-          <Link to='#!'>
+          <button onClick={getUserPostsHandler}>
             <GridIcon size={16} />
             <span className='tab-label'> POSTS</span>
-          </Link>
+          </button>
         </div>
         <div className='profile-tab'>
-          <Link to='#!'>
+          <button onClick={getSavedPostsHandler}>
             <BookmarkIcon size={16} />
             <span className='tab-label'>SAVED</span>
-          </Link>
+          </button>
         </div>
       </div>
       <div className='photo-grid'>
-        {posts.map((post) => (
-          <PhotoGridItem key={post._id} post={post} />
-        ))}
-        {/* <PhotoGridItem />
-        <PhotoGridItem /> */}
+        {savedPosts &&
+          savedPosts.map((post, index) => (
+            <PhotoGridItem key={post._id} post={savedPosts[index]} />
+          ))}
+        {userPosts &&
+          userPosts.map((post, index) => (
+            <PhotoGridItem key={post._id} post={userPosts[index]} />
+          ))}
       </div>
     </PhotoGridWrapper>
   );
 };
 
-export default PhotoGrid;
+const mapStateToProps = (state) => ({
+  user: state.user.currentUser.username,
+});
+
+export default connect(mapStateToProps, { getSavedPosts, getPostsByUsername })(
+  PhotoGrid
+);

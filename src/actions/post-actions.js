@@ -44,6 +44,7 @@ export const getPostsByUsername = (username) => async (dispatch) => {
       type: GET_POSTS_SUCCESS,
       payload: res.data.posts,
     });
+    return res.data.posts;
   } catch (error) {
     console.log(error.message);
     dispatch({
@@ -163,5 +164,14 @@ export const likePost = (postId) => async (dispatch) => {
     dispatch({
       type: LIKE_POST_FAIL,
     });
+  }
+};
+
+export const getSavedPosts = () => async (dispatch) => {
+  try {
+    const res = await api.get('/post/saved');
+    return res.data.savedPosts;
+  } catch (error) {
+    console.log(error.message);
   }
 };

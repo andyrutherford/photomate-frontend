@@ -9,6 +9,7 @@ import {
 } from '../../actions/user-actions';
 import {
   getPostsByUsername,
+  getSavedPosts,
   clearCurrentPosts,
 } from '../../actions/post-actions';
 
@@ -70,11 +71,7 @@ const Profile = ({
             profileOwner={profileOwner}
             isFollowing={isFollowing}
           />
-          {posts.length >= 1 ? (
-            <PhotoGrid posts={posts} />
-          ) : (
-            <h1>No posts found.</h1>
-          )}
+          {posts.length >= 1 ? <PhotoGrid /> : <h1>No posts found.</h1>}
         </>
       )}
     </div>
@@ -94,6 +91,7 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getUserById,
   getPostsByUsername,
+  getSavedPosts,
   clearCurrentUser,
   clearCurrentPosts,
   followUser,
