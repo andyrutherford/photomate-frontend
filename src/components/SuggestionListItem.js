@@ -5,6 +5,13 @@ import styled from 'styled-components';
 import Avatar from '../styles/Avatar';
 
 const SuggestionListItemWrapper = styled.div`
+  a {
+    margin: auto;
+  }
+
+  img {
+    display: block;
+  }
   .suggestions-profile {
     display: flex;
     justify-content: space-between;
@@ -33,7 +40,9 @@ const SuggestionListItem = ({ profile }) => {
     <SuggestionListItemWrapper>
       <div className='suggestions-profile'>
         <div>
-          <Avatar src={profile.avatar} alt={profile.username} />
+          <Link to={`/${profile.username}`}>
+            <Avatar src={profile.avatar} alt={profile.username} />
+          </Link>
           <div>
             <Link className='black' to={`/${profile.username}`}>
               {profile.username}

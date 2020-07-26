@@ -9,7 +9,7 @@ import {
   UPDATE_AVATAR_START,
   UPDATE_AVATAR_SUCCESS,
   UPDATE_AVATAR_FAIL,
-  GET_SUGGESTED_USERS_SUCCESS,
+  GET_FEED_SUCCESS,
   GET_SUGGESTED_USERS_FAIL,
 } from '../actions/types';
 
@@ -39,12 +39,12 @@ export default function (state = initialState, action) {
         ...action.payload,
         loading: false,
       };
-    case GET_SUGGESTED_USERS_SUCCESS: {
+    case GET_FEED_SUCCESS:
       return {
         ...state,
-        suggestedUsers: action.payload,
+        suggestedUsers: action.payload.suggestedUsers,
       };
-    }
+
     case UPDATE_PROFILE_SUCCESS: {
       return {
         ...state,

@@ -34,7 +34,10 @@ export const getFeed = () => async (dispatch) => {
     const res = await api.get('/post/feed');
     dispatch({
       type: GET_FEED_SUCCESS,
-      payload: res.data.feed.reverse(),
+      payload: {
+        feed: res.data.feed.reverse(),
+        suggestedUsers: res.data.suggestedUsers,
+      },
     });
   } catch (error) {
     console.log(error.message);

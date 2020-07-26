@@ -14,8 +14,10 @@ import { loadUser } from './actions/auth-actions';
 
 const App = () => {
   useEffect(() => {
-    setAuthToken(localStorage.token);
-    store.dispatch(loadUser());
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+      store.dispatch(loadUser());
+    }
   });
 
   return (

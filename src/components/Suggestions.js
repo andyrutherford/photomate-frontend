@@ -92,9 +92,9 @@ const Suggestions = ({ avatar, username, name }) => {
 };
 
 const mapStateToProps = (state) => ({
-  avatar: state.user.avatar,
-  username: state.user.username,
-  name: state.user.name,
+  avatar: state.auth.user.avatar,
+  username: state.auth.user.username,
+  name: state.auth.user.name,
 });
 
 export default connect(mapStateToProps)(Suggestions);

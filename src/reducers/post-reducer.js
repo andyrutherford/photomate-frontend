@@ -37,7 +37,7 @@ export default function (state = initialState, action) {
     case GET_FEED_SUCCESS:
       return {
         ...state,
-        feed: action.payload,
+        feed: action.payload.feed,
       };
     case GET_POSTS_SUCCESS:
       return {

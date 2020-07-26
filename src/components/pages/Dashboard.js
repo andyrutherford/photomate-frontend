@@ -11,7 +11,7 @@ const DashboardWrapper = styled.div`
   display: flex;
 `;
 
-const Dashboard = ({ getProfile, getFeed, getSavedPosts }) => {
+const Dashboard = ({ getFeed, getSavedPosts }) => {
   useEffect(() => {
     getSavedPosts();
     getFeed();

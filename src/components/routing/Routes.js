@@ -10,9 +10,9 @@ import Profile from '../pages/Profile';
 import Settings from '../pages/Settings';
 import Post from '../pages/Post';
 
-const Container = styled.div`
+const ContainerWrapper = styled.div`
   width: 935px;
-  margin: 5.5rem auto;
+  margin: 7rem auto;
   @media screen and (max-width: 930px) {
     width: 90%;
   }
@@ -29,16 +29,16 @@ const Container = styled.div`
 
 const Routes = () => {
   return (
-    <section className='container'>
+    <section>
       <Navbar />
-      <Container>
+      <ContainerWrapper>
         <Switch>
           <PrivateRoute exact path='/' component={Dashboard} />
           <PrivateRoute exact path='/:username' component={Profile} />
           <PrivateRoute exact path='/accounts/edit' component={Settings} />
           <PrivateRoute exact path='/p/:postId' component={Post} />
         </Switch>
-      </Container>
+      </ContainerWrapper>
     </section>
   );
 };
