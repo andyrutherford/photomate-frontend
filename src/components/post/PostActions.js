@@ -36,8 +36,8 @@ const PostActions = ({
   isSaved,
   savePost,
 }) => {
-  const likePostHandler = () => {
-    likePost(postId);
+  const likePostHandler = (action) => {
+    likePost(postId, action);
   };
 
   const formatLikes = () => {
@@ -56,9 +56,9 @@ const PostActions = ({
       <div className='post-actions__buttons'>
         <div className='post-actions__left'>
           {isLiked ? (
-            <FilledHeartIcon onClick={likePostHandler} />
+            <FilledHeartIcon onClick={() => likePostHandler('unlike')} />
           ) : (
-            <HeartIcon onClick={likePostHandler} />
+            <HeartIcon onClick={() => likePostHandler('like')} />
           )}
 
           <MessageIcon />

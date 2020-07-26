@@ -14,6 +14,7 @@ import {
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAIL,
   LIKE_POST_SUCCESS,
+  UNLIKE_POST_SUCCESS,
   LIKE_POST_FAIL,
   GET_FEED_SUCCESS,
   GET_FEED_FAIL,
@@ -88,8 +89,13 @@ export default function (state = initialState, action) {
     case ADD_COMMENT_SUCCESS:
       return {
         ...state,
+        currentPost: {
+          ...state.currentPost,
+          comments: [...state.currentPost.comments, action.payload],
+        },
       };
     case LIKE_POST_SUCCESS:
+    case UNLIKE_POST_SUCCESS:
       return {
         ...state,
         currentPost: {
@@ -97,6 +103,16 @@ export default function (state = initialState, action) {
           likes: action.payload.likes,
           likeCount: action.payload.likeCount,
         },
+        feed: state.feed.map((item) => {
+          if (item._id === action.payload.postId) {
+            console.log('match');
+            return {
+              ...item,
+              likes: action.payload.likes,
+              likeCount: action.payload.likeCount,
+            };
+          } else return item;
+        }),
       };
     case SAVE_POST_SUCCESS:
     case UNSAVE_POST_SUCCESS:

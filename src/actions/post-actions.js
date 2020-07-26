@@ -18,6 +18,7 @@ import {
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAIL,
   LIKE_POST_SUCCESS,
+  UNLIKE_POST_SUCCESS,
   LIKE_POST_FAIL,
   GET_FEED_SUCCESS,
   GET_FEED_FAIL,
@@ -147,9 +148,7 @@ export const addComment = (postId, text, from) => async (dispatch) => {
       type: ADD_COMMENT_SUCCESS,
       payload: res.data.comment,
     });
-    if (from === 'post') {
-      dispatch(getPostById(postId));
-    } else if (from === 'feed') {
+    if (from === 'feed') {
       dispatch(getFeed());
     }
   } catch (error) {
@@ -160,17 +159,21 @@ export const addComment = (postId, text, from) => async (dispatch) => {
   }
 };
 
-export const likePost = (postId) => async (dispatch) => {
+export const likePost = (postId, action, from) => async (dispatch) => {
   try {
     const res = await api.get(`/post/${postId}/like`);
     dispatch({
-      type: LIKE_POST_SUCCESS,
+      type: action === 'like' ? LIKE_POST_SUCCESS : UNLIKE_POST_SUCCESS,
       payload: {
+        postId: res.data.post._id,
         likes: res.data.post.likes,
         likeCount: res.data.post.likeCount,
+        userId: res.data.user,
       },
     });
-    return dispatch(getFeed());
+    if (from === 'feed') {
+      // return dispatch(getFeed());
+    }
   } catch (error) {
     dispatch({
       type: LIKE_POST_FAIL,
@@ -201,17 +204,11 @@ export const savePost = (postId, action, from) => async (dispatch) => {
     const res = await api.get(`/post/${postId}/save`);
     console.log(res.data);
 
-    if (action === 'save') {
-      dispatch({
-        type: SAVE_POST_SUCCESS,
-        payload: res.data.user.savedPosts,
-      });
-    } else if (action === 'unsave') {
-      dispatch({
-        type: UNSAVE_POST_SUCCESS,
-        payload: res.data.user.savedPosts,
-      });
-    }
+    dispatch({
+      type: action === 'save' ? SAVE_POST_SUCCESS : UNSAVE_POST_SUCCESS,
+      payload: res.data.user.savedPosts,
+    });
+
     if (from === 'feed') {
       dispatch(getFeed());
     }

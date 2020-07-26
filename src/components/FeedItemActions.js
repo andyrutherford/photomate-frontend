@@ -27,8 +27,8 @@ const FeedItemActionsWrapper = styled.div`
 `;
 
 const FeedItemActions = ({ isLiked, postId, likePost, savePost, isSaved }) => {
-  const likePostHandler = () => {
-    likePost(postId);
+  const likePostHandler = (action) => {
+    likePost(postId, action, 'feed');
   };
 
   const savePostHandler = (action) => {
@@ -39,9 +39,9 @@ const FeedItemActions = ({ isLiked, postId, likePost, savePost, isSaved }) => {
     <FeedItemActionsWrapper>
       <div className='actions-left'>
         {isLiked ? (
-          <FilledHeartIcon onClick={likePostHandler} />
+          <FilledHeartIcon onClick={() => likePostHandler('unlike')} />
         ) : (
-          <HeartIcon onClick={likePostHandler} />
+          <HeartIcon onClick={() => likePostHandler('like')} />
         )}
         <MessageIcon />
         <ShareIcon />
