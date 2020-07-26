@@ -6,8 +6,10 @@ import {
   InboxIcon as ShareIcon,
   MessageIcon,
   BookmarkIcon as SaveIcon,
+  FilledBookmarkIcon as SavedIcon,
   FilledHeartIcon,
 } from '../Icons';
+import Button from '../../styles/Button';
 
 const PostActionsWrapper = styled.div`
   border-top: 0.5px solid lightgrey;
@@ -25,7 +27,15 @@ const PostActionsWrapper = styled.div`
   }
 `;
 
-const PostActions = ({ likePost, likeCount, createdAt, postId, postLiked }) => {
+const PostActions = ({
+  likePost,
+  likeCount,
+  createdAt,
+  postId,
+  isLiked,
+  isSaved,
+  savePost,
+}) => {
   const likePostHandler = () => {
     likePost(postId);
   };
@@ -37,11 +47,15 @@ const PostActions = ({ likePost, likeCount, createdAt, postId, postLiked }) => {
     else return likeCount + ' likes';
   };
 
+  const savePostHandler = (action) => {
+    savePost(postId, action);
+  };
+
   return (
     <PostActionsWrapper>
       <div className='post-actions__buttons'>
         <div className='post-actions__left'>
-          {postLiked ? (
+          {isLiked ? (
             <FilledHeartIcon onClick={likePostHandler} />
           ) : (
             <HeartIcon onClick={likePostHandler} />
@@ -51,7 +65,15 @@ const PostActions = ({ likePost, likeCount, createdAt, postId, postLiked }) => {
           <ShareIcon />
         </div>
         <div className='post-actions__right'>
-          <SaveIcon />
+          {isSaved ? (
+            <Button link onClick={() => savePostHandler('unsave')}>
+              <SavedIcon />
+            </Button>
+          ) : (
+            <Button link onClick={() => savePostHandler('save')}>
+              <SaveIcon />
+            </Button>
+          )}
         </div>
       </div>
       <div className='post-actions__summary'>

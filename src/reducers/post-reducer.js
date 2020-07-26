@@ -21,6 +21,7 @@ import {
   GET_SAVED_POSTS_FAIL,
   SAVE_POST_SUCCESS,
   SAVE_POST_FAIL,
+  UNSAVE_POST_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -97,6 +98,12 @@ export default function (state = initialState, action) {
           likeCount: action.payload.likeCount,
         },
       };
+    case SAVE_POST_SUCCESS:
+    case UNSAVE_POST_SUCCESS:
+      return {
+        ...state,
+        savedPosts: action.payload,
+      };
     case ADD_COMMENT_FAIL:
     case GET_POSTS_FAIL:
       return {
@@ -110,7 +117,6 @@ export default function (state = initialState, action) {
     case DELETE_POST_FAIL:
     case LIKE_POST_FAIL:
     case GET_SAVED_POSTS_FAIL:
-    case SAVE_POST_SUCCESS:
     case SAVE_POST_FAIL:
     default:
       return state;

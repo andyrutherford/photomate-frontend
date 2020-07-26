@@ -15,6 +15,8 @@ import {
   deletePost,
   addComment,
   likePost,
+  savePost,
+  getSavedPosts,
 } from '../../actions/post-actions';
 
 const PostWrapper = styled.div`
@@ -40,12 +42,16 @@ const Post = ({
   loading,
   post,
   postOwner,
+  savedPosts,
+  savePost,
+  getSavedPosts,
 }) => {
   const { postId } = useParams();
 
   useEffect(() => {
+    getSavedPosts();
     getPostById(postId);
-  }, [getPostById, postId]);
+  }, [getPostById, postId, getSavedPosts]);
 
   if (loading) return <Spinner />;
 
@@ -71,10 +77,12 @@ const Post = ({
             />
             <PostActions
               postId={postId}
-              postLiked={postLiked}
+              isLiked={postLiked}
               likeCount={post.likeCount}
               createdAt={post.createdAt}
               likePost={likePost}
+              savePost={savePost}
+              isSaved={savedPosts.includes(postId)}
             />
             <PostAddComment addComment={addComment} postId={postId} />
           </>
@@ -87,6 +95,7 @@ const Post = ({
 const mapStateToProps = (state) => ({
   loading: state.post.loading,
   post: state.post.currentPost,
+  savedPosts: state.post.savedPosts,
   postLiked:
     state.post.currentPost.likes &&
     state.post.currentPost.likes.includes(state.auth.user.id),
@@ -100,4 +109,6 @@ export default connect(mapStateToProps, {
   addComment,
   likePost,
   deletePost,
+  savePost,
+  getSavedPosts,
 })(Post);

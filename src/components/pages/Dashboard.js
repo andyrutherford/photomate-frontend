@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
-import { getProfile } from '../../actions/user-actions';
-import { getFeed } from '../../actions/post-actions';
+import { getFeed, getSavedPosts } from '../../actions/post-actions';
 
 import Feed from '../Feed';
 import Suggestions from '../Suggestions';
@@ -12,11 +11,11 @@ const DashboardWrapper = styled.div`
   display: flex;
 `;
 
-const Dashboard = ({ getProfile, getFeed, feed, user }) => {
+const Dashboard = ({ getProfile, getFeed, getSavedPosts }) => {
   useEffect(() => {
-    getProfile();
+    getSavedPosts();
     getFeed();
-  }, [getProfile, getFeed]);
+  }, [getFeed, getSavedPosts]);
 
   return (
     <DashboardWrapper>
@@ -31,4 +30,4 @@ const mapStateToProps = (state) => ({
   feed: state.post.feed,
 });
 
-export default connect(mapStateToProps, { getProfile, getFeed })(Dashboard);
+export default connect(mapStateToProps, { getFeed, getSavedPosts })(Dashboard);

@@ -25,6 +25,7 @@ import {
   GET_SAVED_POSTS_FAIL,
   SAVE_POST_SUCCESS,
   SAVE_POST_FAIL,
+  UNSAVE_POST_SUCCESS,
 } from './types';
 import { getUserById } from './user-actions';
 
@@ -35,7 +36,6 @@ export const getFeed = () => async (dispatch) => {
       type: GET_FEED_SUCCESS,
       payload: res.data.feed.reverse(),
     });
-    dispatch(getSavedPosts());
   } catch (error) {
     console.log(error.message);
     dispatch({ type: GET_FEED_FAIL });
@@ -60,6 +60,7 @@ export const getPostsByUsername = (username) => async (dispatch) => {
 export const getPostById = (postId) => async (dispatch) => {
   try {
     const res = await api.get(`/post/${postId}`);
+    console.log(res.data);
     dispatch({
       type: GET_POST_BY_ID_SUCCESS,
       payload: res.data.post,
@@ -188,14 +189,26 @@ export const getSavedPosts = () => async (dispatch) => {
   }
 };
 
-export const savePost = (postId) => async (dispatch) => {
+export const savePost = (postId, action, from) => async (dispatch) => {
+  console.log(postId, action);
   try {
     const res = await api.get(`/post/${postId}/save`);
     console.log(res.data);
-    dispatch({
-      type: SAVE_POST_SUCCESS,
-    });
-    return dispatch(getFeed());
+
+    if (action === 'save') {
+      dispatch({
+        type: SAVE_POST_SUCCESS,
+        payload: res.data.user.savedPosts,
+      });
+    } else if (action === 'unsave') {
+      dispatch({
+        type: UNSAVE_POST_SUCCESS,
+        payload: res.data.user.savedPosts,
+      });
+    }
+    if (from === 'feed') {
+      dispatch(getFeed());
+    }
   } catch (error) {
     console.log(error.message);
     dispatch({

@@ -31,8 +31,8 @@ const FeedItemActions = ({ isLiked, postId, likePost, savePost, isSaved }) => {
     likePost(postId);
   };
 
-  const savePostHandler = () => {
-    savePost(postId);
+  const savePostHandler = (action) => {
+    savePost(postId, action, 'feed');
   };
 
   return (
@@ -48,11 +48,11 @@ const FeedItemActions = ({ isLiked, postId, likePost, savePost, isSaved }) => {
       </div>
       <div className='actions-right'>
         {isSaved ? (
-          <Button link onClick={savePostHandler}>
+          <Button link onClick={() => savePostHandler('unsave')}>
             <SavedIcon />
           </Button>
         ) : (
-          <Button link onClick={savePostHandler}>
+          <Button link onClick={() => savePostHandler('save')}>
             <SaveIcon />
           </Button>
         )}
