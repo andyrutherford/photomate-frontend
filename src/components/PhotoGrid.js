@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import { GridIcon, BookmarkIcon } from './Icons';
 
@@ -44,19 +43,29 @@ const PhotoGrid = ({ getSavedPosts, getPostsByUsername, user }) => {
   const [userPosts, setUserPosts] = useState();
   const [savedPosts, setSavedPosts] = useState();
 
-  const getSavedPostsHandler = () => {
+  // const getSavedPostsHandler = () => {
+  //   setUserPosts();
+  //   getSavedPosts().then((res) => setSavedPosts(res));
+  // };
+
+  const getSavedPostsHandler = useCallback(() => {
     setUserPosts();
     getSavedPosts().then((res) => setSavedPosts(res));
-  };
+  }, [setUserPosts, getSavedPosts]);
+  // const getUserPostsHandler = () => {
+  //   setSavedPosts();
+  //   getPostsByUsername(user).then((res) => setUserPosts(res));
+  // };
 
-  const getUserPostsHandler = () => {
+  const getUserPostsHandler = useCallback(() => {
+    getSavedPosts();
     setSavedPosts();
     getPostsByUsername(user).then((res) => setUserPosts(res));
-  };
+  }, [getSavedPosts, getPostsByUsername, user]);
 
-  // useEffect(() => {
-  //   getUserPostsHandler();
-  // }, [getUserPostsHandler]);
+  useEffect(() => {
+    getUserPostsHandler();
+  }, [getUserPostsHandler]);
   return (
     <PhotoGridWrapper>
       <hr />

@@ -42,7 +42,6 @@ export const getPostsByUsername = (username) => async (dispatch) => {
     const res = await api.get(`/post/user/${username}`);
     dispatch({
       type: GET_POSTS_SUCCESS,
-      payload: res.data.posts,
     });
     return res.data.posts;
   } catch (error) {

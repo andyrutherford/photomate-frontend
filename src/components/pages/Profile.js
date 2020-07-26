@@ -39,9 +39,8 @@ const Profile = ({
       if (res === 'User not found.') {
         return setNotFound(true);
       }
-      getPostsByUsername(username);
     });
-  }, [getUserById, getPostsByUsername, username]);
+  }, [getUserById, username]);
 
   // // cleanup
   // useEffect(() => {
@@ -52,7 +51,7 @@ const Profile = ({
   // }, [clearCurrentPosts]);
 
   if (notFound) return <h1>User not found.</h1>;
-  if (userLoading || postLoading) return <Spinner />;
+  if (userLoading) return <Spinner />;
 
   return (
     <div>
@@ -71,7 +70,7 @@ const Profile = ({
             profileOwner={profileOwner}
             isFollowing={isFollowing}
           />
-          {posts.length >= 1 ? <PhotoGrid /> : <h1>No posts found.</h1>}
+          <PhotoGrid />
         </>
       )}
     </div>

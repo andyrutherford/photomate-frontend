@@ -36,7 +36,6 @@ export default function (state = initialState, action) {
     case GET_POSTS_SUCCESS:
       return {
         ...state,
-        posts: [...action.payload],
         loading: false,
       };
     case GET_POST_BY_ID_SUCCESS:
