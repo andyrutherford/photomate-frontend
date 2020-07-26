@@ -22,7 +22,7 @@ const FeedItemWrapper = styled.article`
   }
 `;
 
-const FeedItem = ({ feedItem, authUser }) => {
+const FeedItem = ({ feedItem, authUser, savedPosts }) => {
   return (
     <FeedItemWrapper>
       <FeedItemHeader
@@ -35,6 +35,7 @@ const FeedItem = ({ feedItem, authUser }) => {
       <FeedItemActions
         postId={feedItem._id}
         isLiked={feedItem.likes.includes(authUser.id)}
+        isSaved={savedPosts.includes(feedItem._id)}
       />
       <FeedItemInfo
         username={feedItem.user.username}
@@ -51,6 +52,7 @@ const FeedItem = ({ feedItem, authUser }) => {
 
 const mapStateToProps = (state) => ({
   authUser: state.auth.user,
+  savedPosts: state.post.savedPosts,
 });
 
 export default connect(mapStateToProps)(FeedItem);

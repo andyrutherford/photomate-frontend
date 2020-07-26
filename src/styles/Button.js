@@ -29,6 +29,15 @@ const Button = styled.button`
       margin: 0;
       padding: 0;
     `}
+  ${(props) =>
+    props.tab &&
+    css`
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      border: none;
+      color: black;
+    `}
 `;
 
 export default Button;

@@ -17,12 +17,17 @@ import {
   LIKE_POST_FAIL,
   GET_FEED_SUCCESS,
   GET_FEED_FAIL,
+  GET_SAVED_POSTS_SUCCESS,
+  GET_SAVED_POSTS_FAIL,
+  SAVE_POST_SUCCESS,
+  SAVE_POST_FAIL,
 } from '../actions/types';
 
 const initialState = {
   loading: true,
   feed: [],
   posts: [],
+  savedPosts: [],
   currentPost: {},
 };
 
@@ -73,6 +78,12 @@ export default function (state = initialState, action) {
         posts: [],
         loading: true,
       };
+    case GET_SAVED_POSTS_SUCCESS:
+      return {
+        ...state,
+        savedPosts: action.payload,
+        loading: false,
+      };
     case ADD_COMMENT_SUCCESS:
       return {
         ...state,
@@ -98,6 +109,9 @@ export default function (state = initialState, action) {
     case CREATE_POST_FAIL:
     case DELETE_POST_FAIL:
     case LIKE_POST_FAIL:
+    case GET_SAVED_POSTS_FAIL:
+    case SAVE_POST_SUCCESS:
+    case SAVE_POST_FAIL:
     default:
       return state;
   }

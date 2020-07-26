@@ -7,11 +7,7 @@ import {
   clearCurrentUser,
   followUser,
 } from '../../actions/user-actions';
-import {
-  getPostsByUsername,
-  getSavedPosts,
-  clearCurrentPosts,
-} from '../../actions/post-actions';
+import { getSavedPosts, clearCurrentPosts } from '../../actions/post-actions';
 
 import Spinner from '../layout/Spinner';
 import ProfileHeader from '../ProfileHeader';
@@ -19,14 +15,8 @@ import PhotoGrid from '../PhotoGrid';
 
 const Profile = ({
   userLoading,
-  postLoading,
   getUserById,
-  getPostsByUsername,
-  clearCurrentPosts,
-  clearCurrentUser,
   currentUser,
-  authUser,
-  posts,
   profileOwner,
   followUser,
   isFollowing,
@@ -70,7 +60,7 @@ const Profile = ({
             profileOwner={profileOwner}
             isFollowing={isFollowing}
           />
-          <PhotoGrid />
+          <PhotoGrid profileOwner={profileOwner} />
         </>
       )}
     </div>
@@ -89,7 +79,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getUserById,
-  getPostsByUsername,
   getSavedPosts,
   clearCurrentUser,
   clearCurrentPosts,

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { likePost } from '../actions/post-actions';
+import { likePost, savePost } from '../actions/post-actions';
 
 import {
   HeartIcon,
@@ -10,7 +10,9 @@ import {
   InboxIcon as ShareIcon,
   MessageIcon,
   BookmarkIcon as SaveIcon,
+  FilledBookmarkIcon as SavedIcon,
 } from './Icons';
+import Button from '../styles/Button';
 
 const FeedItemActionsWrapper = styled.div`
   display: flex;
@@ -24,9 +26,13 @@ const FeedItemActionsWrapper = styled.div`
   }
 `;
 
-const FeedItemActions = ({ isLiked, postId, likePost }) => {
+const FeedItemActions = ({ isLiked, postId, likePost, savePost, isSaved }) => {
   const likePostHandler = () => {
     likePost(postId);
+  };
+
+  const savePostHandler = () => {
+    savePost(postId);
   };
 
   return (
@@ -41,10 +47,18 @@ const FeedItemActions = ({ isLiked, postId, likePost }) => {
         <ShareIcon />
       </div>
       <div className='actions-right'>
-        <SaveIcon />
+        {isSaved ? (
+          <Button link onClick={savePostHandler}>
+            <SavedIcon />
+          </Button>
+        ) : (
+          <Button link onClick={savePostHandler}>
+            <SaveIcon />
+          </Button>
+        )}
       </div>
     </FeedItemActionsWrapper>
   );
 };
 
-export default connect(null, { likePost })(FeedItemActions);
+export default connect(null, { likePost, savePost })(FeedItemActions);

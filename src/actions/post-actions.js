@@ -21,6 +21,10 @@ import {
   LIKE_POST_FAIL,
   GET_FEED_SUCCESS,
   GET_FEED_FAIL,
+  GET_SAVED_POSTS_SUCCESS,
+  GET_SAVED_POSTS_FAIL,
+  SAVE_POST_SUCCESS,
+  SAVE_POST_FAIL,
 } from './types';
 import { getUserById } from './user-actions';
 
@@ -31,6 +35,7 @@ export const getFeed = () => async (dispatch) => {
       type: GET_FEED_SUCCESS,
       payload: res.data.feed.reverse(),
     });
+    dispatch(getSavedPosts());
   } catch (error) {
     console.log(error.message);
     dispatch({ type: GET_FEED_FAIL });
@@ -169,8 +174,32 @@ export const likePost = (postId) => async (dispatch) => {
 export const getSavedPosts = () => async (dispatch) => {
   try {
     const res = await api.get('/post/saved');
+    const savedPosts = res.data.savedPosts.map((p) => p._id);
+    dispatch({
+      type: GET_SAVED_POSTS_SUCCESS,
+      payload: savedPosts,
+    });
     return res.data.savedPosts;
   } catch (error) {
     console.log(error.message);
+    dispatch({
+      type: GET_SAVED_POSTS_FAIL,
+    });
+  }
+};
+
+export const savePost = (postId) => async (dispatch) => {
+  try {
+    const res = await api.get(`/post/${postId}/save`);
+    console.log(res.data);
+    dispatch({
+      type: SAVE_POST_SUCCESS,
+    });
+    return dispatch(getFeed());
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: SAVE_POST_FAIL,
+    });
   }
 };

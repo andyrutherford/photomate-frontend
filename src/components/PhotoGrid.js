@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { GridIcon, BookmarkIcon } from './Icons';
+import Button from '../styles/Button';
 
 import PhotoGridItem from './PhotoGridItem';
 
@@ -24,7 +25,7 @@ const PhotoGridWrapper = styled.div`
   }
 
   .profile-tab {
-    padding: 20px;
+    padding: 10px 20px;
     margin: 0 10px;
   }
   .profile-tab * {
@@ -39,7 +40,12 @@ const PhotoGridWrapper = styled.div`
   }
 `;
 
-const PhotoGrid = ({ getSavedPosts, getPostsByUsername, user }) => {
+const PhotoGrid = ({
+  getSavedPosts,
+  getPostsByUsername,
+  user,
+  profileOwner,
+}) => {
   const [userPosts, setUserPosts] = useState();
   const [savedPosts, setSavedPosts] = useState();
 
@@ -71,17 +77,19 @@ const PhotoGrid = ({ getSavedPosts, getPostsByUsername, user }) => {
       <hr />
       <div className='profile-tabs'>
         <div className='profile-tab'>
-          <button onClick={getUserPostsHandler}>
+          <Button tab onClick={getUserPostsHandler}>
             <GridIcon size={16} />
             <span className='tab-label'> POSTS</span>
-          </button>
+          </Button>
         </div>
-        <div className='profile-tab'>
-          <button onClick={getSavedPostsHandler}>
-            <BookmarkIcon size={16} />
-            <span className='tab-label'>SAVED</span>
-          </button>
-        </div>
+        {profileOwner && (
+          <div className='profile-tab'>
+            <Button tab onClick={getSavedPostsHandler}>
+              <BookmarkIcon size={16} />
+              <span className='tab-label'>SAVED</span>
+            </Button>
+          </div>
+        )}
       </div>
       <div className='photo-grid'>
         {savedPosts &&
