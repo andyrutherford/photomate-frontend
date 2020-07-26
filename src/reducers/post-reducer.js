@@ -30,7 +30,9 @@ const initialState = {
   feed: [],
   posts: [],
   savedPosts: [],
-  currentPost: {},
+  currentPost: {
+    comments: [],
+  },
 };
 
 export default function (state = initialState, action) {
@@ -91,8 +93,16 @@ export default function (state = initialState, action) {
         ...state,
         currentPost: {
           ...state.currentPost,
-          comments: [...state.currentPost.comments, action.payload],
+          comments: [...state.currentPost.comments, action.payload.comment],
         },
+        feed: state.feed.map((item) => {
+          if (item._id === action.payload.postId) {
+            return {
+              ...item,
+              comments: [...item.comments, action.payload.comment],
+            };
+          } else return item;
+        }),
       };
     case LIKE_POST_SUCCESS:
     case UNLIKE_POST_SUCCESS:
@@ -105,7 +115,6 @@ export default function (state = initialState, action) {
         },
         feed: state.feed.map((item) => {
           if (item._id === action.payload.postId) {
-            console.log('match');
             return {
               ...item,
               likes: action.payload.likes,

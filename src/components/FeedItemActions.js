@@ -28,11 +28,11 @@ const FeedItemActionsWrapper = styled.div`
 
 const FeedItemActions = ({ isLiked, postId, likePost, savePost, isSaved }) => {
   const likePostHandler = (action) => {
-    likePost(postId, action, 'feed');
+    likePost(postId, action);
   };
 
   const savePostHandler = (action) => {
-    savePost(postId, action, 'feed');
+    savePost(postId, action);
   };
 
   return (

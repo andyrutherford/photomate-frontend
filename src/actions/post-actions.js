@@ -144,13 +144,14 @@ export const deletePost = (postId) => async (dispatch) => {
 export const addComment = (postId, text, from) => async (dispatch) => {
   try {
     const res = await api.post(`/post/${postId}/comment`, { text });
+    console.log(res.data);
     dispatch({
       type: ADD_COMMENT_SUCCESS,
-      payload: res.data.comment,
+      payload: { postId, comment: res.data.comment },
     });
-    if (from === 'feed') {
-      dispatch(getFeed());
-    }
+    // if (from === 'feed') {
+    //   dispatch(getFeed());
+    // }
   } catch (error) {
     console.log(error.message);
     dispatch({
@@ -159,7 +160,7 @@ export const addComment = (postId, text, from) => async (dispatch) => {
   }
 };
 
-export const likePost = (postId, action, from) => async (dispatch) => {
+export const likePost = (postId, action) => async (dispatch) => {
   try {
     const res = await api.get(`/post/${postId}/like`);
     dispatch({
@@ -171,9 +172,6 @@ export const likePost = (postId, action, from) => async (dispatch) => {
         userId: res.data.user,
       },
     });
-    if (from === 'feed') {
-      // return dispatch(getFeed());
-    }
   } catch (error) {
     dispatch({
       type: LIKE_POST_FAIL,
@@ -198,7 +196,7 @@ export const getSavedPosts = () => async (dispatch) => {
   }
 };
 
-export const savePost = (postId, action, from) => async (dispatch) => {
+export const savePost = (postId, action) => async (dispatch) => {
   console.log(postId, action);
   try {
     const res = await api.get(`/post/${postId}/save`);
@@ -208,10 +206,6 @@ export const savePost = (postId, action, from) => async (dispatch) => {
       type: action === 'save' ? SAVE_POST_SUCCESS : UNSAVE_POST_SUCCESS,
       payload: res.data.user.savedPosts,
     });
-
-    if (from === 'feed') {
-      dispatch(getFeed());
-    }
   } catch (error) {
     console.log(error.message);
     dispatch({
