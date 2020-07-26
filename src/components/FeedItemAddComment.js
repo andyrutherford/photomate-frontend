@@ -12,7 +12,7 @@ const FeedItemAddComment = ({ postId, addComment }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addComment(postId, text);
+    addComment(postId, text, 'feed');
     setText('');
   };
 

@@ -9,7 +9,7 @@ const PostAddComment = ({ postId, addComment }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addComment(postId, text);
+    addComment(postId, text, 'post');
     setText('');
   };
 

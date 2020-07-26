@@ -137,15 +137,18 @@ export const deletePost = (postId) => async (dispatch) => {
   }
 };
 
-export const addComment = (postId, text) => async (dispatch) => {
+export const addComment = (postId, text, from) => async (dispatch) => {
   try {
     const res = await api.post(`/post/${postId}/comment`, { text });
     dispatch({
       type: ADD_COMMENT_SUCCESS,
       payload: res.data.comment,
     });
-    dispatch(getPostById(postId));
-    return dispatch(getFeed());
+    if (from === 'post') {
+      dispatch(getPostById(postId));
+    } else if (from === 'feed') {
+      dispatch(getFeed());
+    }
   } catch (error) {
     console.log(error.message);
     dispatch({
