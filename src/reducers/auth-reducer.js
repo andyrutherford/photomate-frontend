@@ -30,6 +30,7 @@ export default function (state = initialState, action) {
       };
     case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
+    case 'GITHUB_AUTH_SUCCESS':
       return {
         ...state,
         isAuthenticated: true,
@@ -50,6 +51,7 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
       };
+    case 'START_GITHUB_AUTH':
     default:
       return {
         ...state,

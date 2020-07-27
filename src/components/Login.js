@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { loginUser } from '../actions/auth-actions';
+import { loginUser, githubAuth } from '../actions/auth-actions';
 
+import GithubLoginButton from './GithubLoginButton';
 import { GithubIcon } from '../components/Icons';
 import Button from '../styles/Button';
 import iphone from '../assets/iphone.png';
@@ -122,12 +123,24 @@ button {
   }
 `;
 
-const Login = ({ isAuthenticated, loginUser }) => {
+const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
   const [formData, setFormData] = useState({
     userID: '',
     password: '',
   });
   const [formValid, setFormValid] = useState(false);
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const code = params.get('code');
+  const authState = params.get('state');
+  useEffect(() => {
+    if (code) {
+      if (!authState === sessionStorage.getItem('authState')) {
+        return console.warn('Auth state does not match.');
+      }
+      githubAuth(code);
+    }
+  }, [authState, code, githubAuth]);
 
   // Form validation
   useEffect(() => {
@@ -202,6 +215,7 @@ const Login = ({ isAuthenticated, loginUser }) => {
             <div className='separator-or'>OR</div>
             <div className='separator-line'></div>
           </div>
+          <GithubLoginButton />
           <Link className='forgot-password' to='/forgot-password'>
             Forgot password?
           </Link>
@@ -238,4 +252,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser, githubAuth })(Login);

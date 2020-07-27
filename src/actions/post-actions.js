@@ -197,7 +197,6 @@ export const savePost = (postId, action) => async (dispatch) => {
   console.log(postId, action);
   try {
     const res = await api.get(`/post/${postId}/save`);
-    console.log(res.data);
 
     dispatch({
       type: action === 'save' ? SAVE_POST_SUCCESS : UNSAVE_POST_SUCCESS,

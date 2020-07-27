@@ -76,3 +76,19 @@ export const logoutUser = () => (dispatch) => {
   });
   console.log('You have been logged out.');
 };
+
+export const githubAuth = (code) => async (dispatch) => {
+  dispatch({ type: 'START_GITHUB_AUTH' });
+  try {
+    const res = await api.post('/auth/github', {
+      code,
+      state: sessionStorage.getItem('authState'),
+    });
+    alert('Login with Github successful.');
+    dispatch({ type: 'GITHUB_AUTH_SUCCESS', payload: res.data });
+    dispatch(loadUser());
+  } catch (error) {
+    // dispatch({ type: GITHUB_AUTH_FAIL })
+    console.log(error.message);
+  }
+};
