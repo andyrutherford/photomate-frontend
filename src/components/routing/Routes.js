@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Switch } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import Settings from '../pages/Settings';
 import Post from '../pages/Post';
+import Loading from '../pages/Loading';
 
 const ContainerWrapper = styled.div`
   width: 935px;
@@ -27,7 +29,9 @@ const ContainerWrapper = styled.div`
   }
 `;
 
-const Routes = () => {
+const Routes = ({ loading }) => {
+  if (loading) return <Loading />;
+
   return (
     <section>
       <Navbar />
@@ -43,4 +47,8 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+const mapStateToProps = (state) => ({
+  loading: state.auth.loading,
+});
+
+export default connect(mapStateToProps)(Routes);

@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/auth-actions';
 
+import { GithubIcon } from '../components/Icons';
 import Button from '../styles/Button';
 import iphone from '../assets/iphone.png';
 import logo from '../assets/logo.svg';
@@ -212,6 +213,21 @@ const Login = ({ isAuthenticated, loginUser }) => {
               Sign up
             </Link>
           </p>
+          <a
+            href='https://github.com/andyrutherford/instaclone-frontend'
+            target='_blank'
+            rel='noopener noreferrer'
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '35px',
+              margin: '20px auto 10px auto',
+            }}
+          >
+            <GithubIcon size={22} style={{ marginBottom: '4px' }} />
+            <span>View on Github</span>
+          </a>
         </div>
       </div>
     </LoginWrapper>

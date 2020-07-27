@@ -149,9 +149,6 @@ export const addComment = (postId, text, from) => async (dispatch) => {
       type: ADD_COMMENT_SUCCESS,
       payload: { postId, comment: res.data.comment },
     });
-    // if (from === 'feed') {
-    //   dispatch(getFeed());
-    // }
   } catch (error) {
     console.log(error.message);
     dispatch({
