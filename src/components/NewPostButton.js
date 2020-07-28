@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { uploadImage, createPost } from '../actions/post-actions';
 
-import { PlusIcon as AddIcon } from './Icons';
+import { CameraIcon } from './Icons';
 import Modal from '../components/modal/Modal';
 
 const NewPostButtonWrapper = styled.div`
@@ -61,7 +61,7 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
   return (
     <NewPostButtonWrapper>
       <label className='icon pointer' htmlFor='file-upload'>
-        <AddIcon />
+        <CameraIcon />
       </label>
       <input
         id='file-upload'

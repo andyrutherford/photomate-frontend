@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { logoutUser } from '../actions/auth-actions';
 
 import Avatar from '../styles/Avatar';
-import { HomeIcon, InboxIcon, ExploreIcon, HeartIcon } from './Icons';
+import { HomeIcon, LogoutIcon } from './Icons';
 import NewPostButton from '../components/NewPostButton';
 import Search from '../components/Search';
 import logo from '../assets/logo.svg';
@@ -42,7 +42,7 @@ const NavbarWrapper = styled.div`
   }
 
   li {
-    margin-left: 1rem;
+    margin-left: 1.5rem;
   }
 
   @media screen and (max-width: 1070px) {
@@ -74,27 +74,20 @@ const Navbar = ({ username, avatar, logoutUser }) => {
 
         <ul>
           <li>
-            <HomeIcon />
-          </li>
-          <li>
-            <InboxIcon />
-          </li>
-          <li>
-            <ExploreIcon />
-          </li>
-          <li>
-            <HeartIcon />
-          </li>
-          <li>
-            <Link to={`/${username}`}>
-              <Avatar className='avatar' src={avatar} alt={'avatar'} />
+            <Link to={'/'}>
+              <HomeIcon />
             </Link>
           </li>
           <li>
             <NewPostButton />
           </li>
           <li>
-            <button onClick={logoutHandler}>Logout</button>
+            <LogoutIcon onClick={logoutHandler} />
+          </li>
+          <li>
+            <Link to={`/${username}`}>
+              <Avatar className='avatar' src={avatar} alt={'avatar'} />
+            </Link>
           </li>
         </ul>
       </nav>

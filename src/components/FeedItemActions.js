@@ -7,7 +7,6 @@ import { likePost, savePost } from '../actions/post-actions';
 import {
   HeartIcon,
   FilledHeartIcon,
-  InboxIcon as ShareIcon,
   MessageIcon,
   BookmarkIcon as SaveIcon,
   FilledBookmarkIcon as SavedIcon,
@@ -44,7 +43,6 @@ const FeedItemActions = ({ isLiked, postId, likePost, savePost, isSaved }) => {
           <HeartIcon onClick={() => likePostHandler('like')} />
         )}
         <MessageIcon />
-        <ShareIcon />
       </div>
       <div className='actions-right'>
         {isSaved ? (

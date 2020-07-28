@@ -5,7 +5,6 @@ import { formatDate } from '../../utils/formatDate';
 
 import {
   HeartIcon,
-  InboxIcon as ShareIcon,
   MessageIcon,
   BookmarkIcon as SaveIcon,
   FilledBookmarkIcon as SavedIcon,
@@ -62,9 +61,7 @@ const PostActions = ({
           ) : (
             <HeartIcon onClick={() => likePostHandler('like')} />
           )}
-
           <MessageIcon />
-          <ShareIcon />
         </div>
         <div className='post-actions__right'>
           {isSaved ? (

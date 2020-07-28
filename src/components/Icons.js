@@ -4,8 +4,8 @@ export const HomeIcon = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     className='icon icon-tabler icon-tabler-home'
-    width='28'
-    height='28'
+    width='30'
+    height='30'
     viewBox='0 0 24 24'
     strokeWidth='1.5'
     stroke='#2c3e50'
@@ -17,44 +17,6 @@ export const HomeIcon = () => (
     <polyline points='5 12 3 12 12 3 21 12 19 12' />
     <path d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7' />
     <path d='M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6' />
-  </svg>
-);
-
-export const InboxIcon = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    className='icon icon-tabler icon-tabler-send'
-    width='28'
-    height='28'
-    viewBox='0 0 24 24'
-    strokeWidth='1.5'
-    stroke='#2c3e50'
-    fill='none'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
-    <path stroke='none' d='M0 0h24v24H0z' />
-    <line x1='10' y1='14' x2='21' y2='3' />
-    <path d='M21 3L14.5 21a.55 .55 0 0 1 -1 0L10 14L3 10.5a.55 .55 0 0 1 0 -1L21 3' />
-  </svg>
-);
-
-export const ExploreIcon = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    className='icon icon-tabler icon-tabler-compass'
-    width='28'
-    height='28'
-    viewBox='0 0 24 24'
-    strokeWidth='1.5'
-    stroke='#2c3e50'
-    fill='none'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
-    <path stroke='none' d='M0 0h24v24H0z' />
-    <polyline points='8 16 10 10 16 8 14 14 8 16' />
-    <circle cx='12' cy='12' r='9' />
   </svg>
 );
 
@@ -288,10 +250,10 @@ export const GridIcon = ({ size = 32 }) => (
   </svg>
 );
 
-export const PlusIcon = ({ size = 30 }) => (
+export const CameraIcon = ({ size = 30 }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    className='icon icon-tabler icon-tabler-plus'
+    className='icon icon-tabler icon-tabler-camera'
     width={size}
     height={size}
     viewBox='0 0 24 24'
@@ -302,8 +264,8 @@ export const PlusIcon = ({ size = 30 }) => (
     strokeLinejoin='round'
   >
     <path stroke='none' d='M0 0h24v24H0z' />
-    <line x1='12' y1='5' x2='12' y2='19' />
-    <line x1='5' y1='12' x2='19' y2='12' />
+    <path d='M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2' />
+    <circle cx='12' cy='13' r='3' />
   </svg>
 );
 
@@ -406,12 +368,12 @@ export const EyeIcon = (props) => (
   </svg>
 );
 
-export const LogoutIcon = (props) => (
+export const LogoutIcon = ({ size = 30 }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     className='icon icon-tabler icon-tabler-logout'
-    width='48'
-    height='48'
+    width={size}
+    height={size}
     viewBox='0 0 24 24'
     strokeWidth='1.5'
     stroke='#000000'
