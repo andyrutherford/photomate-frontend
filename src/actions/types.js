@@ -7,6 +7,9 @@ export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
 export const LOAD_USER_FAIL = 'LOAD_USER_FAIL';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGOUT = 'LOGOUT';
+export const GITHUB_AUTH_START = 'GITHUB_AUTH_START';
+export const GITHUB_AUTH_SUCCESS = 'GITHUB_AUTH_SUCCESS';
+export const GITHUB_AUTH_FAIL = 'GITHUB_AUTH_FAIL';
 
 // User
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';

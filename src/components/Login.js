@@ -5,6 +5,7 @@ import { Link, Redirect, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser, githubAuth } from '../actions/auth-actions';
 
+import Loading from '../components/pages/Loading';
 import GithubLoginButton from './GithubLoginButton';
 import { GithubIcon } from '../components/Icons';
 import Button from '../styles/Button';
@@ -129,12 +130,14 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
     password: '',
   });
   const [formValid, setFormValid] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false);
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const code = params.get('code');
   const authState = params.get('state');
   useEffect(() => {
     if (code) {
+      setAuthLoading(true);
       if (!authState === sessionStorage.getItem('authState')) {
         return console.warn('Auth state does not match.');
       }
@@ -172,7 +175,7 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
   if (isAuthenticated) {
     return <Redirect to='/' />;
   }
-
+  if (authLoading) return <Loading message='Authenticating with Github...' />;
   return (
     <LoginWrapper>
       <div className='login-left'>
@@ -239,7 +242,7 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
               margin: '20px auto 10px auto',
             }}
           >
-            <GithubIcon size={22} style={{ marginBottom: '4px' }} />
+            <GithubIcon size={20} style={{ marginBottom: '4px' }} />
             <span>View on Github</span>
           </a>
         </div>

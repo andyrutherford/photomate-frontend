@@ -1,18 +1,22 @@
 import React from 'react';
 
-import { ReactComponent as Logo } from '../../assets/logo-camera.svg';
+import logo from '../../assets/logo-camera.svg';
 
-const Loading = () => (
-  <main className='loading-page'>
-    <Logo
+const Loading = ({ message }) => (
+  <main
+    className='loading-page'
+    style={{ display: 'flex', flexDirection: 'column' }}
+  >
+    <img
+      src={logo}
       style={{
         width: '50px',
-        margin: 'auto',
+        margin: '300px auto 20px',
         display: 'block',
-        color: 'lightgrey',
       }}
       alt='Loading...'
     />
+    <span style={{ margin: 'auto' }}>{message}</span>
   </main>
 );
 

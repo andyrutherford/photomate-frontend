@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 import { uploadImage, createPost } from '../actions/post-actions';
 
-import spinner from '../components/layout/spinner.gif';
 import { PlusIcon as AddIcon } from './Icons';
 import Modal from '../components/modal/Modal';
 
@@ -22,6 +21,7 @@ const NewPostButtonWrapper = styled.div`
 
 export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
   const [postImage, setPostImage] = useState();
+  const [previewImage, setPreviewImage] = useState();
   const [showModal, setShowModal] = useState(false);
   const [caption, setCaption] = useState('');
   const history = useHistory();
@@ -31,6 +31,7 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
       const reader = new FileReader();
 
       reader.onload = (e) => {
+        setPreviewImage(e.target.result);
         setShowModal(true);
       };
       reader.readAsDataURL(e.target.files[0]);
@@ -80,9 +81,9 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
         >
           <img
             className='new-post__image'
-            src={postImage ? postImage : spinner}
+            src={previewImage}
             alt='new post'
-            style={{ margin: 'auto', width: `${postImage ? '100%' : '30%'}` }}
+            style={{ margin: 'auto', width: '100%' }}
           />
           <input
             className='new-post__caption'

@@ -11,6 +11,7 @@ import {
   UPDATE_AVATAR_FAIL,
   GET_FEED_SUCCESS,
   GET_SUGGESTED_USERS_FAIL,
+  LOGOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -94,6 +95,8 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
       };
+    case LOGOUT:
+      return initialState;
     case GET_SUGGESTED_USERS_FAIL:
     case GET_PROFILE_FAIL:
     default:

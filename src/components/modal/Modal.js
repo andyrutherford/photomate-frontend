@@ -20,7 +20,7 @@ const ModalOverlay = (props) => {
               fontSize: '16px',
             }}
           >
-            Close
+            Cancel
           </button>
           <label style={{ fontSize: '16px' }}>{props.header}</label>
           <button

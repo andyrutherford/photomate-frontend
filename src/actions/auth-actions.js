@@ -8,6 +8,9 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   LOGOUT,
+  GITHUB_AUTH_START,
+  GITHUB_AUTH_SUCCESS,
+  GITHUB_AUTH_FAIL,
 } from './types';
 
 export const loadUser = () => async (dispatch) => {
@@ -37,7 +40,6 @@ export const loginUser = (userData) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
-    alert('Login successful');
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
@@ -78,17 +80,16 @@ export const logoutUser = () => (dispatch) => {
 };
 
 export const githubAuth = (code) => async (dispatch) => {
-  dispatch({ type: 'START_GITHUB_AUTH' });
+  dispatch({ type: GITHUB_AUTH_START });
   try {
     const res = await api.post('/auth/github', {
       code,
       state: sessionStorage.getItem('authState'),
     });
-    alert('Login with Github successful.');
-    dispatch({ type: 'GITHUB_AUTH_SUCCESS', payload: res.data });
+    dispatch({ type: GITHUB_AUTH_SUCCESS, payload: res.data });
     dispatch(loadUser());
   } catch (error) {
-    // dispatch({ type: GITHUB_AUTH_FAIL })
+    dispatch({ type: GITHUB_AUTH_FAIL });
     console.log(error.message);
   }
 };

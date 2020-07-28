@@ -23,6 +23,7 @@ import {
   SAVE_POST_SUCCESS,
   SAVE_POST_FAIL,
   UNSAVE_POST_SUCCESS,
+  LOGOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -135,6 +136,8 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
       };
+    case LOGOUT:
+      return initialState;
     case GET_FEED_FAIL:
     case GET_POST_BY_ID_FAIL:
     case UPLOAD_PHOTO_FAIL:

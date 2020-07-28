@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { logoutUser } from '../actions/auth-actions';
 
@@ -58,6 +58,12 @@ const NavbarWrapper = styled.div`
 `;
 
 const Navbar = ({ username, avatar, logoutUser }) => {
+  const history = useHistory();
+
+  const logoutHandler = () => {
+    logoutUser();
+    history.push('/login');
+  };
   return (
     <NavbarWrapper>
       <nav>
@@ -88,7 +94,7 @@ const Navbar = ({ username, avatar, logoutUser }) => {
             <NewPostButton />
           </li>
           <li>
-            <button onClick={logoutUser}>Logout</button>
+            <button onClick={logoutHandler}>Logout</button>
           </li>
         </ul>
       </nav>

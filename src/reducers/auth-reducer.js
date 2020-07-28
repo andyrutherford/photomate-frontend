@@ -6,6 +6,9 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
   LOGOUT,
+  GITHUB_AUTH_START,
+  GITHUB_AUTH_SUCCESS,
+  GITHUB_AUTH_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -30,7 +33,7 @@ export default function (state = initialState, action) {
       };
     case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
-    case 'GITHUB_AUTH_SUCCESS':
+    case GITHUB_AUTH_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
@@ -38,20 +41,16 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case LOGOUT:
-      return {
-        ...state,
-        isAuthenticated: false,
-        token: null,
-        loading: false,
-      };
+      return { ...initialState, token: null };
     case LOAD_USER_FAIL:
     case SIGNUP_FAIL:
     case LOGIN_FAIL:
+    case GITHUB_AUTH_FAIL:
       return {
         ...state,
         loading: false,
       };
-    case 'START_GITHUB_AUTH':
+    case GITHUB_AUTH_START:
     default:
       return {
         ...state,
