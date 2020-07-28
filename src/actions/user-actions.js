@@ -54,6 +54,7 @@ export const getUserById = (userId) => async (dispatch) => {
 };
 
 export const clearCurrentUser = () => (dispatch) => {
+  console.log('clear');
   dispatch({
     type: CLEAR_CURRENT_USER,
   });

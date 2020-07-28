@@ -14,7 +14,7 @@ import Loading from '../pages/Loading';
 
 const ContainerWrapper = styled.div`
   width: 935px;
-  margin: 7rem auto;
+  margin: 5rem auto 0;
   @media screen and (max-width: 930px) {
     width: 90%;
   }

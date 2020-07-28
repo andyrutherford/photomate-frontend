@@ -24,6 +24,10 @@ const SearchWrapper = styled.div`
     padding: 10px 30px;
     background-color: #fafafa;
   }
+
+  @media screen and (max-width: 670px) {
+    display: none;
+  }
 `;
 
 const Search = () => {

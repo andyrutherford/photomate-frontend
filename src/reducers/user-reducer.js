@@ -70,7 +70,7 @@ export default function (state = initialState, action) {
     case CLEAR_CURRENT_USER: {
       return {
         ...state,
-        currentUser: null,
+        currentUser: initialState.currentUser,
         loading: true,
       };
     }

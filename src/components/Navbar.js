@@ -25,7 +25,6 @@ const NavbarWrapper = styled.div`
     align-items: center;
     margin: 0 auto;
     width: 975px;
-    padding: 0 20px;
   }
 
   .logo {
@@ -48,11 +47,6 @@ const NavbarWrapper = styled.div`
   @media screen and (max-width: 1070px) {
     nav {
       width: 90%;
-    }
-  }
-  @media screen and (max-width: 670px) {
-    input {
-      display: none;
     }
   }
 `;
@@ -86,7 +80,12 @@ const Navbar = ({ username, avatar, logoutUser }) => {
           </li>
           <li>
             <Link to={`/${username}`}>
-              <Avatar className='avatar' src={avatar} alt={'avatar'} />
+              <Avatar
+                className='avatar'
+                src={avatar}
+                alt={'avatar'}
+                style={{ marginRight: '0' }}
+              />
             </Link>
           </li>
         </ul>

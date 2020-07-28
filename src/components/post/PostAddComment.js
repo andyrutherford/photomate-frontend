@@ -15,14 +15,16 @@ const PostAddComment = ({ postId, addComment }) => {
 
   return (
     <AddComment>
-      <input
-        type='text'
-        alt=''
-        placeholder='Add a commment...'
-        value={text}
-        onChange={onChange}
-      />
-      <input type='submit' value='Post' onClick={onSubmit} />
+      <form>
+        <input
+          type='text'
+          alt=''
+          placeholder='Add a commment...'
+          value={text}
+          onChange={onChange}
+        />
+        <input type='submit' value='Post' onClick={onSubmit} />
+      </form>
     </AddComment>
   );
 };

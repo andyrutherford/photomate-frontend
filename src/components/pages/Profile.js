@@ -9,7 +9,7 @@ import {
 } from '../../actions/user-actions';
 import { getSavedPosts, clearCurrentPosts } from '../../actions/post-actions';
 
-import Spinner from '../layout/Spinner';
+import Loading from './Loading';
 import ProfileHeader from '../ProfileHeader';
 import PhotoGrid from '../PhotoGrid';
 
@@ -20,6 +20,8 @@ const Profile = ({
   profileOwner,
   followUser,
   isFollowing,
+  clearCurrentUser,
+  clearCurrentPosts,
 }) => {
   const [notFound, setNotFound] = useState(false);
   const { username } = useParams();
@@ -35,13 +37,13 @@ const Profile = ({
   // cleanup
   useEffect(() => {
     return () => clearCurrentUser();
-  }, []);
+  }, [clearCurrentUser]);
   useEffect(() => {
     return () => clearCurrentPosts();
-  }, []);
+  }, [clearCurrentPosts]);
 
   if (notFound) return <h1>User not found.</h1>;
-  if (userLoading) return <Spinner />;
+  if (userLoading) return <Loading />;
 
   return (
     <div>

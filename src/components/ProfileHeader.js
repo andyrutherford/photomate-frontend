@@ -130,7 +130,7 @@ const ProfileHeader = ({
               <Button secondary onClick={() => history.push('/accounts/edit')}>
                 Edit Profile
               </Button>
-              <Link to='/profile/edit'>
+              <Link to='/accounts/edit'>
                 <GearIcon />
               </Link>
             </>
