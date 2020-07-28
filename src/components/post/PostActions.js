@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { formatDate } from '../../utils/formatDate';
+
 import {
   HeartIcon,
   InboxIcon as ShareIcon,
@@ -80,7 +82,7 @@ const PostActions = ({
         <span>{formatLikes()}</span>
       </div>
       <div className='date'>
-        <span className='subtext small'>{createdAt}</span>
+        <span className='subtext small'>{formatDate(createdAt)}</span>
       </div>
     </PostActionsWrapper>
   );

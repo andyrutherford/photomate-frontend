@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { formatDate } from '../utils/formatDate';
+
 const FeedItemInfoWrapper = styled.div`
   padding: 0 16px;
 
@@ -91,7 +93,7 @@ const FeedItemInfo = ({
       ))} */}
 
       <div className='subtext small'>
-        <span>{createdAt}</span>
+        <span>{formatDate(createdAt)}</span>
       </div>
     </FeedItemInfoWrapper>
   );

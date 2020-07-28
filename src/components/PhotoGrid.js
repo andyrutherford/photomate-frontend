@@ -49,29 +49,21 @@ const PhotoGrid = ({
   const [userPosts, setUserPosts] = useState();
   const [savedPosts, setSavedPosts] = useState();
 
-  // const getSavedPostsHandler = () => {
-  //   setUserPosts();
-  //   getSavedPosts().then((res) => setSavedPosts(res));
-  // };
-
   const getSavedPostsHandler = useCallback(() => {
+    if (savedPosts) return;
     setUserPosts();
     getSavedPosts().then((res) => setSavedPosts(res));
-  }, [setUserPosts, getSavedPosts]);
-  // const getUserPostsHandler = () => {
-  //   setSavedPosts();
-  //   getPostsByUsername(user).then((res) => setUserPosts(res));
-  // };
+  }, [setUserPosts, getSavedPosts, savedPosts]);
 
   const getUserPostsHandler = useCallback(() => {
-    getSavedPosts();
+    if (!profileOwner || userPosts) return;
     setSavedPosts();
     getPostsByUsername(user).then((res) => setUserPosts(res));
-  }, [getSavedPosts, getPostsByUsername, user]);
+  }, [getPostsByUsername, setUserPosts, user, userPosts, profileOwner]);
 
   useEffect(() => {
-    getUserPostsHandler();
-  }, [getUserPostsHandler]);
+    getPostsByUsername(user).then((res) => setUserPosts(res));
+  }, [getPostsByUsername, user]);
   return (
     <PhotoGridWrapper>
       <hr />
@@ -107,6 +99,7 @@ const PhotoGrid = ({
 
 const mapStateToProps = (state) => ({
   user: state.user.currentUser.username,
+  authUser: state.auth.user.username,
 });
 
 export default connect(mapStateToProps, { getSavedPosts, getPostsByUsername })(

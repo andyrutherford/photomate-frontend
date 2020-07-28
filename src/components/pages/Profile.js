@@ -32,13 +32,13 @@ const Profile = ({
     });
   }, [getUserById, username]);
 
-  // // cleanup
-  // useEffect(() => {
-  //   return () => clearCurrentUser();
-  // }, [clearCurrentUser]);
-  // useEffect(() => {
-  //   return () => clearCurrentPosts();
-  // }, [clearCurrentPosts]);
+  // cleanup
+  useEffect(() => {
+    return () => clearCurrentUser();
+  }, []);
+  useEffect(() => {
+    return () => clearCurrentPosts();
+  }, []);
 
   if (notFound) return <h1>User not found.</h1>;
   if (userLoading) return <Spinner />;
