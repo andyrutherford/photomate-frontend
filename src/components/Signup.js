@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { signupUser } from '../actions/auth-actions';
+import { EyeIcon } from '../components/Icons';
 
 import Button from '../styles/Button';
 import logo from '../assets/logo.svg';
@@ -56,6 +57,7 @@ const SignupWrapper = styled.div`
     form {
     display: flex;
     flex-direction: column;
+    position: relative;
     }
 
     input { 
@@ -106,6 +108,7 @@ const Signup = ({ isAuthenticated, signupUser }) => {
     password: '',
   });
   const [formValid, setFormValid] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Form validation
   useEffect(() => {
@@ -140,6 +143,10 @@ const Signup = ({ isAuthenticated, signupUser }) => {
       email: Math.floor(Math.random() * 1000000) + 1 + '@gmail.com',
       password: '123456',
     });
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   if (isAuthenticated) {
@@ -181,11 +188,18 @@ const Signup = ({ isAuthenticated, signupUser }) => {
               value={formData.username}
             />
             <input
-              type='password'
-              name='password'
               onChange={onChange}
+              name='password'
+              type={showPassword ? 'text' : 'password'}
               placeholder='Password'
               value={formData.password}
+            />
+            <EyeIcon
+              style={{ position: 'absolute', top: '62%', right: '15%' }}
+              cursor='pointer'
+              size='24'
+              stroke={showPassword ? '1.5' : '1'}
+              onClick={toggleShowPassword}
             />
             <Button
               className='signup-btn'

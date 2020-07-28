@@ -212,7 +212,7 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
               value={formData.password}
             />
             <EyeIcon
-              style={{ position: 'absolute', top: '38%', right: '16%' }}
+              style={{ position: 'absolute', top: '38%', right: '15%' }}
               cursor='pointer'
               size='24'
               stroke={showPassword ? '1.5' : '1'}
