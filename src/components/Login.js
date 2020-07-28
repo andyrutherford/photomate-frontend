@@ -7,7 +7,7 @@ import { loginUser, githubAuth } from '../actions/auth-actions';
 
 import Loading from '../components/pages/Loading';
 import GithubLoginButton from './GithubLoginButton';
-import { GithubIcon } from '../components/Icons';
+import { GithubIcon, EyeIcon } from '../components/Icons';
 import Button from '../styles/Button';
 import iphone from '../assets/iphone.png';
 import logo from '../assets/logo.svg';
@@ -61,6 +61,7 @@ const LoginWrapper = styled.div`
 form {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 input { 
@@ -131,6 +132,7 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
   });
   const [formValid, setFormValid] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const code = params.get('code');
@@ -172,6 +174,10 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
     });
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   if (isAuthenticated) {
     return <Redirect to='/' />;
   }
@@ -201,9 +207,16 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
             <input
               onChange={onChange}
               name='password'
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               placeholder='Password'
               value={formData.password}
+            />
+            <EyeIcon
+              style={{ position: 'absolute', top: '38%', right: '16%' }}
+              cursor='pointer'
+              size='24'
+              stroke={showPassword ? '1.5' : '1'}
+              onClick={toggleShowPassword}
             />
             <Button
               className='login-btn'
