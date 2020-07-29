@@ -61,6 +61,7 @@ const Profile = ({
             followerCount={currentUser.followerCount}
             profileOwner={profileOwner}
             isFollowing={isFollowing}
+            verified={currentUser.verified}
           />
           <PhotoGrid profileOwner={profileOwner} />
         </>

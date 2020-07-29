@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Modal from '../components/modal/Modal';
 import FollowerFollowingListItem from './FollowerFollowingListItem';
 import { GearIcon, UserCheckIcon } from '../components/Icons';
+import verifiedBadge from '../assets/verified.png';
 import Avatar from '../styles/Avatar';
 import Button from '../styles/Button';
 
@@ -46,18 +47,14 @@ const ProfileHeaderWrapper = styled.div`
     flex-direction: row;
   }
 
-  .profile-info-primary button {
-    margin: auto 0 auto 20px;
+  .verified-badge {
+    height: 20px;
+    width: 20px;
+    margin: 10px 0 0 10px;
   }
 
-  .edit-profile-btn {
-    background-color: transparent;
-    border-radius: 4px;
-    border: 1px solid lightgrey;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 4px 9px;
-    height: 30px;
+  .profile-info-primary button {
+    margin: auto 0 auto 20px;
   }
 
   .profile-info-secondary {
@@ -87,6 +84,7 @@ const ProfileHeader = ({
   profileOwner,
   followUser,
   isFollowing,
+  verified,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
@@ -125,6 +123,7 @@ const ProfileHeader = ({
       <div className='profile-info'>
         <div className='profile-info-primary'>
           <h1>{username}</h1>
+          {verified && <img src={verifiedBadge} className='verified-badge' />}
           {profileOwner ? (
             <>
               <Button secondary onClick={() => history.push('/accounts/edit')}>
