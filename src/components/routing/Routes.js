@@ -11,7 +11,7 @@ import Profile from '../pages/Profile';
 import Settings from '../pages/Settings';
 import Post from '../pages/Post';
 import Loading from '../pages/Loading';
-import Verification from '../pages/Verification';
+import ConfirmVerification from '../pages/ConfirmVerification';
 
 const ContainerWrapper = styled.div`
   width: 935px;
@@ -41,8 +41,8 @@ const Routes = ({ loading }) => {
           <PrivateRoute exact path='/' component={Dashboard} />{' '}
           <PrivateRoute
             exact
-            path='/verify-user/:token'
-            component={Verification}
+            path='/verify/:token'
+            component={ConfirmVerification}
           />
           <PrivateRoute exact path='/:username' component={Profile} />
           <PrivateRoute exact path='/accounts/edit' component={Settings} />

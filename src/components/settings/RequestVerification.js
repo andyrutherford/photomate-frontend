@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Button from '../../styles/Button';
 
-import { requestVerification } from '../../actions/user-actions';
+import { requestVerify } from '../../utils/verification';
 
 const RequestVerificationWrapper = styled.div`
   .form-group {
@@ -20,7 +20,7 @@ const RequestVerificationWrapper = styled.div`
   }
 `;
 
-const RequestVerification = ({ authUser, requestVerification }) => {
+const RequestVerification = ({ authUser }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -32,7 +32,7 @@ const RequestVerification = ({ authUser, requestVerification }) => {
     }
     setLoading(true);
     try {
-      await requestVerification(email);
+      await requestVerify(email);
       setMessage('Please check your email for further instructions.');
       setLoading(false);
     } catch (error) {
@@ -89,6 +89,4 @@ const mapStateToProps = (state) => ({
   authUser: state.auth.user.email,
 });
 
-export default connect(mapStateToProps, { requestVerification })(
-  RequestVerification
-);
+export default connect(mapStateToProps)(RequestVerification);
