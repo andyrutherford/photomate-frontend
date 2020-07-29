@@ -40,10 +40,6 @@ const SettingsFormWrapper = styled.form`
     margin-bottom: 16px;
   }
 
-  .form-label {
-    margin-left: auto;
-  }
-
   .form-group button {
     margin-left: auto;
   }

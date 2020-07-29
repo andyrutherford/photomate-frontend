@@ -139,3 +139,12 @@ export const followUser = (username) => async (dispatch) => {
     });
   }
 };
+
+export const requestVerification = (email) => async (dispatch) => {
+  try {
+    await api.put('/mail/verify', { email });
+  } catch (error) {
+    console.log(error.response);
+    throw error;
+  }
+};

@@ -8,7 +8,7 @@ import Button from '../../styles/Button';
 
 import SettingsForm from '../settings/SettingsForm';
 import ChangePassword from '../settings/ChangePassword';
-import Verification from '../settings/Verification';
+import RequestVerification from '../settings/RequestVerification';
 
 const SettingsWrapper = styled.div`
   border: 0.5px solid lightgray;
@@ -85,7 +85,7 @@ const Settings = ({ getProfile, updateProfile, user }) => {
           <SettingsForm user={user} updateProfile={updateProfile} />
         )}
         {tab === 2 && <ChangePassword />}
-        {tab === 3 && <Verification />}
+        {tab === 3 && <RequestVerification />}
       </div>
     </SettingsWrapper>
   );
