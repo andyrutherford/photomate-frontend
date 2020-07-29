@@ -1,21 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { getProfile, updateProfile } from '../../actions/user-actions';
+import Button from '../../styles/Button';
 
-import SettingsForm from '../SettingsForm';
+import SettingsForm from '../settings/SettingsForm';
+import ChangePassword from '../settings/ChangePassword';
+import Verification from '../settings/Verification';
 
 const SettingsWrapper = styled.div`
   border: 0.5px solid lightgray;
   border-radius: 3px;
   background-color: white;
   display: flex;
-
-  li {
-    list-style: none;
-  }
 
   select,
   input {
@@ -24,16 +23,8 @@ const SettingsWrapper = styled.div`
     font-size: 16px;
     height: 32px;
     padding: 0 10px;
-    width: 280px;
+    width: 333px;
     margin-left: 30px;
-  }
-
-  .avatar {
-    height: 42px;
-    width: 42px;
-    border-radius: 100px;
-    object-fit: cover;
-    margin: auto 0 auto auto;
   }
 
   .settings-menu {
@@ -41,34 +32,62 @@ const SettingsWrapper = styled.div`
   }
   .settings-contents {
     border-left: 0.5px solid lightgrey;
-    padding: 36px 45px;
+    padding: 36px 100px 36px;
     width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    flex-basis: 0px;
+
+    .settings-menu {
+      flex-basis: 0px;
+    }
+    .settings-contents {
+      padding: 20px;
+    }
   }
 `;
 
-const Settings = ({ getProfile, updateProfile, user, isAuthenticated }) => {
+const Settings = ({ getProfile, updateProfile, user }) => {
+  const [tab, setTab] = useState(1);
+
   useEffect(() => {
     getProfile();
   }, [getProfile]);
 
-  return isAuthenticated ? (
+  return (
     <SettingsWrapper>
       <div className='settings-menu'>
         <ul>
-          <li>Edit Profile</li>
-          <li>Change Password</li>
+          <li>
+            <Button link onClick={() => setTab(1)}>
+              Edit Profile
+            </Button>
+          </li>
+          <li>
+            <Button link onClick={() => setTab(2)}>
+              Change Password
+            </Button>
+          </li>
+          <li>
+            <Button link onClick={() => setTab(3)}>
+              Request Verification
+            </Button>
+          </li>
         </ul>
       </div>
       <div className='settings-contents'>
-        {user && user.profile ? (
+        {/* {user && user.profile && (
           <SettingsForm user={user} updateProfile={updateProfile} />
-        ) : (
-          'Loading'
+        )} */}
+        {tab === 1 && user && user.profile && (
+          <SettingsForm user={user} updateProfile={updateProfile} />
         )}
+        {tab === 2 && <ChangePassword />}
+        {tab === 3 && <Verification />}
       </div>
     </SettingsWrapper>
-  ) : (
-    <Redirect to='/login' />
   );
 };
 

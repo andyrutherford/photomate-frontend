@@ -11,6 +11,7 @@ import Profile from '../pages/Profile';
 import Settings from '../pages/Settings';
 import Post from '../pages/Post';
 import Loading from '../pages/Loading';
+import ChangePassword from '../settings/ChangePassword';
 
 const ContainerWrapper = styled.div`
   width: 935px;

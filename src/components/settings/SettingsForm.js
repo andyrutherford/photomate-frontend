@@ -2,16 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import Button from '../styles/Button';
-import placeholderAvatar from '../assets/avatar.jpg';
-import spinner from './layout/spinner.gif';
+import Button from '../../styles/Button';
+import placeholderAvatar from '../../assets/avatar.jpg';
+import spinner from '../layout/spinner.gif';
+import Avatar from '../../styles/Avatar';
 
-import { changeAvatar } from '../actions/user-actions';
+import { changeAvatar } from '../../actions/user-actions';
 
 const SettingsFormWrapper = styled.form`
   .settings-form-header {
-    width: 280px;
+    width: 333px;
     margin-left: 30px;
+  }
+
+  .avatar {
+    margin: auto 0 auto auto;
   }
 
   .settings-form-header > div {
@@ -107,7 +112,12 @@ export const SettingsForm = ({
   return (
     <SettingsFormWrapper onSubmit={onSubmit}>
       <div className='form-group'>
-        <img className='avatar' src={loading ? spinner : avatar} alt='avatar' />
+        <Avatar
+          md
+          className='avatar'
+          src={loading ? spinner : avatar}
+          alt='avatar'
+        />
         <div className='settings-form-header'>
           <h1>{formData.username}</h1>
           <label htmlFor='change-avatar-link'>
@@ -123,17 +133,16 @@ export const SettingsForm = ({
       </div>
       <div className='form-group'>
         <label className='form-label'>Name</label>
-        <span>
-          <input
-            disabled
-            type='text'
-            placeholder='Name'
-            name='name'
-            value={formData.name}
-            onChange={onChange}
-          />
-        </span>
+        <input
+          disabled
+          type='text'
+          placeholder='Name'
+          name='name'
+          value={formData.name}
+          onChange={onChange}
+        />
       </div>
+
       <div className='form-group'>
         <label className='form-label'>Username</label>
         <input
