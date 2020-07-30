@@ -42,7 +42,7 @@ export const getFeed = () => async (dispatch) => {
       },
     });
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({ type: GET_FEED_FAIL });
   }
 };
@@ -55,7 +55,7 @@ export const getPostsByUsername = (username) => async (dispatch) => {
     });
     return res.data.posts;
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: GET_POSTS_FAIL,
     });
@@ -71,7 +71,7 @@ export const getPostById = (postId) => async (dispatch) => {
       payload: res.data.post,
     });
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: GET_POST_BY_ID_FAIL,
     });
@@ -112,7 +112,7 @@ export const uploadImage = (file, token) => async (dispatch) => {
 
     return res.data.image;
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: UPLOAD_PHOTO_FAIL,
     });
@@ -127,7 +127,7 @@ export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
     dispatch(getFeed());
   } catch (error) {
     dispatch({ type: CREATE_POST_FAIL });
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
   }
 };
 
@@ -139,7 +139,7 @@ export const deletePost = (postId) => async (dispatch) => {
     toast('Post deleted.');
   } catch (error) {
     dispatch({ type: DELETE_POST_FAIL });
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
   }
 };
 
@@ -152,7 +152,7 @@ export const addComment = (postId, text, from) => async (dispatch) => {
       payload: { postId, comment: res.data.comment },
     });
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: ADD_COMMENT_FAIL,
     });
@@ -172,6 +172,7 @@ export const likePost = (postId, action) => async (dispatch) => {
       },
     });
   } catch (error) {
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: LIKE_POST_FAIL,
     });
@@ -188,7 +189,7 @@ export const getSavedPosts = () => async (dispatch) => {
     });
     return res.data.savedPosts;
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: GET_SAVED_POSTS_FAIL,
     });
@@ -205,7 +206,7 @@ export const savePost = (postId, action) => async (dispatch) => {
       payload: res.data.user.savedPosts,
     });
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: SAVE_POST_FAIL,
     });

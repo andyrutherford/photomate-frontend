@@ -26,7 +26,7 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: LOAD_USER_FAIL,
     });
-    console.log(error);
+    toast('A problem occurred.  Please try again.');
     console.log(error.response.data.message);
   }
 };
@@ -47,8 +47,7 @@ export const loginUser = (userData) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAIL,
     });
-    console.log(error.response.data.message);
-    alert(error.response.data.message);
+    toast('Login failed.  Please try again.');
   }
 };
 
@@ -70,8 +69,7 @@ export const signupUser = (userData) => async (dispatch) => {
     dispatch({
       type: SIGNUP_FAIL,
     });
-    console.log(error.response.data.message);
-    alert(error.response.data.message);
+    toast('A problem occurred.  Please try again.');
   }
 };
 
@@ -94,6 +92,6 @@ export const githubAuth = (code) => async (dispatch) => {
     toast('You have successfully logged in with Github.');
   } catch (error) {
     dispatch({ type: GITHUB_AUTH_FAIL });
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
   }
 };

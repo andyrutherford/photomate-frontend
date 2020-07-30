@@ -77,9 +77,6 @@ const Settings = ({ getProfile, updateProfile, user }) => {
         </ul>
       </div>
       <div className='settings-contents'>
-        {/* {user && user.profile && (
-          <SettingsForm user={user} updateProfile={updateProfile} />
-        )} */}
         {tab === 1 && user && user.profile && (
           <SettingsForm user={user} updateProfile={updateProfile} />
         )}

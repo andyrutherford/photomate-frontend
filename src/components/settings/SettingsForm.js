@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 import Button from '../../styles/Button';
 import placeholderAvatar from '../../assets/avatar.jpg';
@@ -67,6 +68,7 @@ export const SettingsForm = ({
     phoneNumber: '',
     website: '',
   });
+  const history = useHistory();
 
   // Populate form with user data from props
   useEffect(() => {
@@ -87,7 +89,7 @@ export const SettingsForm = ({
       try {
         await changeAvatar(e.target.files[0], token);
       } catch (error) {
-        alert('An error occurred.  Please try again.');
+        throw error;
       }
     }
   };
@@ -102,6 +104,7 @@ export const SettingsForm = ({
   const onSubmit = (e) => {
     e.preventDefault();
     updateProfile(formData);
+    history.push(`/${username}`);
   };
 
   // updateProfile route in backend only accepts profile fields

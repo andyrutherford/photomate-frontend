@@ -33,7 +33,7 @@ export const getProfile = () => async (dispatch) => {
     dispatch({
       type: GET_PROFILE_FAIL,
     });
-    console.log(error.response.data.message);
+    toast('A problem occurred.  Please try again.');
   }
 };
 
@@ -49,7 +49,7 @@ export const getUserById = (userId) => async (dispatch) => {
     dispatch({
       type: GET_USER_PROFILE_BY_ID_FAIL,
     });
-    console.log(error.response.data.message);
+    toast('A problem occurred.  Please try again.');
     return error.response.data.message;
   }
 };
@@ -67,12 +67,12 @@ export const updateProfile = (profileData) => async (dispatch) => {
       type: UPDATE_PROFILE_SUCCESS,
       payload: res.data.user.profile,
     });
-    toast('Your profile has been updated.');
+    toast.success('Your profile has been updated.');
   } catch (error) {
     dispatch({
       type: UPDATE_PROFILE_FAIL,
     });
-    console.log(error.response.data.message);
+    toast('A problem occurred.  Please try again.');
   }
 };
 
@@ -98,7 +98,7 @@ export const changeAvatar = (avatar, token) => async (dispatch) => {
     });
     toast('Your avatar has been changed.');
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: UPDATE_AVATAR_FAIL,
     });
@@ -113,7 +113,7 @@ export const getSuggestedUsers = () => async (dispatch) => {
       payload: res.data.suggestedUsers,
     });
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: GET_SUGGESTED_USERS_FAIL,
     });
@@ -139,7 +139,7 @@ export const followUser = (username) => async (dispatch) => {
       } ${username}.`
     );
   } catch (error) {
-    console.log(error.message);
+    toast('A problem occurred.  Please try again.');
     dispatch({
       type: FOLLOW_UNFOLLOW_USER_FAIL,
     });
