@@ -20,6 +20,7 @@ import {
 } from './types';
 
 import { loadUser } from './auth-actions';
+import { toast } from 'react-toastify';
 
 export const getProfile = () => async (dispatch) => {
   try {
@@ -54,7 +55,6 @@ export const getUserById = (userId) => async (dispatch) => {
 };
 
 export const clearCurrentUser = () => (dispatch) => {
-  console.log('clear');
   dispatch({
     type: CLEAR_CURRENT_USER,
   });
@@ -67,7 +67,7 @@ export const updateProfile = (profileData) => async (dispatch) => {
       type: UPDATE_PROFILE_SUCCESS,
       payload: res.data.user.profile,
     });
-    alert('Your profile has been updated.');
+    toast('Your profile has been updated.');
   } catch (error) {
     dispatch({
       type: UPDATE_PROFILE_FAIL,
@@ -96,6 +96,7 @@ export const changeAvatar = (avatar, token) => async (dispatch) => {
       type: UPDATE_AVATAR_SUCCESS,
       payload: res.data.avatar,
     });
+    toast('Your avatar has been changed.');
   } catch (error) {
     console.log(error.message);
     dispatch({
@@ -131,7 +132,12 @@ export const followUser = (username) => async (dispatch) => {
         type: UNFOLLOW_USER_SUCCESS,
       });
     }
-    return dispatch(getUserById(username));
+    dispatch(getUserById(username));
+    toast(
+      `You ${
+        res.data.type === 'follow' ? 'are now following' : 'unfollowed'
+      } ${username}.`
+    );
   } catch (error) {
     console.log(error.message);
     dispatch({

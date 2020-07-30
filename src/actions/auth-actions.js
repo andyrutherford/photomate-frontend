@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import api from '../utils/api';
 
 import {
@@ -40,6 +42,7 @@ export const loginUser = (userData) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+    toast('You have successfully logged in.');
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
@@ -62,7 +65,7 @@ export const signupUser = (userData) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
-    alert('Signup successful');
+    toast('You have successfully created an account.');
   } catch (error) {
     dispatch({
       type: SIGNUP_FAIL,
@@ -76,7 +79,7 @@ export const logoutUser = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
-  console.log('You have been logged out.');
+  toast('You have logged out.');
 };
 
 export const githubAuth = (code) => async (dispatch) => {
@@ -88,6 +91,7 @@ export const githubAuth = (code) => async (dispatch) => {
     });
     dispatch({ type: GITHUB_AUTH_SUCCESS, payload: res.data });
     dispatch(loadUser());
+    toast('You have successfully logged in with Github.');
   } catch (error) {
     dispatch({ type: GITHUB_AUTH_FAIL });
     console.log(error.message);

@@ -29,6 +29,7 @@ import {
   UNSAVE_POST_SUCCESS,
 } from './types';
 import { getUserById } from './user-actions';
+import { toast } from 'react-toastify';
 
 export const getFeed = () => async (dispatch) => {
   try {
@@ -134,7 +135,8 @@ export const deletePost = (postId) => async (dispatch) => {
   try {
     await api.delete(`/post/${postId}`);
     dispatch({ type: DELETE_POST_SUCCESS, payload: postId });
-    return dispatch(getFeed());
+    dispatch(getFeed());
+    toast('Post deleted.');
   } catch (error) {
     dispatch({ type: DELETE_POST_FAIL });
     console.log(error.message);

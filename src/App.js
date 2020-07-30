@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { default as GlobalStyle } from './styles/Global';
 import Login from './components/Login';
@@ -22,6 +24,8 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <GlobalStyle />
+        <ToastContainer position='bottom-right' autoClose={3000} />
+
         <Switch>
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />

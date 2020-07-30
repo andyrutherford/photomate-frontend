@@ -36,6 +36,7 @@ const Routes = ({ loading }) => {
   return (
     <section>
       <Navbar />
+
       <ContainerWrapper>
         <Switch>
           <PrivateRoute exact path='/' component={Dashboard} />{' '}
