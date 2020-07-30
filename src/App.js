@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { default as GlobalStyle } from './styles/Global';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import ForgotPassword from './components/pages/ForgotPassword';
+
 import Routes from './components/routing/Routes';
 
 import setAuthToken from './utils/setAuthToken';
@@ -29,6 +31,7 @@ const App = () => {
         <Switch>
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
+          <Route exact path='/forgot-password' component={ForgotPassword} />
           <Route component={Routes} />
         </Switch>
       </Router>

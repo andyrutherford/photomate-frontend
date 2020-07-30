@@ -26,7 +26,6 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: LOAD_USER_FAIL,
     });
-    toast('A problem occurred.  Please try again.');
     console.log(error.response.data.message);
   }
 };
