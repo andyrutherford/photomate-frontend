@@ -95,6 +95,7 @@ const ProfileHeader = ({
       return following.map((user) => (
         <FollowerFollowingListItem
           following
+          key={user._id}
           profile={user}
           onCancel={() => setShowModal(false)}
         />
@@ -103,6 +104,7 @@ const ProfileHeader = ({
       return followers.map((user) => (
         <FollowerFollowingListItem
           followers
+          key={user._id}
           profile={user}
           onCancel={() => setShowModal(false)}
         />
@@ -123,7 +125,13 @@ const ProfileHeader = ({
       <div className='profile-info'>
         <div className='profile-info-primary'>
           <h1>{username}</h1>
-          {verified && <img src={verifiedBadge} className='verified-badge' />}
+          {verified && (
+            <img
+              src={verifiedBadge}
+              className='verified-badge'
+              alt='verified'
+            />
+          )}
           {profileOwner ? (
             <>
               <Button secondary onClick={() => history.push('/accounts/edit')}>

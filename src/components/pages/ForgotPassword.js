@@ -120,7 +120,7 @@ const ForgotPassword = () => {
       } catch (error) {
         setLoading(false);
         if (error.response.status === 400 || error.response.status === 404)
-          toast.error(error.response.data.message);
+          toast.error(error.response.data.message, { autoClose: 6000 });
         else {
           toast.error(
             'A problem occurred.  Please try again in a few minutes.'
@@ -150,10 +150,10 @@ const ForgotPassword = () => {
               onClick={onSubmit}
               disabled={disabled}
             >
-              {disabled ? 'Email sent' : 'Submit'}
+              {message ? 'Email Sent' : loading ? 'Please Wait' : 'Submit'}
             </Button>
           </form>
-          {message && <h3 style={{ textAlign: 'center' }}>{message}</h3>}
+          {message && <h2 style={{ textAlign: 'center' }}>{message}</h2>}
         </div>
         <div>
           <p>

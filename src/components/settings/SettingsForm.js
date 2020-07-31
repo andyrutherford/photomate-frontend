@@ -39,6 +39,11 @@ const SettingsFormWrapper = styled.form`
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
+    align-items: center;
+  }
+
+  .form-group label {
+    margin-left: auto;
   }
 
   .form-group button {
@@ -154,6 +159,17 @@ export const SettingsForm = ({
         />
       </div>
       <div className='form-group'>
+        <label className='form-label'>Email</label>
+        <input
+          type='email'
+          placeholder='email'
+          name='email'
+          disabled
+          value={formData.email}
+          onChange={onChange}
+        />
+      </div>
+      <div className='form-group'>
         <label className='form-label'>Website</label>
         <input
           type='text'
@@ -174,18 +190,7 @@ export const SettingsForm = ({
         />
       </div>
       <div className='form-group'>
-        <label className='form-label'>Email</label>
-        <input
-          type='email'
-          placeholder='email'
-          name='email'
-          disabled
-          value={formData.email}
-          onChange={onChange}
-        />
-      </div>
-      <div className='form-group'>
-        <label className='form-label'>Phone Number</label>
+        <label className='form-label'>Phone</label>
         <input
           type='number'
           placeholder=''

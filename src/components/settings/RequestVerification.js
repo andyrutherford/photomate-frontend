@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import Button from '../../styles/Button';
+import verifiedBadge from '../../assets/verified.png';
 
 import { requestVerify } from '../../utils/verification';
 import { toast } from 'react-toastify';
@@ -18,6 +19,12 @@ const RequestVerificationWrapper = styled.div`
 
   .form-group button {
     margin-left: auto;
+  }
+
+  .verified-badge {
+    height: 20px;
+    width: 20px;
+    margin: 10px 0 0 5px;
   }
 `;
 
@@ -45,7 +52,10 @@ const RequestVerification = ({ authUser, isVerified }) => {
 
   return (
     <RequestVerificationWrapper>
-      <h1>Verified Badges</h1>
+      <h1>
+        Verified Badges{' '}
+        <img src={verifiedBadge} className='verified-badge' alt='verified' />
+      </h1>
       <p>
         Verified badges help people more easily find the public figures,
         celebrities and brands they want to follow.

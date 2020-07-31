@@ -26,6 +26,14 @@ const SettingsWrapper = styled.div`
     margin-left: 30px;
   }
 
+  .tab {
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
   .settings-menu {
     flex-basis: 236px;
   }
@@ -59,17 +67,17 @@ const Settings = ({ getProfile, updateProfile, user }) => {
     <SettingsWrapper>
       <div className='settings-menu'>
         <ul>
-          <li>
+          <li className='tab'>
             <Button link onClick={() => setTab(1)}>
               Edit Profile
             </Button>
           </li>
-          <li>
+          <li className='tab'>
             <Button link onClick={() => setTab(2)}>
               Change Password
             </Button>
           </li>
-          <li>
+          <li className='tab'>
             <Button link onClick={() => setTab(3)}>
               Request Verification
             </Button>
@@ -80,8 +88,8 @@ const Settings = ({ getProfile, updateProfile, user }) => {
         {tab === 1 && user && user.profile && (
           <SettingsForm user={user} updateProfile={updateProfile} />
         )}
-        {tab === 2 && <ChangePassword />}
-        {tab === 3 && <RequestVerification />}
+        {tab === 2 && <ChangePassword user={user} />}
+        {tab === 3 && <RequestVerification user={user} />}
       </div>
     </SettingsWrapper>
   );

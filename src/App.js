@@ -10,6 +10,7 @@ import { default as GlobalStyle } from './styles/Global';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import ForgotPassword from './components/pages/ForgotPassword';
+import ResetPassword from './components/pages/ResetPassword';
 
 import Routes from './components/routing/Routes';
 
@@ -32,6 +33,11 @@ const App = () => {
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
           <Route exact path='/forgot-password' component={ForgotPassword} />
+          <Route
+            exact
+            path='/forgot-password/reset'
+            component={ResetPassword}
+          />
           <Route component={Routes} />
         </Switch>
       </Router>

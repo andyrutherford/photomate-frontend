@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 
 import { changePassword } from '../../utils/password';
 
 import Button from '../../styles/Button';
+import Avatar from '../../styles/Avatar';
 
 const ChangePasswordWrapper = styled.div`
   .settings-form-header {
@@ -37,6 +37,7 @@ const ChangePasswordWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
+    align-items: center;
   }
 
   .form-label {
@@ -48,7 +49,7 @@ const ChangePasswordWrapper = styled.div`
   }
 `;
 
-const ChangePassword = () => {
+const ChangePassword = ({ user: { avatar, username } }) => {
   const [formData, setFormData] = useState({
     oldPassword: '',
     newPassword: '',
@@ -94,6 +95,12 @@ const ChangePassword = () => {
 
   return (
     <ChangePasswordWrapper>
+      <div className='form-group'>
+        <Avatar md className='avatar' src={avatar} alt='avatar' />
+        <div className='settings-form-header'>
+          <h1>{username}</h1>
+        </div>
+      </div>
       <div className='form-group'>
         <label className='form-label'>Old Password</label>
         <input
