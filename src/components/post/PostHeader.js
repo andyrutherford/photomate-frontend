@@ -9,7 +9,7 @@ import Avatar from '../../styles/Avatar';
 import { ThreeDotsIcon } from '../../components/Icons';
 
 const PostHeaderWrapper = styled.header`
-  border-bottom: 0.5px solid lightgrey;
+  border-bottom: 0.5px solid #d3d3d3;
   display: flex;
   justify-content: space-between;
   height: 72px;
@@ -78,7 +78,7 @@ const PostHeader = ({ username, avatar, deletePost, postId, postOwner }) => {
                 style={{
                   width: '100%',
                   border: 'none',
-                  borderTop: '1px solid lightgrey',
+                  borderTop: '1px solid #d3d3d3',
                   backgroundColor: 'transparent',
                   minHeight: '48px',
                   fontSize: '14px',

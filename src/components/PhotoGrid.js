@@ -11,7 +11,7 @@ import { getSavedPosts, getPostsByUsername } from '../actions/post-actions';
 
 const PhotoGridWrapper = styled.div`
   hr {
-    border: 0.5px solid lightgrey;
+    border: 0.5px solid #d3d3d3;
     margin-top: 10px;
   }
 

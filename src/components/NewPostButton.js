@@ -11,7 +11,7 @@ import Modal from '../components/modal/Modal';
 const NewPostButtonWrapper = styled.div`
   input.new-post__caption {
     border: none;
-    border-top: 1px solid lightgrey;
+    border-top: 1px solid #d3d3d3;
     font-size: 14px;
     height: 56px;
     padding: 0 16px;

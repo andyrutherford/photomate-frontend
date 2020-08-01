@@ -12,12 +12,12 @@ import RequestVerification from '../settings/RequestVerification';
 const SettingsWrapper = styled.div`
   border: 0.5px solid lightgray;
   border-radius: 3px;
-  background-color: white;
+  background-color: #fff;
   display: flex;
 
   select,
   input {
-    border: 1px solid lightgrey;
+    border: 1px solid #d3d3d3;
     border-radius: 3px;
     font-size: 16px;
     height: 32px;
@@ -27,7 +27,7 @@ const SettingsWrapper = styled.div`
   }
 
   .tab {
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid #d3d3d3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,7 +38,7 @@ const SettingsWrapper = styled.div`
     flex-basis: 236px;
   }
   .settings-contents {
-    border-left: 0.5px solid lightgrey;
+    border-left: 0.5px solid #d3d3d3;
     padding: 36px 100px 36px;
     width: 100%;
   }

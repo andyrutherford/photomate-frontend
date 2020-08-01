@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const AddComment = styled.div`
   input {
     border: none;
-    border-top: 0.5px solid lightgrey;
+    border-top: 0.5px solid #d3d3d3;
     font-size: 14px;
     height: 56px;
     padding: 0 16px;

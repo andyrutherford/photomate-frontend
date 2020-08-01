@@ -9,14 +9,13 @@ import Avatar from '../styles/Avatar';
 import { HomeIcon, LogoutIcon } from './Icons';
 import NewPostButton from '../components/NewPostButton';
 import Search from '../components/Search';
-import logo from '../assets/logo.svg';
 
 const NavbarWrapper = styled.div`
-  background-color: white;
+  background-color: #fff;
   position: fixed;
   top: 0;
   width: 100%;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid #d3d3d3;
   margin-bottom: 1rem;
 
   nav {
@@ -25,11 +24,6 @@ const NavbarWrapper = styled.div`
     align-items: center;
     margin: 0 auto;
     width: 975px;
-  }
-
-  .logo {
-    width: 103px;
-    margin: 10px 0 0;
   }
 
   ul {
@@ -42,6 +36,10 @@ const NavbarWrapper = styled.div`
 
   li {
     margin-left: 1.5rem;
+  }
+
+  .logo {
+    font-size: 2.5rem;
   }
 
   @media screen and (max-width: 1070px) {
@@ -62,7 +60,8 @@ const Navbar = ({ username, avatar, logoutUser }) => {
     <NavbarWrapper>
       <nav>
         <Link to='/'>
-          <img className='logo' src={logo} alt='Instagram' />
+          {/* <img className='logo' src={logo} alt='Instagram' /> */}
+          <h1 className='logo'>Photomate</h1>
         </Link>
         <Search />
 

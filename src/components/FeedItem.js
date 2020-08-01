@@ -9,16 +9,16 @@ import FeedItemInfo from './FeedItemInfo';
 import FeedItemAddComment from './FeedItemAddComment';
 
 const FeedItemWrapper = styled.article`
-  background-color: white;
-  border: 1px solid lightgrey;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
   border-radius: 3px;
-
   margin: auto;
   margin-bottom: 60px;
   width: 615px;
 
   @media screen and (max-width: 620px) {
     width: 100vw;
+    margin-bottom: 30px;
   }
 `;
 

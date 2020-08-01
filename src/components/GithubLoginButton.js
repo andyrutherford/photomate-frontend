@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { GithubIcon } from '../components/Icons';
 
 const GithubLoginButtonWrapper = styled.div`
-  border: 1px solid lightgrey;
+  border: 1px solid #d3d3d3;
   border-radius: 4px;
   display: flex;
   justify-content: center;

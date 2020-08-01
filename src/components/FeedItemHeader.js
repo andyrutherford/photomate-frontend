@@ -14,7 +14,7 @@ const FeedItemHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 60px;
-  border-bottom: 0.5px solid lightgrey;
+  border-bottom: 0.5px solid #d3d3d3;
   padding: 8px 12px;
 
   * {
@@ -86,7 +86,7 @@ const FeedItemHeader = ({
                 style={{
                   width: '100%',
                   border: 'none',
-                  borderTop: '1px solid lightgrey',
+                  borderTop: '1px solid #d3d3d3',
                   backgroundColor: 'transparent',
                   minHeight: '48px',
                   fontSize: '14px',
@@ -101,7 +101,7 @@ const FeedItemHeader = ({
                 style={{
                   width: '100%',
                   border: 'none',
-                  borderTop: '1px solid lightgrey',
+                  borderTop: '1px solid #d3d3d3',
                   backgroundColor: 'transparent',
                   minHeight: '48px',
                   fontSize: '14px',

@@ -7,7 +7,7 @@ import { HeartIcon, MessageIcon as CommentIcon } from '../components/Icons';
 const PhotoGridItemWrapper = styled.figure`
   width: 300px;
   height: 300px;
-  background-color: white;
+  background-color: #fff;
 
   position: relative;
   cursor: pointer;
@@ -26,8 +26,8 @@ const PhotoGridItemWrapper = styled.figure`
     top: 0;
     left: 0;
     opacity: 0;
-    color: white;
-    fill: white;
+    color: #fff;
+    fill: #fff;
   }
 
   .img-overlay:hover {
@@ -47,7 +47,7 @@ const PhotoGridItemWrapper = styled.figure`
   }
 
   .img-overlay-content div {
-    color: white;
+    color: #fff;
     display: flex;
     align-items: center;
     font-weight: bold;

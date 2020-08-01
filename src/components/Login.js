@@ -10,7 +10,6 @@ import GithubLoginButton from './GithubLoginButton';
 import { GithubIcon, EyeIcon } from '../components/Icons';
 import Button from '../styles/Button';
 import iphone from '../assets/iphone.png';
-import logo from '../assets/logo.svg';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -19,7 +18,7 @@ const LoginWrapper = styled.div`
   justify-content: center;
   margin: 30px auto 0;
   max-width: 935px;
-  padding-botto: 44px;
+  padding-bottom: 44px;
   width: 100%;
 
   .login-left {
@@ -44,18 +43,16 @@ const LoginWrapper = styled.div`
   }
 
   .login-right > div {
-    background-color: white;
-    border: 1px solid lightgrey;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
     border-radius: 1px;
     margin: 0 0 10px;
     padding: 10px 0;
   }
 
   .logo {
-    display: block;
-    height: 65px;
-    width: 180px;
-    margin: 18px auto 12px;  
+    text-align: center;
+    font-size: 3.5rem;
 }
 
 form {
@@ -66,7 +63,7 @@ form {
 
 input { 
   background-color: #fafafa;
-  border: 1px solid lightgrey;
+  border: 1px solid #d3d3d3;
   border-radius: 3px;
   font-size: 12px;
   margin: 0 auto 10px;;
@@ -79,6 +76,8 @@ button {
   width: 268px;
   margin: auto auto 20px;
   }
+
+
 
 .separator {
     display: flex;
@@ -189,7 +188,7 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
       </div>
       <div className='login-right'>
         <div>
-          <img className='logo' src={logo} alt='logo' />
+          <h1 className='logo'>Photomate</h1>
           <div style={{ display: 'block', textAlign: 'center' }}>
             Test account:{' '}
             <button onClick={testAcct} style={{ width: '50px' }}>

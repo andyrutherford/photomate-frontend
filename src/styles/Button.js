@@ -18,7 +18,7 @@ const Button = styled.button`
     css`
       color: black;
       background-color: transparent;
-      border: 1px solid lightgrey;
+      border: 1px solid #d3d3d3;
     `}
   ${(props) =>
     props.link &&

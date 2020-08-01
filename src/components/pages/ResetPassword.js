@@ -9,7 +9,6 @@ import { EyeIcon } from '../../components/Icons';
 import { requestResetPassword, resetPassword } from '../../utils/password';
 
 import Button from '../../styles/Button';
-import logo from '../../assets/logo.svg';
 
 const ResetPasswordWrapper = styled.div`
   display: flex;
@@ -33,19 +32,17 @@ const ResetPasswordWrapper = styled.div`
   }
 
   .reset-password > div {
-    background-color: white;
-    border: 1px solid lightgrey;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
     border-radius: 1px;
     margin: 0 0 10px;
     padding: 10px 0;
   }
 
   .logo {
-    display: block;
-    height: 65px;
-    width: 180px;
-    margin: 18px auto 12px;  
-    }
+    text-align: center;
+    font-size: 3.5rem;
+}
 
     h2 {
         color: #8e8e8e;
@@ -64,7 +61,7 @@ const ResetPasswordWrapper = styled.div`
 
     input { 
     background-color: #fafafa;
-    border: 1px solid lightgrey;
+    border: 1px solid #d3d3d3;
     border-radius: 3px;
     font-size: 12px;
     margin: 0 auto 10px;;
@@ -156,7 +153,7 @@ const ResetPassword = () => {
     <ResetPasswordWrapper>
       <div className='reset-password'>
         <div>
-          <img className='logo' src={logo} alt='logo' />
+          <h1 className='logo'>Photomate</h1>
           <h2>Reset your password</h2>
 
           {verified ? (

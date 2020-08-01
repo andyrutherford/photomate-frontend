@@ -23,8 +23,8 @@ const PostWrapper = styled.div`
   display: flex;
 
   .post-right {
-    background-color: white;
-    border: 1px solid lightgrey;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
     display: flex;

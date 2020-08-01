@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import { forgotPassword } from '../../utils/password';
 
 import Button from '../../styles/Button';
-import logo from '../../assets/logo.svg';
 
 const ForgotPasswordWrapper = styled.div`
   display: flex;
@@ -30,19 +29,17 @@ const ForgotPasswordWrapper = styled.div`
   }
 
   .forgot-password > div {
-    background-color: white;
-    border: 1px solid lightgrey;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
     border-radius: 1px;
     margin: 0 0 10px;
     padding: 10px 0;
   }
 
   .logo {
-    display: block;
-    height: 65px;
-    width: 180px;
-    margin: 18px auto 12px;  
-    }
+    text-align: center;
+    font-size: 3.5rem;
+}
 
     h2 {
         color: #8e8e8e;
@@ -61,7 +58,7 @@ const ForgotPasswordWrapper = styled.div`
 
     input { 
     background-color: #fafafa;
-    border: 1px solid lightgrey;
+    border: 1px solid #d3d3d3;
     border-radius: 3px;
     font-size: 12px;
     margin: 0 auto 10px;;
@@ -134,7 +131,7 @@ const ForgotPassword = () => {
     <ForgotPasswordWrapper>
       <div className='forgot-password'>
         <div>
-          <img className='logo' src={logo} alt='logo' />
+          <h1 className='logo'>Photomate</h1>
           <h2>Enter the email address you used when creating your account.</h2>
           <form>
             <input
@@ -143,6 +140,7 @@ const ForgotPassword = () => {
               onChange={(e) => setEmail(e.target.value)}
               style={{ textAlign: 'center' }}
               value={email}
+              placeholder='name@mail.com'
               disabled={disabled}
             />
             <Button

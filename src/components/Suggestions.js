@@ -47,7 +47,7 @@ const SuggestionsWrapper = styled.div`
   footer {
     margin-top: 25px;
     font-size: 12px;
-    color: lightgrey;
+    color: #d3d3d3;
   }
 
   footer ul li {
@@ -81,11 +81,21 @@ const Suggestions = ({ avatar, username, name }) => {
       <footer className='footer'>
         <ul>
           <li>About</li> - <li>Help</li> - <li>Press</li> - <li>API</li> -
-          <li>Jobs</li> - <li>Privacy</li> - <li>Terms </li> -{' '}
+          <li> Jobs</li> - <li>Privacy</li> - <li>Terms </li> -{' '}
           <li>Locations</li> - <li>Top Accounts</li> - <li>Hashtags</li> -{' '}
           <li>Language</li>
         </ul>
-        <span>© 2020 INSTAGRAM FROM FACEBOOK</span>
+        <span>
+          © 2020 PHOTOMATE by{' '}
+          <a
+            style={{ color: 'inherit' }}
+            href='https://github.com/andyrutherford'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Andy
+          </a>
+        </span>
       </footer>
     </SuggestionsWrapper>
   );

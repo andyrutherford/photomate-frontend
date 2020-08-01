@@ -7,7 +7,6 @@ import { signupUser } from '../actions/auth-actions';
 import { EyeIcon } from '../components/Icons';
 
 import Button from '../styles/Button';
-import logo from '../assets/logo.svg';
 
 const SignupWrapper = styled.div`
   display: flex;
@@ -31,18 +30,16 @@ const SignupWrapper = styled.div`
   }
 
   .signup > div {
-    background-color: white;
-    border: 1px solid lightgrey;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
     border-radius: 1px;
     margin: 0 0 10px;
     padding: 10px 0;
   }
 
   .logo {
-    display: block;
-    height: 65px;
-    width: 180px;
-    margin: 18px auto 12px;  
+    text-align: center;
+    font-size: 3.5rem;
     }
 
     h2 {
@@ -62,7 +59,7 @@ const SignupWrapper = styled.div`
 
     input { 
     background-color: #fafafa;
-    border: 1px solid lightgrey;
+    border: 1px solid #d3d3d3;
     border-radius: 3px;
     font-size: 12px;
     margin: 0 auto 10px;;
@@ -157,7 +154,7 @@ const Signup = ({ isAuthenticated, signupUser }) => {
     <SignupWrapper>
       <div className='signup'>
         <div>
-          <img className='logo' src={logo} alt='logo' />
+          <h1 className='logo'>Photomate</h1>
           <h2>Sign up to see photos and videos from your friends.</h2>
           <div style={{ display: 'block', textAlign: 'center' }}>
             Create test account:{' '}

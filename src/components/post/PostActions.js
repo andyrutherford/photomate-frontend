@@ -13,7 +13,7 @@ import {
 import Button from '../../styles/Button';
 
 const PostActionsWrapper = styled.div`
-  border-top: 0.5px solid lightgrey;
+  border-top: 0.5px solid #d3d3d3;
   margin-top: 4px;
   padding: 8px 16px;
 

@@ -20,7 +20,7 @@ const SearchWrapper = styled.div`
 
   input {
     border-radius: 3px;
-    border: 1px solid lightgrey;
+    border: 1px solid #d3d3d3;
     padding: 10px 30px;
     background-color: #fafafa;
   }

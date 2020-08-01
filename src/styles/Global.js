@@ -33,6 +33,10 @@ const Global = createGlobalStyle`
 	ul {
 		  list-style-type: none
 	}
+	.logo {
+		font-family: Billabong, Arial, serif;
+		color: #000;
+	}
 	.pointer {
 		cursor: pointer;
 	}
