@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-import { signupUser } from '../../actions/auth-actions';
 import { EyeIcon } from '../../components/Icons';
+
+import { requestResetPassword, resetPassword } from '../../utils/password';
 
 import Button from '../../styles/Button';
 import logo from '../../assets/logo.svg';
 
-const SignupWrapper = styled.div`
+const ResetPasswordWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -19,7 +21,7 @@ const SignupWrapper = styled.div`
   padding-botto: 44px;
   width: 100%;
 
-  .signup {
+  .reset-password {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -30,7 +32,7 @@ const SignupWrapper = styled.div`
     height: 800px;
   }
 
-  .signup > div {
+  .reset-password > div {
     background-color: white;
     border: 1px solid lightgrey;
     border-radius: 1px;
@@ -76,12 +78,6 @@ const SignupWrapper = styled.div`
     margin: auto auto 20px;
     }
 
-  .forgot-password {
-    display: block;
-    color: #00376b;
-    font-size: 12px;
-    text-align: center;
-  }
 
   p {
     margin: 15px;
@@ -100,25 +96,32 @@ const SignupWrapper = styled.div`
   }
 `;
 
-const Signup = ({ isAuthenticated, signupUser }) => {
+const ResetPassword = () => {
+  const { token } = useParams();
   const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    username: '',
     password: '',
+    confirmPassword: '',
   });
-  const [formValid, setFormValid] = useState(false);
+  const [verified, setVerified] = useState(false);
+  const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  // Form validation
   useEffect(() => {
-    setFormValid(
-      !!formData.email &&
-        !!formData.name &&
-        !!formData.username &&
-        formData.password.length > 5
-    );
-  }, [formData]);
+    const requestResetPasswordHandler = async () => {
+      try {
+        const user = await requestResetPassword(token);
+        console.log(user);
+        setVerified(user);
+      } catch (error) {
+        setVerified(false);
+        setMessage(
+          'This link is either broken or expired.  Please try again later.'
+        );
+      }
+    };
+    requestResetPasswordHandler();
+  }, [token]);
 
   const onChange = (e) => {
     setFormData({
@@ -127,11 +130,21 @@ const Signup = ({ isAuthenticated, signupUser }) => {
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (formValid) {
-      return signupUser(formData);
+    if (!verified) return;
+
+    if (formData.password !== formData.confirmPassword) {
+      return toast.error('The passwords do not match.');
+    }
+
+    try {
+      const res = await resetPassword(token, formData.password);
+      setMessage(res);
+      setSuccess(true);
+    } catch (error) {
+      toast.error('A problem occurred.  Please try again in a few minutes');
     }
   };
 
@@ -140,56 +153,57 @@ const Signup = ({ isAuthenticated, signupUser }) => {
   };
 
   return (
-    <SignupWrapper>
-      <div className='signup'>
+    <ResetPasswordWrapper>
+      <div className='reset-password'>
         <div>
           <img className='logo' src={logo} alt='logo' />
-          <h2>Sign up to see photos and videos from your friends.</h2>
+          <h2>Reset your password</h2>
 
-          <form>
-            <input
-              type='text'
-              name='email'
-              onChange={onChange}
-              placeholder='Email'
-              value={formData.email}
-            />
-            <input
-              type='text'
-              name='name'
-              onChange={onChange}
-              placeholder='Full Name'
-              value={formData.name}
-            />
-            <input
-              type='text'
-              name='username'
-              onChange={onChange}
-              placeholder='Username'
-              value={formData.username}
-            />
-            <input
-              onChange={onChange}
-              name='password'
-              type={showPassword ? 'text' : 'password'}
-              placeholder='Password'
-              value={formData.password}
-            />
-            <EyeIcon
-              style={{ position: 'absolute', top: '62%', right: '15%' }}
-              cursor='pointer'
-              size='24'
-              stroke={showPassword ? '1.5' : '1'}
-              onClick={toggleShowPassword}
-            />
-            <Button
-              className='signup-btn'
-              disabled={!formValid}
-              onClick={onSubmit}
-            >
-              Sign up
-            </Button>
-          </form>
+          {verified ? (
+            <form>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name='password'
+                onChange={onChange}
+                placeholder='New password'
+                value={formData.password}
+                disabled={success}
+              />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name='confirmPassword'
+                onChange={onChange}
+                placeholder='Confirm new password'
+                value={formData.confirmPassword}
+                disabled={success}
+              />
+              <span className='subtext small' style={{ textAlign: 'center' }}>
+                Your password must be at least 6 characters.
+              </span>
+              <EyeIcon
+                style={{ position: 'absolute', top: '31%', right: '15%' }}
+                cursor='pointer'
+                size='24'
+                stroke={showPassword ? '1.5' : '1'}
+                onClick={toggleShowPassword}
+                display={success && 'none'}
+              />
+              <Button
+                className='submit-btn'
+                disabled={
+                  formData.password.length < 6 ||
+                  formData.confirmPassword.length < 6 ||
+                  success
+                }
+                onClick={onSubmit}
+              >
+                {success ? 'Password reset' : 'Submit'}
+              </Button>
+              {message && <h2 style={{ textAlign: 'center' }}>{message}</h2>}
+            </form>
+          ) : (
+            <p>{message}</p>
+          )}
         </div>
         <div>
           <p>
@@ -200,12 +214,8 @@ const Signup = ({ isAuthenticated, signupUser }) => {
           </p>
         </div>
       </div>
-    </SignupWrapper>
+    </ResetPasswordWrapper>
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps, { signupUser })(Signup);
+export default ResetPassword;

@@ -41,12 +41,12 @@ export const loginUser = (userData) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
-    toast('You have successfully logged in.');
+    toast.success('You have successfully logged in.');
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
     });
-    toast('Login failed.  Please try again.');
+    toast.error('Login failed.  Please try again.');
   }
 };
 

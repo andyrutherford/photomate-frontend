@@ -35,7 +35,7 @@ const App = () => {
           <Route exact path='/forgot-password' component={ForgotPassword} />
           <Route
             exact
-            path='/forgot-password/reset'
+            path='/reset-password/:token'
             component={ResetPassword}
           />
           <Route component={Routes} />
