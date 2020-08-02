@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 
 const AddComment = styled.div`
+  form {
+    display: flex;
+    position: relative;
+  }
+
+  button {
+    background: none;
+    border: none;
+  }
+
   input {
     border: none;
     border-top: 0.5px solid #d3d3d3;
@@ -11,7 +21,7 @@ const AddComment = styled.div`
   }
 
   input[type='text'] {
-    padding-right: 50px;
+    padding-right: 85px;
   }
 
   input[type='submit'] {
@@ -20,7 +30,13 @@ const AddComment = styled.div`
     color: #0095f6;
     cursor: pointer;
     font-weight: bold;
-    margin-left: -75px;
+    margin-left: -50px;
+    width: 50px;
+    padding: 0;
+  }
+
+  .input-actions {
+    margin-left: -85px;
     width: 75px;
   }
 `;

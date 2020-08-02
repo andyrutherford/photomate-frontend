@@ -126,7 +126,7 @@ export const createPost = (imageUrl, caption, userId) => async (dispatch) => {
     dispatch(getFeed());
   } catch (error) {
     dispatch({ type: CREATE_POST_FAIL });
-    toast('A problem occurred.  Please try again.');
+    toast.error(error.response.data.message);
   }
 };
 
@@ -138,11 +138,11 @@ export const deletePost = (postId) => async (dispatch) => {
     toast('Post deleted.');
   } catch (error) {
     dispatch({ type: DELETE_POST_FAIL });
-    toast('A problem occurred.  Please try again.');
+    toast.error(error.response.data.message);
   }
 };
 
-export const addComment = (postId, text, from) => async (dispatch) => {
+export const addComment = (postId, text) => async (dispatch) => {
   try {
     const res = await api.post(`/post/${postId}/comment`, { text });
     dispatch({
@@ -150,7 +150,7 @@ export const addComment = (postId, text, from) => async (dispatch) => {
       payload: { postId, comment: res.data.comment },
     });
   } catch (error) {
-    toast('A problem occurred.  Please try again.');
+    toast.error(error.response.data.message);
     dispatch({
       type: ADD_COMMENT_FAIL,
     });
@@ -170,7 +170,7 @@ export const likePost = (postId, action) => async (dispatch) => {
       },
     });
   } catch (error) {
-    toast('A problem occurred.  Please try again.');
+    toast.error(error.response.data.message);
     dispatch({
       type: LIKE_POST_FAIL,
     });
@@ -187,7 +187,7 @@ export const getSavedPosts = () => async (dispatch) => {
     });
     return res.data.savedPosts;
   } catch (error) {
-    toast('A problem occurred.  Please try again.');
+    toast.error(error.response.data.message);
     dispatch({
       type: GET_SAVED_POSTS_FAIL,
     });
@@ -203,7 +203,7 @@ export const savePost = (postId, action) => async (dispatch) => {
       payload: res.data.user.savedPosts,
     });
   } catch (error) {
-    toast('A problem occurred.  Please try again.');
+    toast.error(error.response.data.message);
     dispatch({
       type: SAVE_POST_FAIL,
     });

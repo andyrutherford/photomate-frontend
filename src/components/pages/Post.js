@@ -29,7 +29,7 @@ const PostWrapper = styled.div`
     border-top-right-radius: 3px;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 100%;
   }
 `;
 
