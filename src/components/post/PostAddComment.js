@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
-import { Emoji } from 'emoji-mart';
 
+import { SmileyIcon } from '../Icons';
 import AddComment from '../../styles/AddComment';
 
 const PostAddComment = ({ postId, addComment }) => {
@@ -55,7 +55,7 @@ const PostAddComment = ({ postId, addComment }) => {
           style={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <button onClick={emojiHandler}>
-            <Emoji emoji={{ id: 'smiley', skin: 3 }} size={22} />
+            <SmileyIcon size={24} />{' '}
           </button>
           <input type='submit' value='Post' onClick={onSubmit} />
         </div>

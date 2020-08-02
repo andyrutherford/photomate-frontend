@@ -2,22 +2,16 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import 'emoji-mart/css/emoji-mart.css';
+import { Picker } from 'emoji-mart';
 
+import AddComment from '../styles/AddComment';
 import { uploadImage, createPost } from '../actions/post-actions';
 
-import { CameraIcon } from './Icons';
+import { SmileyIcon, CameraIcon } from './Icons';
 import Modal from '../components/modal/Modal';
 
-const NewPostButtonWrapper = styled.div`
-  input.new-post__caption {
-    border: none;
-    border-top: 1px solid #d3d3d3;
-    font-size: 14px;
-    height: 56px;
-    padding: 0 16px;
-    width: 100%;
-  }
-`;
+const NewPostButtonWrapper = styled.div``;
 
 export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
   const [postImage, setPostImage] = useState();
@@ -25,6 +19,8 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
   const [showModal, setShowModal] = useState(false);
   const [caption, setCaption] = useState('');
   const history = useHistory();
+  const [emojiPickerState, setEmojiPickerState] = useState(false);
+  let emojiPicker;
 
   const handleNewPost = async (e) => {
     if (e.target.files[0]) {
@@ -47,6 +43,7 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
   };
 
   const submitHandler = async () => {
+    setEmojiPickerState(false);
     try {
       await createPost(postImage, caption, userId);
       setShowModal(false);
@@ -56,6 +53,27 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  if (emojiPickerState) {
+    emojiPicker = (
+      <Picker
+        title='Pick your emoji…'
+        emoji='point_up'
+        onSelect={(emoji) => setCaption(caption + emoji.native)}
+        style={{
+          width: '319px',
+          position: 'absolute',
+          bottom: '60px',
+          right: '0px',
+        }}
+      />
+    );
+  }
+
+  const emojiHandler = (e) => {
+    e.preventDefault();
+    setEmojiPickerState(!emojiPickerState);
   };
 
   return (
@@ -85,21 +103,39 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
             alt='new post'
             style={{ margin: 'auto', width: '100%' }}
           />
-          <input
-            className='new-post__caption'
-            type='text'
-            alt=''
-            placeholder='Add a caption...'
-            onChange={(e) => setCaption(e.target.value)}
-            value={caption}
-            style={{
-              border: 'none',
-              padding: '0 1rem',
-              height: '40px',
-              width: '100%',
-              fontSize: '16px',
-            }}
-          />
+          <AddComment>
+            <form onSubmit={submitHandler}>
+              <input
+                type='text'
+                alt=''
+                placeholder='Add a caption...'
+                onChange={(e) => setCaption(e.target.value)}
+                value={caption}
+                style={{
+                  border: 'none',
+                  padding: '0 1rem',
+                  height: '40px',
+                  width: '100%',
+                  fontSize: '16px',
+                  margin: 'auto 0',
+                }}
+              />
+              <div
+                className='input-actions'
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
+                <button onClick={emojiHandler}>
+                  <SmileyIcon size={24} />{' '}
+                </button>
+                <input
+                  type='submit'
+                  value='Post'
+                  style={{ fontWeight: '100', fontSize: '16px' }}
+                />
+              </div>
+              {emojiPicker}
+            </form>
+          </AddComment>
         </Modal>
       )}
     </NewPostButtonWrapper>

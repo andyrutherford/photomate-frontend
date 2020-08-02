@@ -22,8 +22,8 @@ const ModalOverlay = (props) => {
           >
             Cancel
           </button>
-          <label style={{ fontSize: '16px' }}>{props.header}</label>
-          <button
+          {/* <label style={{ fontSize: '16px' }}>{props.header}</label> */}
+          {/* <button
             onClick={props.onSubmit}
             style={{
               border: 'none',
@@ -34,7 +34,7 @@ const ModalOverlay = (props) => {
             }}
           >
             Share
-          </button>
+          </button> */}
         </header>
       )}
       {props.followerFollowing && (

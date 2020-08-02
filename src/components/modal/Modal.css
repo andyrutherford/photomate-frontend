@@ -25,10 +25,6 @@
   padding: 0;
 }
 
-.modal__footer {
-  padding: 0.5rem 0.5rem;
-}
-
 @media (min-width: 430px) {
   .modal-mini {
     left: calc(50% - 15rem);
