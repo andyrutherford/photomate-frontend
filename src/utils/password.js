@@ -12,7 +12,7 @@ export const changePassword = async (oldPassword, newPassword) => {
 
 export const forgotPassword = async (email) => {
   try {
-    const res = await axios.post(
+    await axios.post(
       '/api/v1/mail/forgot-password',
       { email },
       {
@@ -21,7 +21,6 @@ export const forgotPassword = async (email) => {
         },
       }
     );
-    console.log(res.data);
   } catch (error) {
     console.log(error.message);
     throw error;

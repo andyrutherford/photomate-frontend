@@ -24,6 +24,7 @@ const NavbarWrapper = styled.div`
     align-items: center;
     margin: 0 auto;
     width: 975px;
+    padding-bottom: 5px;
   }
 
   ul {
@@ -39,7 +40,7 @@ const NavbarWrapper = styled.div`
   }
 
   .logo {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   @media screen and (max-width: 1070px) {
@@ -59,10 +60,14 @@ const Navbar = ({ username, avatar, logoutUser }) => {
   return (
     <NavbarWrapper>
       <nav>
-        <Link to='/'>
-          {/* <img className='logo' src={logo} alt='Instagram' /> */}
-          <h1 className='logo'>Photomate</h1>
-        </Link>
+        {/* <img className='logo' src={logo} alt='Instagram' /> */}
+        <div style={{ paddingTop: '3px', marginBottom: '-8px' }}>
+          {' '}
+          <Link to='/' className='logo'>
+            Photomate
+          </Link>
+        </div>
+
         <Search />
 
         <ul>

@@ -65,7 +65,6 @@ export const getPostsByUsername = (username) => async (dispatch) => {
 export const getPostById = (postId) => async (dispatch) => {
   try {
     const res = await api.get(`/post/${postId}`);
-    console.log(res.data);
     dispatch({
       type: GET_POST_BY_ID_SUCCESS,
       payload: res.data.post,
@@ -146,7 +145,6 @@ export const deletePost = (postId) => async (dispatch) => {
 export const addComment = (postId, text, from) => async (dispatch) => {
   try {
     const res = await api.post(`/post/${postId}/comment`, { text });
-    console.log(res.data);
     dispatch({
       type: ADD_COMMENT_SUCCESS,
       payload: { postId, comment: res.data.comment },
@@ -197,7 +195,6 @@ export const getSavedPosts = () => async (dispatch) => {
 };
 
 export const savePost = (postId, action) => async (dispatch) => {
-  console.log(postId, action);
   try {
     const res = await api.get(`/post/${postId}/save`);
 

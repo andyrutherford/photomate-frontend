@@ -15,6 +15,11 @@ const PhotoGridWrapper = styled.div`
     margin-top: 10px;
   }
 
+  h1 {
+    text-align: center;
+    margin-top: 80px;
+  }
+
   a {
     color: black;
   }
@@ -83,23 +88,37 @@ const PhotoGrid = ({
           </div>
         )}
       </div>
-      <div className='photo-grid'>
-        {savedPosts &&
+
+      {savedPosts &&
+        (savedPosts.length === 0 ? (
+          <h1>You have no saved posts.</h1>
+        ) : (
           savedPosts.map((post, index) => (
-            <PhotoGridItem key={post._id} post={savedPosts[index]} />
-          ))}
-        {userPosts &&
+            <div className='photo-grid'>
+              <PhotoGridItem key={post._id} post={savedPosts[index]} />
+            </div>
+          ))
+        ))}
+      {userPosts &&
+        (userPosts.length === 0 ? (
+          profileOwner ? (
+            <h1>You don't have any posts.</h1>
+          ) : (
+            <h1>This user has no posts.</h1>
+          )
+        ) : (
           userPosts.map((post, index) => (
-            <PhotoGridItem key={post._id} post={userPosts[index]} />
-          ))}
-      </div>
+            <div className='photo-grid'>
+              <PhotoGridItem key={post._id} post={userPosts[index]} />
+            </div>
+          ))
+        ))}
     </PhotoGridWrapper>
   );
 };
 
 const mapStateToProps = (state) => ({
   user: state.user.currentUser.username,
-  authUser: state.auth.user.username,
 });
 
 export default connect(mapStateToProps, { getSavedPosts, getPostsByUsername })(
