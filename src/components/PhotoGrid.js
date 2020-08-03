@@ -107,11 +107,11 @@ const PhotoGrid = ({
             <h1>This user has no posts.</h1>
           )
         ) : (
-          userPosts.map((post, index) => (
-            <div className='photo-grid'>
+          <div className='photo-grid'>
+            {userPosts.map((post, index) => (
               <PhotoGridItem key={post._id} post={userPosts[index]} />
-            </div>
-          ))
+            ))}
+          </div>
         ))}
     </PhotoGridWrapper>
   );

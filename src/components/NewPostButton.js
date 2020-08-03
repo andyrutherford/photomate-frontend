@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
+import { toast } from 'react-toastify';
 
 import AddComment from '../styles/AddComment';
 import { uploadImage, createPost } from '../actions/post-actions';
@@ -42,8 +43,10 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
     setCaption(e.target.value);
   };
 
-  const submitHandler = async () => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
     setEmojiPickerState(false);
+    if (!caption) return toast.error('A caption is required.');
     try {
       await createPost(postImage, caption, userId);
       setShowModal(false);
@@ -76,6 +79,13 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
     setEmojiPickerState(!emojiPickerState);
   };
 
+  const cancelNewPost = () => {
+    setShowModal(false);
+    setPreviewImage();
+    setPostImage();
+    setCaption();
+  };
+
   return (
     <NewPostButtonWrapper>
       <label className='icon pointer' htmlFor='file-upload'>
@@ -93,7 +103,7 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
           header='New Post'
           show={true}
           className='new-post'
-          onCancel={() => setShowModal(false)}
+          onCancel={cancelNewPost}
           setCaption={captionHandler}
           onSubmit={submitHandler}
         >
@@ -109,7 +119,7 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
                 type='text'
                 alt=''
                 placeholder='Add a caption...'
-                onChange={(e) => setCaption(e.target.value)}
+                onChange={captionHandler}
                 value={caption}
                 style={{
                   border: 'none',

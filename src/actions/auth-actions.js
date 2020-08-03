@@ -68,7 +68,7 @@ export const signupUser = (userData) => async (dispatch) => {
     dispatch({
       type: SIGNUP_FAIL,
     });
-    toast('A problem occurred.  Please try again.');
+    toast.error(error.response.data.message);
   }
 };
 
