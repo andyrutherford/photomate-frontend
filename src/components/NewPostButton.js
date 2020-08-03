@@ -47,6 +47,8 @@ export const NewPostButton = ({ uploadImage, createPost, token, userId }) => {
     e.preventDefault();
     setEmojiPickerState(false);
     if (!caption) return toast.error('A caption is required.');
+    if (!postImage)
+      return toast.warn('The image is still uploading.  Please wait a moment.');
     try {
       await createPost(postImage, caption, userId);
       setShowModal(false);
