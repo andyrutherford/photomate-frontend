@@ -17,13 +17,14 @@ const NavbarWrapper = styled.div`
   width: 100%;
   border-bottom: 1px solid #d3d3d3;
   margin-bottom: 1rem;
+  z-index: 900;
 
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    width: 975px;
+    width: 935px;
     padding-bottom: 5px;
   }
 

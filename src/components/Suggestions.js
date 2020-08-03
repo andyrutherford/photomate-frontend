@@ -10,8 +10,8 @@ import SuggestionList from './SuggestionList';
 
 const SuggestionsWrapper = styled.div`
   position: fixed;
-  left: 65%;
-  width: 280px;
+  left: 60%;
+  width: 240px;
   font-size: 14px;
   margin-left: 30px;
 
@@ -57,9 +57,11 @@ const SuggestionsWrapper = styled.div`
   footer span {
     margin-top: 10px;
   }
+  @media screen and (max-width: 1400px) {
+    left: 65%;
+  }
 
   @media screen and (max-width: 984px) {
-    left: 67%;
     display: none;
   }
 `;
