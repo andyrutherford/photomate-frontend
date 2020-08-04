@@ -97,12 +97,18 @@ export const uploadImage = (file, token) => async (dispatch) => {
   formData.append('image', file);
 
   try {
-    const res = await axios.post('/api/v1/post/new/image', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        authorization: 'Bearer ' + token,
-      },
-    });
+    const res = await axios.post(
+      process.env.NODE_ENV === 'development'
+        ? '/api/v1/post/new/image'
+        : `${process.env.REACT_APP_BACKEND_URL}/api/v1/post/new/image`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          authorization: 'Bearer ' + token,
+        },
+      }
+    );
 
     dispatch({
       type: UPLOAD_PHOTO_SUCCESS,

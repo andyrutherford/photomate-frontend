@@ -2,7 +2,10 @@ import axios from 'axios';
 // import store from '../store';
 
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL:
+    process.env.NODE_ENV === 'development'
+      ? '/api/v1'
+      : `${process.env.REACT_APP_BACKEND_URL}/api/v1`,
   headers: {
     'Content-Type': 'application/json',
   },

@@ -1,14 +1,16 @@
 # Photomate
 
-A fully featured photo sharing web app, based on a popular social media platform. Built with the [MERN](https://medium.com/@digimktg/what-is-mern-stack-9c867dbad302).
+A fully featured photo sharing web app, based on a popular social media platform. Built with the [MERN](https://medium.com/@digimktg/what-is-mern-stack-9c867dbad302) stack.
 
-The backend is available [here](https://github.com/andyrutherford/photomate-backend)
+See it live [here](https://photomate.netlify.app/).
 
-<img src="./img/screenshots/1.png" width="600">
-<img src="./img/screenshots/2.png" width="600">
-<img src="./img/screenshots/3.png" width="600">
-<img src="./img/screenshots/4.png" width="600">
-<img src="./img/screenshots/5.png" width="250">
+The backend is available [here](https://github.com/andyrutherford/photomate-backend).
+
+<img src="./screenshots/1.png" width="600">
+<img src="./screenshots/2.png" width="600">
+<img src="./screenshots/3.png" width="600">
+<img src="./screenshots/4.png" width="600">
+<img src="./screenshots/5.png" width="250">
 
 ## Features
 
@@ -54,6 +56,8 @@ Photomate uses a number of open source projects to work properly:
 - [Emoji Mart](https://github.com/missive/emoji-mart) - for emojis
 
 ## Demo
+
+https://photomate.netlify.app/
 
 ## License
 
