@@ -243,7 +243,7 @@ const Login = ({ isAuthenticated, loginUser, githubAuth }) => {
             </Link>
           </p>
           <a
-            href='https://github.com/andyrutherford/instaclone-frontend'
+            href='https://github.com/andyrutherford/photomate-frontend'
             target='_blank'
             rel='noopener noreferrer'
             style={{

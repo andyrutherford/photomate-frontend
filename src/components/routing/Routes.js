@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 // Components
 import PrivateRoute from './PrivateRoute';
@@ -12,7 +12,6 @@ import Settings from '../pages/Settings';
 import Post from '../pages/Post';
 import Loading from '../pages/Loading';
 import ConfirmVerification from '../pages/ConfirmVerification';
-import NotFound from '../pages/NotFound';
 
 const ContainerWrapper = styled.div`
   width: 935px;
@@ -49,7 +48,6 @@ const Routes = ({ loading }) => {
           <PrivateRoute exact path='/:username' component={Profile} />
           <PrivateRoute exact path='/accounts/edit' component={Settings} />
           <PrivateRoute exact path='/p/:postId' component={Post} />
-          <Route component={NotFound} />
         </Switch>
       </ContainerWrapper>
     </section>
