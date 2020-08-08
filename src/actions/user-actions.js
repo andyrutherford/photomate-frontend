@@ -84,12 +84,18 @@ export const changeAvatar = (avatar, token) => async (dispatch) => {
   formData.append('image', avatar);
 
   try {
-    const res = await axios.put('/api/v1/user/avatar', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        authorization: 'Bearer ' + token,
-      },
-    });
+    const res = await axios.put(
+      process.env.NODE_ENV === 'development'
+        ? '/api/v1/user/avatar'
+        : `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/avatar`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          authorization: 'Bearer ' + token,
+        },
+      }
+    );
 
     dispatch(loadUser());
     dispatch({
@@ -98,6 +104,7 @@ export const changeAvatar = (avatar, token) => async (dispatch) => {
     });
     toast('Your avatar has been changed.');
   } catch (error) {
+    console.log(error.message);
     toast('A problem occurred.  Please try again.');
     dispatch({
       type: UPDATE_AVATAR_FAIL,
