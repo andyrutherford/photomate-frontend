@@ -10,7 +10,6 @@ The backend is available [here](https://github.com/andyrutherford/photomate-back
 <img src="./screenshots/2.png" width="600">
 <img src="./screenshots/3.png" width="600">
 <img src="./screenshots/4.png" width="600">
-<img src="./screenshots/5.png" width="250">
 
 ## Features
 
@@ -44,16 +43,14 @@ Photomate uses a number of open source projects to work properly:
 
 - [ReactJS](https://reactjs.org/) - A JavaScript library for building user interfaces
 - [node.js](http://nodejs.org) - evented I/O for the backend
-- [Express](http://expressjs.com) - fast node.js network app framework
-- [mongoDB](https://www.mongodb.com/) - general purpose, document-based, distributed database
 - [Cloudinary](https://cloudinary.com/) - for image storage
 - [Redux](https://react-redux.js.org/) - for state management
-- [mongoose](https://mongoosejs.com/) - MongoDB object modeling for Node.js
-- [JSON Web Token](https://jwt.io/) - for user authentication
-- [NodeMailer](https://nodemailer.com/) - module for Node.js to send emails
+- [axios](https://www.npmjs.com/package/axios) - promise based HTTP client for the browser and node.js
 - [styled components](https://styled-components.com/) - for styled components
 - [React-Toastify](https://github.com/fkhadra/react-toastify) - for alerts
 - [Emoji Mart](https://github.com/missive/emoji-mart) - for emojis
+
+Backend tech is [here](https://github.com/andyrutherford/photomate-backend#tech).
 
 ## Demo
 
