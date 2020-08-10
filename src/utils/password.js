@@ -3,7 +3,12 @@ import api from './api';
 
 export const changePassword = async (oldPassword, newPassword) => {
   try {
-    const res = await api.put('/auth', { oldPassword, newPassword });
+    const res = await api.put(
+      process.env.NODE_ENV === 'development'
+        ? '/auth'
+        : `${process.env.REACT_APP_BACKEND_URL}/auth`,
+      { oldPassword, newPassword }
+    );
     return res.data.username;
   } catch (error) {
     throw error;
@@ -13,7 +18,9 @@ export const changePassword = async (oldPassword, newPassword) => {
 export const forgotPassword = async (email) => {
   try {
     await axios.post(
-      '/api/v1/mail/forgot-password',
+      process.env.NODE_ENV === 'development'
+        ? '/api/v1/mail/forgot-password'
+        : `${process.env.REACT_APP_BACKEND_URL}/api/v1/mail/forgot-password`,
       { email },
       {
         headers: {
@@ -29,11 +36,16 @@ export const forgotPassword = async (email) => {
 
 export const requestResetPassword = async (token) => {
   try {
-    const res = await axios.get('/api/v1/user/reset-password', {
-      params: {
-        token,
-      },
-    });
+    const res = await axios.get(
+      process.env.NODE_ENV === 'development'
+        ? '/api/v1/user/reset-password'
+        : `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/reset-password`,
+      {
+        params: {
+          token,
+        },
+      }
+    );
     return res.data.user;
   } catch (error) {
     console.log(error.message);
@@ -43,10 +55,15 @@ export const requestResetPassword = async (token) => {
 
 export const resetPassword = async (token, password) => {
   try {
-    const res = await axios.post('/api/v1/user/reset-password', {
-      token,
-      password,
-    });
+    const res = await axios.post(
+      process.env.NODE_ENV === 'development'
+        ? '/api/v1/user/reset-password'
+        : `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/reset-password`,
+      {
+        token,
+        password,
+      }
+    );
     return res.data.message;
   } catch (error) {
     throw error;
